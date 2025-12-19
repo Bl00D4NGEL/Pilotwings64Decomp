@@ -1,0 +1,207 @@
+name: Pilot Wings64 (North America)
+sha1: ec771aedf54ee1b214c25404fb4ec51cfd43191a
+options:
+  basename: pilotwings64
+  target_path: baserom.us.z64
+  elf_path: build/pilotwings64.elf
+  base_path: .
+  platform: n64
+  compiler: IDO
+
+  asm_path: asm
+  src_path: src
+  asset_path: bin
+  build_path: build
+  create_asm_dependencies: True
+  asm_emit_size_directive: True
+  disasm_unknown: True
+
+  ld_script_path: pilotwings64.ld
+  ld_dependencies: True
+
+  find_file_boundaries: True
+  header_encoding: ASCII
+
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  mips_abi_float_regs: o32
+
+  # section_order: [".text", ".data", ".rodata", ".bss"]
+  # auto_link_sections: [".data", ".rodata", ".bss"]
+
+  symbol_addrs_path:
+    - symbol_addrs.txt
+  reloc_addrs_path:
+    - reloc_addrs.txt
+
+  undefined_funcs_auto_path: undefined_funcs_auto.txt
+  undefined_syms_auto_path: undefined_syms_auto.txt
+
+  extensions_path: tools/splat_ext
+
+  # string_encoding: ASCII
+  # data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+  # libultra_symbols: True
+  # hardware_regs: True
+  # gfx_ucode: # one of [f3d, f3db, f3dex, f3dexb, f3dex2]
+
+segments:
+  - name: header
+    type: header
+    start: 0x0
+
+  - name: ipl3
+    type: bin
+    start: 0x40
+
+  - name: entry
+    type: code
+    start: 0x1000
+    vram: 0x80200050
+    subsegments:
+      - [0x1000, hasm]
+
+  - name: main
+    type: code
+    start: 0x1050
+    vram: 0x802000A0
+    follows_vram: entry
+    subsegments:
+      - [0x1050, asm]
+      - [0x1300, asm]
+      - [0x2130, asm]
+      - [0x3D50, asm]
+      - [0x4850, asm]
+      - [0x5690, asm]
+      - [0x58E0, asm]
+      - [0x6F80, asm]
+      - [0x7150, asm]
+      - [0x8170, asm]
+      - [0x177A0, asm]
+      - [0x19B50, asm]
+      - [0x1AF80, asm]
+      - [0x200B0, asm]
+      - [0x21910, asm]
+      - [0x25250, asm]
+      - [0x25650, asm]
+      - [0x28EE0, asm]
+      - [0x2AE50, asm]
+      - [0x2B370, asm]
+      - [0x2C050, asm]
+      - [0x2EEA0, asm]
+      - [0x2FE40, asm]
+      - [0x30DF0, asm]
+      - [0x30EA0, asm]
+      - [0x32480, asm]
+      - [0x32590, asm]
+      - [0x329C0, asm]
+      - [0x32A70, asm]
+      - [0x35450, asm]
+      - [0x35470, asm]
+      - [0x354E0, asm]
+      - [0x355D0, asm]
+      - [0x35640, asm]
+      - [0x356A0, asm]
+      - [0x35700, asm]
+      - [0x35760, asm]
+      - [0x357C0, asm]
+      - [0x35800, asm]
+      - [0x35F10, asm]
+      - [0x37140, asm]
+      - [0x37290, asm]
+      - [0x372F0, asm]
+      - [0x37540, asm]
+      - [0x37790, asm]
+      - [0x378E0, asm]
+      - [0x37B70, asm]
+      - [0x37BF0, asm]
+      - [0x37CA0, asm]
+      - [0x37CB0, asm]
+      - [0x38490, asm]
+      - [0x384D0, asm]
+      - [0x384E0, asm]
+      - [0x38FA0, asm]
+      - [0x38FE0, asm]
+      - [0x39080, asm]
+      - [0x390C0, asm]
+      - [0x39100, asm]
+      - [0x3B730, asm]
+      - [0x3B760, asm]
+      - [0x3B7D0, asm]
+      - [0x3B7E0, asm]
+      - [0x3B8D0, asm]
+      - [0x3BA90, asm]
+      - [0x3BDD0, asm]
+      - [0x3BE50, asm]
+      - [0x3C110, asm]
+      - [0x3C4F0, asm]
+      - [0x3C560, asm]
+      - [0x3C5D0, asm]
+      - [0x3C640, asm]
+      - [0x3C820, asm]
+      - [0x3C960, asm]
+      - [0x3C9D0, asm]
+      - [0x3CC60, asm]
+      - [0x3CC70, asm]
+      - [0x3CDF0, asm]
+      - [0x3CFB0, asm]
+      - [0x3D5D0, asm]
+      - [0x3D680, asm]
+      - [0x3D810, asm]
+      - [0x3DDD0, asm]
+      - [0x3DE60, asm]
+      - [0x3DEF0, asm]
+      - [0x3DF90, asm]
+      - [0x3E020, asm]
+      - [0x3E0C0, asm]
+      - [0x3E140, asm]
+      - [0x3FB90, asm]
+      - [0x3FCD0, asm]
+      - [0x3FD10, asm]
+      - [0x406F0, asm]
+      - [0x40700, asm]
+      - [0x407C0, asm]
+      - [0x40F70, asm]
+      - [0x41010, asm]
+      - [0x41CB0, asm]
+      - [0x41FB0, asm]
+      - [0x42C10, asm]
+      - [0x42D20, asm]
+      - [0x42F60, asm]
+      - [0x42F80, asm]
+      - [0x43360, asm]
+      - [0x43370, asm]
+      - [0x433B0, asm]
+      - [0x43440, asm]
+      - [0x43470, asm]
+      - [0x43890, asm]
+      - [0x438A0, asm]
+      - [0x43C00, asm]
+      - [0x43C10, asm]
+      - [0x443F0, asm]
+      - [0x444D0, asm]
+      - [0x44580, asm]
+      - [0x44600, asm]
+      - [0x44660, asm]
+      - [0x44700, asm]
+      - [0x44960, asm]
+      - [0x449F0, asm]
+      - [0x44AA0, asm]
+      - [0x44B20, asm]
+      - [0x455D0, asm]
+      - [0x45700, asm]
+      - [0x45800, asm]
+      - [0x45820, asm]
+      - [0x46430, asm]
+      - [0x46440, asm]
+      - [0x46470, asm]
+      - [0x46480, asm]
+      - [0x464E0, asm]
+
+  - type: bin
+    start: 0x46710
+    follows_vram: main
+
+  - [0x800000]
