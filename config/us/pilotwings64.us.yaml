@@ -16,7 +16,7 @@ options:
   asm_emit_size_directive: True
   disasm_unknown: True
 
-  ld_script_path: pilotwings64.ld
+  ld_script_path: build/pilotwings64.us.ld
   ld_dependencies: True
 
   find_file_boundaries: True
@@ -30,12 +30,12 @@ options:
   # auto_link_sections: [".data", ".rodata", ".bss"]
 
   symbol_addrs_path:
-    - symbol_addrs.txt
+    - config/us/sym/symbol_addrs.txt
   reloc_addrs_path:
-    - reloc_addrs.txt
+    - config/us/sym/reloc_addrs.txt
 
-  undefined_funcs_auto_path: undefined_funcs_auto.txt
-  undefined_syms_auto_path: undefined_syms_auto.txt
+  undefined_funcs_auto_path: build/splat_out/us/undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/splat_out/us/undefined_syms_auto.txt
 
   extensions_path: tools/splat_ext
 

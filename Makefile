@@ -46,7 +46,7 @@ ROM_BIN   := $(BUILD_DIR)/$(TARGET).$(VERSION).bin
 ROM_ELF   := $(BUILD_DIR)/$(TARGET).$(VERSION).elf
 ROM_Z64   := $(BUILD_DIR)/$(TARGET).$(VERSION).z64
 LD_MAP    := $(BUILD_DIR)/$(TARGET).$(VERSION).map
-LD_SCRIPT := $(TARGET).ld
+LD_SCRIPT := $(BUILD_DIR)/$(TARGET).$(VERSION).ld
 
 SRC_DIR = src
 BIN_DIR = bin
@@ -164,8 +164,10 @@ GCC_FLAGS += -G 0 -mno-shared -march=vr4300 -mfix4300 -mabi=32 -mhard-float
 GCC_FLAGS += -mdivide-breaks -fno-stack-protector -fno-common -fno-zero-initialized-in-bss -fno-PIC -mno-abicalls -fno-strict-aliasing -fno-inline-functions -ffreestanding -fwrapv
 GCC_FLAGS += -Wall -Wextra -Wno-missing-braces
 
-LD_FLAGS   = -T $(LD_SCRIPT) -T undefined_funcs_auto.txt  -T undefined_syms_auto.txt # -T libultra_undefined_syms.txt -T resolve.txt
-LD_FLAGS  += -Map $(LD_MAP) --no-check-sections
+LD_FLAGS := -T $(LD_SCRIPT)
+LD_FLAGS += -T build/splat_out/$(VERSION)/undefined_funcs_auto.txt
+LD_FLAGS += -T build/splat_out/$(VERSION)/undefined_syms_auto.txt
+LD_FLAGS += -Map $(LD_MAP) --no-check-sections
 
 ifeq ($(VERSION),us)
 LD_FLAGS_EXTRA  =
