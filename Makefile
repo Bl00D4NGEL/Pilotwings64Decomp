@@ -6,8 +6,6 @@ VERSION  ?= us
 BASENAME := pilotwings64
 BASEROM  := baserom.$(VERSION).z64
 
-# Colors
-
 NO_COL  := \033[0m
 RED     := \033[0;31m
 RED2    := \033[1;31m
@@ -84,9 +82,6 @@ S_FILES := $(foreach dir,$(ASM_DIRS) $(SRC_DIRS),$(wildcard $(dir)/*.s))
 B_FILES := $(foreach dir,$(BIN_DIRS),$(wildcard $(dir)/*.bin))
 C_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 
-OVL_SRC_DIR := $(SRC_DIR)/overlays
-OVL_BIN_DIR := $(BIN_DIR)/overlays
-
 # ------------------------------------------------------------------------------
 # Outputs
 # ------------------------------------------------------------------------------
@@ -122,8 +117,6 @@ GLOBAL_ASM_C_FILES := $(shell $(GREP) GLOBAL_ASM $(SRC_DIR) </dev/null 2>/dev/nu
 GLOBAL_ASM_O_FILES := $(foreach file,$(GLOBAL_ASM_C_FILES:.c=.o),$(BUILD_DIR)/$(file))
 
 DEFINES := -D_LANGUAGE_C -D_FINALROM -DF3D_OLD -DWIN32 -DSSSV -DNDEBUG -DTARGET_N64 -DCOMPILING_LIBULTRA
-
-
 DEFINES += -DVERSION_US
 
 VERIFY = verify
