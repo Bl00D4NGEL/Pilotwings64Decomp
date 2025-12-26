@@ -138,6 +138,7 @@ GCC_FLAGS += -Wall -Wextra -Wno-missing-braces
 LD_FLAGS := -T $(LD_SCRIPT)
 LD_FLAGS += -T config/$(VERSION)/sym/hardware_regs.ld
 LD_FLAGS += -T config/$(VERSION)/sym/pif_syms.ld
+LD_FLAGS += -T config/$(VERSION)/sym/libultra_symbols.txt
 LD_FLAGS += -T config/$(VERSION)/sym/libultra_undefined_syms.txt
 LD_FLAGS += -T build/splat_out/$(VERSION)/undefined_funcs_auto.txt
 LD_FLAGS += -T build/splat_out/$(VERSION)/undefined_syms_auto.txt
