@@ -172,6 +172,3 @@ SqrtF               = 0x80229EA0; // type:func
 Length2D            = 0x8022A208; // type:func
 Length3D            = 0x8022A23C; // type:func
 
-szNintendoStaff     = 0x80353CA0; // type:char
-szDirector          = 0x80353CB0; // type:char
-
