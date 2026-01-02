@@ -3,9 +3,6 @@
 
 #include <ultra64.h>
 
-void _uvDebugPrintf(char* fmt, ...);
-void _uvAssertMsg(char* expr, char* filename, s32 line);
-
 void _uvMediaCopy(void* vAddr, void* devAddr, u32 nbytes);
 void _uvDMA(void* vAddr, u32 devAddr, u32 nbytes);
 

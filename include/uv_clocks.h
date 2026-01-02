@@ -10,6 +10,7 @@ typedef struct uvClockState {
 
 void func_80205FD0(void);
 void func_80205FFC(void);
+f64 uvClkGetSec(s32 clk_id);
 void func_80206150(s32 arg0);
 
 #endif // PILOTWINGS64_UV_CLOCKS
