@@ -2,6 +2,7 @@
 #define PILOTWINGS64_UV_AUDIO
 
 #include <ultra64.h>
+#include <uv_util.h>
 
 void uvaSeqPlay(void);
 void uvaSeqSetTempo(f32 arg0);

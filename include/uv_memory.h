@@ -2,6 +2,7 @@
 #define PILOTWINGS64_UV_MEMORY
 
 #include <ultra64.h>
+#include <uv_util.h>
 
 void _uvMediaCopy(void* vAddr, void* devAddr, u32 nbytes);
 void _uvDMA(void* vAddr, u32 devAddr, u32 nbytes);

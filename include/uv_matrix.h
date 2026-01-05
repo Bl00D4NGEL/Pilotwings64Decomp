@@ -2,6 +2,7 @@
 #define PILOTWINGS64_UV_MATRIX
 
 #include <ultra64.h>
+#include <uv_util.h>
 
 typedef float Mtx4F_t[4][4];
 

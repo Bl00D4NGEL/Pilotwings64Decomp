@@ -2,6 +2,7 @@
 #define PILOTWINGS64_UV_CLOCKS
 
 #include <ultra64.h>
+#include <uv_util.h>
 
 typedef struct uvClockState {
     s32 unk0;
