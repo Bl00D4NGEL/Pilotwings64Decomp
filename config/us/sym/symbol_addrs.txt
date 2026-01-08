@@ -10,7 +10,6 @@ Thread_Audio        = 0x80203DD0; // type:func
 Thread_Render       = 0x8022E874; // type:func
 Thread_App          = 0x8022E920; // type:func
 Thread_Kernel       = 0x8022E980; // type:func
-__scMain            = 0x8022B8C4; // type:func
 
 uvJanimLoad         = 0x80200350; // type:func
 uvJanimPoseLine     = 0x80200B38; // type:func
@@ -108,9 +107,13 @@ _uvScDoneGfx        = 0x8022B320; // type:func
 _uvScDoneAud        = 0x8022B418; // type:func
 _uvScRunAud         = 0x8022B4B4; // type:func
 _uvScRunGfx         = 0x8022B538; // type:func
-_uvScHandleRetrace  = 0x8022B9C8; // type:func
 _uvScDlistRecover   = 0x8022B65C; // type:func
+_uvScCreateScheduler= 0x8022B6CC; // type:func
+_uvScMain           = 0x8022B8C4; // type:func
+_uvScHandleRetrace  = 0x8022B9C8; // type:func
 _uvScHandleRSP      = 0x8022BCE8; // type:func
+_uvScHandleRDP      = 0x8022BE2C; // type:func
+_uvScHandleNMI      = 0x8022BE8C; // type:func
 _uvScLogCpuEvent    = 0x8022BEC4; // type:func
 _uvScLogIntoRing    = 0x8022C268; // type:func
 
@@ -209,3 +212,17 @@ hsound_callback     = 0x8030A390; // type:func
 snd_makedev         = 0x8033F860; // type:func
 snd_event           = 0x8033FB44; // type:func
 snd_getpilot        = 0x8033FBCC; // type:func
+
+// Data
+
+gKernelThread       = 0x802C36F8;
+gKernelThreadStack  = 0x802BDC90;
+
+gRenderThread       = 0x802C3548;
+gRenderThreadStack  = 0x802BBC90;
+
+gAppThread          = 0x802C3398;
+gAppThreadStack     = 0x802C1C90;
+
+osViModeTable       = 0x8024B7D0;
+

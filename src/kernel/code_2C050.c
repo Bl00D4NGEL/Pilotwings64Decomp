@@ -1,4 +1,9 @@
-#include <uv_memory.h>
+#include <uv_sched.h>
+
+#define VIDEO_MSG       666
+#define RSP_DONE_MSG    667
+#define RDP_DONE_MSG    668
+#define PRE_NMI_MSG     669
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/func_8022B0A0.s")
 
@@ -27,21 +32,47 @@ void _uvScDlistRecover(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/func_8022B6CC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/_uvScCreateScheduler.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/func_8022B8A8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/osScGetCmdQ.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/__scMain.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/_uvScMain.s")
+void _uvScMain(void* arg0) {
+    OSMesg msg;
+    msg = NULL;
+
+    while (1) {
+        osRecvMesg(&D_802C38E8, &msg, 1);
+
+        switch ((int)msg) {
+        case VIDEO_MSG:
+            _uvScHandleRetrace();
+            break;
+        case RSP_DONE_MSG:
+            _uvScHandleRSP();
+            break;
+        case RDP_DONE_MSG:
+            _uvScHandleRDP();
+            break;
+        case PRE_NMI_MSG:
+            _uvScHandleNMI();
+            break;
+        default:
+            _uvDebugPrintf("unknown sched interrupt mesg: 0x%x\n", msg);
+            break;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/_uvScHandleRetrace.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/_uvScHandleRSP.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/func_8022BE2C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/_uvScHandleRDP.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/func_8022BE8C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/_uvScHandleNMI.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/func_8022BEB8.s")
 

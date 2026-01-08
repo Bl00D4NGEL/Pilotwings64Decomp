@@ -1,4 +1,11 @@
 #include <uv_memory.h>
+#include <PR/sched.h>
+
+extern OSThread gAppThread;
+extern OSThread gRenderThread;
+
+extern s32 gRenderThreadStack;
+extern s32 gAppThreadStack;
 
 s32 func_8022E2D4(s32 arg0);
 void func_8022E2DC(char arg0);
@@ -83,25 +90,21 @@ void Thread_App(void *arg0) {
 void Thread_App(void*);                             /* extern */
 void Thread_Render(void*);                          /* extern */
 void uvSetVideoMode(void);                                 /* extern */
-extern s32 D_802BBC90;
-extern s32 D_802C1C90;
 extern s32 D_802C32A4;
 extern void* D_802C32BC;
 extern OSMesgQueue D_802C32C0;
 extern void* D_802C3320;
 extern OSMesgQueue D_802C3340;
-extern OSThread D_802C3398;
-extern OSThread D_802C3548;
 
 void Thread_Kernel(void* arg0) {
     osCreatePiManager(0x96, &D_802C3340, &D_802C3320, 8);
     osCreateMesgQueue(&D_802C32C0, &D_802C32BC, 1);
-    osCreateThread(&D_802C3548, 0, Thread_Render, NULL, &D_802BBC90, 0xFA);
-    osStartThread(&D_802C3548);
+    osCreateThread(&gRenderThread, 0, Thread_Render, NULL, &gRenderThreadStack, 0xFA);
+    osStartThread(&gRenderThread);
     uvSetVideoMode();
-    osCreateThread(&D_802C3398, 6, Thread_App, arg0, &D_802C1C90, 0xA);
+    osCreateThread(&gAppThread, 6, Thread_App, arg0, &gAppThreadStack, 0xA);
     if (D_802C32A4 == 0) {
-        osStartThread(&D_802C3398);
+        osStartThread(&gAppThread);
     }
     osSetThreadPri(NULL, 0);
     while(1) { }
