@@ -1,5 +1,5 @@
 #include <uv_memory.h>
-#include <PR/sched.h>
+#include <uv_sched.h>
 
 extern OSThread gAppThread;
 extern OSThread gRenderThread;
@@ -42,7 +42,23 @@ void func_8022E2DC(char arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/uvSetVideoMode.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/uvSetVideoMode.s")
+extern OSSched D_802C38A8;
+extern OSMesg D_802C3B68;
+extern s32 D_802C5BA8;
+
+void uvSetVideoMode(void) {
+    s32 viMode;
+
+    osCreateMesgQueue(&D_802C3B90, &D_802C3B68, 0xA);
+    switch (osTvType) {
+    case 0:  viMode = 0x10; _uvDebugPrintf("PAL video mode\n"); break;
+    case 1:  viMode = 0x02; _uvDebugPrintf("NTSC video mode\n"); break;
+    default: viMode = 0x10; _uvDebugPrintf("PAL video mode\n"); break;
+    }
+    _uvScCreateScheduler(&D_802C38A8, &D_802C5BA8, 0x7F, viMode, 1);
+    _uvScAddClient(&D_802C38A8, (OSScClient*)&D_802C5BA8, &D_802C3B50);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/bootproc.s")
 

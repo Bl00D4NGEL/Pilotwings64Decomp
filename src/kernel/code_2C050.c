@@ -16,7 +16,6 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/_uvScRunGfx.s")
 
 // #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/_uvScDlistRecover.s")
-
 extern u8 D_802B9C69;
 extern u8 D_802B9C6A;
 extern OSMesgQueue D_802C38E8;
@@ -34,9 +33,9 @@ void _uvScDlistRecover(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/_uvScCreateScheduler.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/func_8022B8A8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/_uvScAddClient.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/osScGetCmdQ.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/_uvScGetCmdQ.s")
 
 // #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2C050/_uvScMain.s")
 void _uvScMain(void* arg0) {
