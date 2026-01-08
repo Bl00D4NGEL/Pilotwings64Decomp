@@ -43,18 +43,18 @@ extern s32 D_802C331C;
 s32 func_8022E2D4(s32 arg0);
 void func_8022E2DC(char arg0);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/uvFileWrite.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/uvFileWrite.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/uvFileRead.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/uvFileRead.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/uvSysInitEEPROM.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/uvSysInitEEPROM.s")
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/func_8022E2D4.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/func_8022E2D4.s")
 s32 func_8022E2D4(s32 arg0) {
     return arg0;
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/func_8022E2DC.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/func_8022E2DC.s")
 void func_8022E2DC(char arg0) {
     switch (arg0) {                              
     case 0:
@@ -70,7 +70,7 @@ void func_8022E2DC(char arg0) {
     }
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/uvSetVideoMode.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/uvSetVideoMode.s")
 void uvSetVideoMode(void) {
     s32 viMode;
 
@@ -84,11 +84,11 @@ void uvSetVideoMode(void) {
     _uvScAddClient(&gSchedInst, (OSScClient*)gSchedStack, &D_802C3B50);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/bootproc.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/bootproc.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/func_8022E558.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/func_8022E558.s")
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/Thread_Render.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/Thread_Render.s")
 void Thread_Render(void* arg) {
     void* sp1C;
 
@@ -104,7 +104,7 @@ void Thread_Render(void* arg) {
     }
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/Thread_App.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/Thread_App.s")
 extern u8 gAppRomStart;
 extern u8 gAppRomEnd;
 extern s32 D_802CA900;
@@ -117,7 +117,7 @@ void Thread_App(void *arg) {
     app_entrypoint(arg);
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/Thread_Kernel.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/Thread_Kernel.s")
 void Thread_Kernel(void* arg) {
     osCreatePiManager(OS_PRIORITY_PIMGR, &gPiMgrCmdQ, gPiMgrCmdBuf, 8);
     osCreateMesgQueue(&gPiDmaQ, gPiDmaBuf, 1);
@@ -132,7 +132,7 @@ void Thread_Kernel(void* arg) {
     while(1) { }
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/func_8022EA80.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/func_8022EA80.s")
 u8 func_8022EA80(void) {
     u8 temp;
     OSMesg sp68;
@@ -150,13 +150,13 @@ u8 func_8022EA80(void) {
     return temp;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/func_8022EB38.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/func_8022EB38.s")
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/_uvDebugPrintf.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/_uvDebugPrintf.s")
 void _uvDebugPrintf(char *fmt, ...) {
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/_uvDMA.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/_uvDMA.s")
 void _uvDMA(void* vAddr, u32 devAddr, u32 nbytes) {
     s32 dest = vAddr;
     if (gNmiAsserted == 0) {
@@ -182,7 +182,7 @@ void _uvDMA(void* vAddr, u32 devAddr, u32 nbytes) {
     }
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2EEA0/_uvAssertMsg.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/_uvAssertMsg.s")
 void _uvAssertMsg(char* expr, char* filename, s32 line) {
     _uvDebugPrintf("%s:%d  %s\n", filename, line, expr);
 }
