@@ -3,6 +3,8 @@
 #include <uv_sched.h>
 #include <PR/os_internal.h>
 
+void app_firstfunc();
+
 void Thread_App(void* arg);
 void Thread_Kernel(void* arg);
 void Thread_Render(void* arg);
@@ -107,13 +109,12 @@ void Thread_Render(void* arg) {
 // #pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/Thread_App.s")
 extern u8 gAppRomStart;
 extern u8 gAppRomEnd;
-extern s32 D_802CA900;
-extern u8 D_803571F0;
-extern u8 D_803805E0;
+extern u8 gAppBssStart;
+extern u8 gAppBssEnd;
 
 void Thread_App(void *arg) {
-    _uvMediaCopy(&D_802CA900, &gAppRomStart, &gAppRomEnd - &gAppRomStart);
-    uvMemSet(&D_803571F0, 0, &D_803805E0 - &D_803571F0);
+    _uvMediaCopy((void*)app_firstfunc, &gAppRomStart, &gAppRomEnd - &gAppRomStart);
+    uvMemSet(&gAppBssStart, 0, &gAppBssEnd - &gAppBssStart);
     app_entrypoint(arg);
 }
 

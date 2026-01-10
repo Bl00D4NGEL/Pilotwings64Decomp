@@ -1,6 +1,6 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app/code_51E30/func_802CA900.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app/code_51E30/app_firstfunc.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app/code_51E30/func_802CAA00.s")
 

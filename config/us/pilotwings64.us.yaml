@@ -70,6 +70,7 @@ segments:
     start: 0x1050
     vram: 0x802000A0
     follows_vram: entry
+    bss_size: 0x79A80
     subsegments:
       - [0x01050, c, kernel/code_1050]
       - [0x01300, c, kernel/janim]
@@ -339,10 +340,13 @@ segments:
       - [0x51370, rodata]
       - [0x51B70, rodata]
 
+      - { type: bss, start: 0x51E30, vram: 0x80250E80, name: kernel_bss }
+
   - name: app
     type: code
     start: 0x51E30
     vram: 0x802CA900
+    bss_size: 0x293F0
     subsegments:
       - [0x51E30, c, app/code_51E30]
       - [0x52230, c, app/code_52230]
@@ -357,6 +361,7 @@ segments:
       - [0x60020, asm, app/code_60020]
       - [0x61A60, asm, app/code_61A60]
       - [0x64070, c, app/code_64070]
+      - [0x64730, c, app/code_64730]
       - [0x66160, c, app/code_66160]
       - [0x68220, c, app/code_68220]
       - [0x69BF0, c, app/code_69BF0]
@@ -380,7 +385,7 @@ segments:
       - [0x915B0, c, app/code_915B0]
       - [0x91670, c, app/code_91670]
       - [0x92810, c, app/code_92810]
-      - [0x93250, c, app/code_93250]
+      - [0x92BF0, c, app/code_92BF0]
       - [0x936F0, c, app/code_936F0]
       - [0x94E60, c, app/code_94E60]
       - [0x97350, c, app/code_97350]
@@ -397,6 +402,7 @@ segments:
       - [0xA7460, c, app/code_A7460]
       - [0xA7F20, c, app/code_A7F20]
       - [0xA8630, c, app/code_A8630]
+      - [0xA8C30, c, app/code_A8C30]
       - [0xA9D00, c, app/code_A9D00]
       - [0xAA820, asm, app/code_AA820]
       - [0xAE460, c, app/code_AE460]
@@ -426,6 +432,7 @@ segments:
       - [0xD2B10, asm, app/code_D2B10]
       - [0xD3810, c, app/code_D3810]
       - [0xD4290, c, app/code_D4290]
+      - [0xD55B0, c, app/code_D55B0]
 
       - [0xD5C40, data]
       - [0xD5CD0, data]
@@ -508,6 +515,7 @@ segments:
       - [0xD8980, rodata, app/code_60020]
 #     - [0xD8A00, rodata, app/code_60020] # app/code_61A60
       - [0xD8B90, .rodata, app/code_64070]
+      - [0xD8BF0, .rodata, app/code_64730]
       - [0xD8CE0, .rodata, app/code_66160]
       - [0xD8DD0, .rodata, app/code_68220]
       - [0xD9080, .rodata, app/code_69BF0]
@@ -534,6 +542,7 @@ segments:
       - [0xDADB0, .rodata, app/code_915B0]
       - [0xDAE00, .rodata, app/code_91670]
       - [0xDAF00, .rodata, app/code_92810]
+      - [0xDAF30, .rodata, app/code_92BF0]
       - [0xDB1D0, .rodata, app/code_936F0]
       - [0xDB750, .rodata, app/code_94E60]
       - [0xDB770, .rodata, app/code_97350]
@@ -549,6 +558,7 @@ segments:
       - [0xDBF80, .rodata, app/code_A7460]
       - [0xDC000, .rodata, app/code_A7F20]
       - [0xDC060, .rodata, app/code_A8630]
+      - [0xDC250, .rodata, app/code_A8C30]
       - [0xDC2F0, .rodata, app/code_A9D00]
       - [0xDC3C0, rodata, app/code_AA820]
 #     - [0xDC4D0, rodata, app/code_AA820]
@@ -579,10 +589,13 @@ segments:
 #     - [0xDE5F0, rodata, app/code_D2B10]
       - [0xDE600, .rodata, app/code_D3810]
       - [0xDE640, .rodata, app/code_D4290]
+      - [0xDE6B0, .rodata, app/code_D55B0]
 
-  - name: bin_DE6B0
+      - { type: bss, start: 0xDE720, vram: 0x803571F0, name: app_bss }
+
+  - name: bin_DE720
     type: bin
-    start: 0xDE6B0
+    start: 0xDE720
 
 # - name: mio0_segment
 #   exclusive_ram_id: segment

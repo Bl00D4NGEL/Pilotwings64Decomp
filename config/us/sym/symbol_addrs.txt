@@ -216,6 +216,7 @@ hsound_callback     = 0x8030A390; // type:func
 snd_makedev         = 0x8033F860; // type:func
 snd_event           = 0x8033FB44; // type:func
 snd_getpilot        = 0x8033FBCC; // type:func
+app_firstfunc       = 0x802CA900; // type:func
 
 // Data
 
@@ -230,6 +231,9 @@ gAppThreadStack     = 0x802C1C90;
 
 gAppRomStart        = 0x00051E30;
 gAppRomEnd          = 0x000DE720;
+
+gAppBssStart        = 0x803571F0;
+gAppBssEnd          = 0x803805E0;
 
 gNmiAsserted        = 0x802B9C80;
 
@@ -255,6 +259,11 @@ gSchedMsgQ          = 0x802C38E8;
 gGfxStateStack      = 0x802B48C8;
 gGfxStateStackIdx   = 0x802B4948;
 gGfxStateStackData  = 0x80299268;
+
+gSeqPlayer          = 0x80248C90;
+gSndPlayer          = 0x80248C94;
+gSndEmitterTable    = 0x80250EF8;
+gSndVoiceTable      = 0x80261218;
 
 osViModeTable       = 0x8024B7D0;
 osViModeNtscLan1    = 0x8024C4A0;

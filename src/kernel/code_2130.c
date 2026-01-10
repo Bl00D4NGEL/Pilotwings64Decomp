@@ -1,37 +1,34 @@
-#include "common.h"
+#include <uv_audio.h>
 
-typedef struct uvaObject {
-/* 00 */ u8 pad[0x88];
-/* 88 */ s32 priority;
-/* 8C */ u8 sound;
-/* 8D */ u8 unk8D;
-/* 8E */ u8 unk8E;
-/* 8F */ u8 unk8F;
-/* 90 */ float near;
-/* 94 */ float far;
-/* 98 */ s32 unk98;
-/* 9C */ float playPitch;
-/* A0 */ s32 playState;
-/* A4 */ s32 playVolume;
-/* A8 */ s32 state;
-/* AC */ u8 playVoice;
-/* AD */ u8 playPan;
-/* AE */ u8 playMix;
-/* AF */ u8 playTimeout;
-} uvaObject;
+extern ALSndPlayer* gSndPlayer;
+extern ALSndId* gSndVoiceTable;
+extern uvaEmitter_t gSndEmitterTable[];
 
-extern ALSndPlayer* D_80248C94;
-extern ALSndId* D_80261218;
-extern uvaObject D_80250EF8[];
-
-
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/osSyncPrintf.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/osSyncPrintf.s")
+void osSyncPrintf(const char *fmt, ...) {
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/func_8020119C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/func_802011F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/uvEmitterLookup.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/uvEmitterLookup.s")
+u8 uvEmitterLookup(void) {
+    u8 var_v1;
+
+    osSyncPrintf("looking for emitter\n");
+    var_v1 = 0; while (1) {
+        if (gSndEmitterTable[var_v1].sound == 0xFF) {
+            osSyncPrintf("Returning emitter %d\n", var_v1);
+            return var_v1;
+        }
+
+        if (++var_v1 >= 0xFF) {
+            _uvDebugPrintf("no free emitters\n");
+            return 0xFFU;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/uvEmitterFromModel.s")
 
@@ -76,48 +73,49 @@ extern uvaObject D_80250EF8[];
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/_uvaStartVoice.s")
 
 // #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/_uvaUpdateVoice.s")
-void _uvaUpdateVoice(u8 arg0) {
-    uvaObject* temp_s0;
+void _uvaUpdateVoice(u8 obj_id) {
+    uvaEmitter_t* obj;
 
-    temp_s0 = &D_80250EF8[arg0];
-    osSyncPrintf("\n  updating voice %d on object %d\n", temp_s0->playVoice, arg0);
-    alSndpSetSound(D_80248C94, D_80261218[temp_s0->playVoice]);
-    alSndpSetVol(D_80248C94, temp_s0->playVolume);
-    alSndpSetPitch(D_80248C94, temp_s0->playPitch);
-    alSndpSetFXMix(D_80248C94, temp_s0->playMix);
-    alSndpSetPan(D_80248C94, temp_s0->playPan);
+    obj = &gSndEmitterTable[obj_id];
+    osSyncPrintf("\n  updating voice %d on object %d\n", obj->playVoice, obj_id);
+
+    alSndpSetSound(gSndPlayer, gSndVoiceTable[obj->playVoice]);
+    alSndpSetVol(gSndPlayer, obj->playVolume);
+    alSndpSetPitch(gSndPlayer, obj->playPitch);
+    alSndpSetFXMix(gSndPlayer, obj->playMix);
+    alSndpSetPan(gSndPlayer, obj->playPan);
 }
 
 // #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/_uvaStopVoice.s")
-void _uvaStopVoice(u8 arg0) {
-    if (arg0 < 0x10) {
-        osSyncPrintf("stopping voice%d\n", arg0);
-        alSndpSetSound(D_80248C94, D_80261218[arg0]);
-        if (alSndpGetState(D_80248C94) == 1) {
-            alSndpSetVol(D_80248C94, 0);
+void _uvaStopVoice(u8 voice_id) {
+    if (voice_id < 0x10) {
+        osSyncPrintf("stopping voice%d\n", voice_id);
+        alSndpSetSound(gSndPlayer, gSndVoiceTable[voice_id]);
+        if (alSndpGetState(gSndPlayer) == 1) {
+            alSndpSetVol(gSndPlayer, 0);
         }
-        alSndpStop(D_80248C94);
+        alSndpStop(gSndPlayer);
         return;
     }
-    osSyncPrintf("%d is not a valid voice\n", arg0);
+    osSyncPrintf("%d is not a valid voice\n", voice_id);
 }
 
 //#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/_uvaStatus.s")
 void _uvaStatus(u8 obj_id) {
-    uvaObject* pObj;
+    uvaEmitter_t* obj;
 
+    obj = &gSndEmitterTable[obj_id];
     osSyncPrintf("-----object %d------\n", obj_id);
-    pObj = &D_80250EF8[obj_id];
-    osSyncPrintf("playVoice  = %d\n", pObj->playVoice);
-    osSyncPrintf("playState  = %d\n", pObj->playState);
-    osSyncPrintf("playTimeout= %d\n", pObj->playTimeout);
-    osSyncPrintf("playVolume = %d\n", pObj->playVolume);
-    osSyncPrintf("playPitch  = %f\n", pObj->playPitch);
-    osSyncPrintf("playPan    = %d\n", pObj->playPan);
-    osSyncPrintf("near       = %f\n", pObj->near);
-    osSyncPrintf("far        = %f\n", pObj->far);
-    osSyncPrintf("sound      = %d\n", pObj->sound);
-    osSyncPrintf("priority   = %d\n", pObj->priority);
-    osSyncPrintf("state      = %d\n", pObj->state);
+    osSyncPrintf("playVoice  = %d\n", obj->playVoice);
+    osSyncPrintf("playState  = %d\n", obj->playState);
+    osSyncPrintf("playTimeout= %d\n", obj->playTimeout);
+    osSyncPrintf("playVolume = %d\n", obj->playVolume);
+    osSyncPrintf("playPitch  = %f\n", obj->playPitch);
+    osSyncPrintf("playPan    = %d\n", obj->playPan);
+    osSyncPrintf("near       = %f\n", obj->near);
+    osSyncPrintf("far        = %f\n", obj->far);
+    osSyncPrintf("sound      = %d\n", obj->sound);
+    osSyncPrintf("priority   = %d\n", obj->priority);
+    osSyncPrintf("state      = %d\n", obj->state);
 }
 

@@ -24,12 +24,3 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app/code_A8630/func_803216A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app/code_A8630/func_80321700.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/app/code_A8630/func_80321760.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/app/code_A8630/func_8032232C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/app/code_A8630/func_80322464.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/app/code_A8630/func_803226DC.s")
