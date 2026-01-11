@@ -3,34 +3,93 @@
 extern ALSndPlayer* gSndPlayer;
 extern ALSndId* gSndVoiceTable;
 extern uvaEmitter_t gSndEmitterTable[];
+extern uvaEmitter_t D_8025BE48;
 
 // #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/osSyncPrintf.s")
 void osSyncPrintf(const char *fmt, ...) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/func_8020119C.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/uvEmitterInitTable.s")
+void uvEmitterInitTable(void) {
+    uvaEmitter_t *term = &D_8025BE48, *iter = gSndEmitterTable;
+    do {
+        uvEmitterInit(iter);
+        iter++;
+    } while (iter != term);
+    uvEmitterInit(term);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/func_802011F0.s")
+
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/uvEmitterInit.s")
+void uvEmitterInit(uvaEmitter_t* obj) {
+    Mtx4F_t temp;
+
+    Mat4_SetIdentity(temp);
+    obj->playVoice = 0x11;
+    obj->playState = 0;
+    obj->playVolume = 0x7FFF;
+    obj->playPan = 0x40;
+    obj->playMix = 0;
+    obj->playTimeout = 0;
+    obj->playPitch = 1.0f;
+
+    Mat4_Copy(obj->m1, temp);
+    obj->sound = 0xFF;
+    obj->priority = 0;
+    obj->unk98 = 0;
+    obj->state = 0;
+
+    obj->m2[0][0] = 0.0f;
+    obj->m2[0][1] = 0.0f;
+    obj->m2[0][2] = 0.0f;
+    obj->m2[0][3] = 0.0f;
+
+    obj->m2[1][0] = 0.0f;
+    obj->m2[1][1] = 0.0f;
+
+    obj->m2[3][0] = 1.0f;
+    obj->m2[3][1] = 1.0f;
+    obj->m2[3][2] = 0.0f;
+    obj->m2[3][3] = 0.0f;
+
+    obj->unk80 = 0.0f;
+    obj->unk84 = 0.0f;
+    obj->near = 0.0f;
+    obj->far = 1000.0f;
+}
 
 // #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/uvEmitterLookup.s")
 u8 uvEmitterLookup(void) {
-    u8 var_v1;
+    u8 obj_id;
 
     osSyncPrintf("looking for emitter\n");
-    var_v1 = 0; while (1) {
-        if (gSndEmitterTable[var_v1].sound == 0xFF) {
-            osSyncPrintf("Returning emitter %d\n", var_v1);
-            return var_v1;
+    obj_id = 0; while (1) {
+        if (gSndEmitterTable[obj_id].sound == 0xFF) {
+            osSyncPrintf("Returning emitter %d\n", obj_id);
+            return obj_id;
         }
 
-        if (++var_v1 >= 0xFF) {
+        if (++obj_id >= 0xFF) {
             _uvDebugPrintf("no free emitters\n");
             return 0xFFU;
         }
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/uvEmitterFromModel.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/uvEmitterFromModel.s")
+void uvEmitterFromModel(u8 obj_id, u8 mdl_id) {
+    osSyncPrintf("assigning model %d to emitter %d\n", mdl_id, obj_id);
+    if (obj_id < 0xFF) {
+        if (gSndEmitterTable[obj_id].playState != 0x11) {
+            _uvaStopVoice(gSndEmitterTable[obj_id].playVoice);
+            gSndEmitterTable[obj_id].playState = 0;
+            gSndEmitterTable[obj_id].playVoice = 0x11U;
+            gSndEmitterTable[obj_id].playTimeout = 0;
+        }
+        uvEmitterInit(&gSndEmitterTable[obj_id]);
+        gSndEmitterTable[obj_id].sound = mdl_id;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/func_802013F8.s")
 

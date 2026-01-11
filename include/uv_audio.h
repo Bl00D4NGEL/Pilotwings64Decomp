@@ -2,19 +2,23 @@
 #define PILOTWINGS64_UV_AUDIO
 
 #include <ultra64.h>
+#include <uv_matrix.h>
 #include <uv_util.h>
 
 typedef struct uvaEmitter {
-/* 00 */ u8 pad[0x88];
+/* 00 */ Mtx4F_t m1;
+/* 40 */ Mtx4F_t m2;
+/* 80 */ f32 unk80;
+/* 84 */ f32 unk84;
 /* 88 */ s32 priority;
 /* 8C */ u8 sound;
 /* 8D */ u8 unk8D;
 /* 8E */ u8 unk8E;
 /* 8F */ u8 unk8F;
-/* 90 */ float near;
-/* 94 */ float far;
+/* 90 */ f32 near;
+/* 94 */ f32 far;
 /* 98 */ s32 unk98;
-/* 9C */ float playPitch;
+/* 9C */ f32 playPitch;
 /* A0 */ s32 playState;
 /* A4 */ s32 playVolume;
 /* A8 */ s32 state;
@@ -23,6 +27,15 @@ typedef struct uvaEmitter {
 /* AE */ u8 playMix;
 /* AF */ u8 playTimeout;
 } uvaEmitter_t;
+
+void uvEmitterInitTable(void);
+void uvEmitterInit(uvaEmitter_t*);
+u8 uvEmitterLookup(void);
+void uvEmitterFromModel(u8 obj_id, u8 mdl_id);
+
+void _uvaUpdateVoice(u8 obj_id);
+void _uvaStopVoice(u8 voice_id);
+void _uvaStatus(u8 obj_id);
 
 void uvaSeqPlay(void);
 void uvaSeqSetTempo(f32 tempo);
