@@ -68,7 +68,7 @@ void uvMemInitBlocks(void) {
     D_802B8920[0] = 0;
     D_802B8920[1] = 0;
     D_802B8920[2] = 0;
-    uvSysInit();
+    uvMemScanBlocks();
 }
 
 //#pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/func_8022A47C.s")
@@ -89,8 +89,8 @@ void func_8022A47C(void) {
     }
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/uvSysInit.s")
-void uvSysInit(void) {
+//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/uvMemScanBlocks.s")
+void uvMemScanBlocks(void) {
     s32 j;
     s32 i;
 

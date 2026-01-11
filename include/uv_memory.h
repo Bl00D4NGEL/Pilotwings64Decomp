@@ -11,7 +11,7 @@ void func_8022A47C(void);
 void _uvMediaCopy(void* vAddr, void* devAddr, u32 nbytes);
 void _uvDMA(void* vAddr, u32 devAddr, u32 nbytes);
 
-void uvSysInit(void);
+void uvMemScanBlocks(void);
 
 s32 _uvJumpHeap(u32* arg0);
 

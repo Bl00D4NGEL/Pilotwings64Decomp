@@ -6,6 +6,7 @@
 #define RDP_DONE_MSG    668
 #define PRE_NMI_MSG     669
 
+extern OSViMode osViModeTable[];
 extern s32 gNmiAsserted;
 extern u8 gSchedRspStatus;
 extern u8 gSchedRdpStatus;
@@ -26,6 +27,7 @@ extern u8 D_802B9C6E;
 extern u8 D_802B9C6F;
 extern u8 D_802B9C70;
 extern s32 D_802B9C74;
+extern s32 D_802B9C7C;
 extern s32 D_802B9C84;
 extern s32 D_802B9C88;
 
@@ -126,7 +128,57 @@ void _uvScDlistRecover(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/_uvScCreateScheduler.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/_uvScCreateScheduler.s")
+void _uvScCreateScheduler(OSSched* sc, void* stack, s32 priority, u8 mode, u8 numFields) {
+    ((OSScTask*)D_802B9C60)->state = 0;
+    ((OSScTask*)D_802B9C60)->next = 0;
+    D_802B9C58 = 0;
+    D_802B9C68 = 0;
+    gSchedRspStatus = 0;
+    gSchedRdpStatus = 0;
+    D_802B9C6B = 0;
+    D_802B9C6C = 0;
+    D_802B9C6D = 0;
+    D_802B9C6E = 0;
+    D_802B9C6F = 0;
+    D_802B9C70 = 0;
+    D_802B9C74 = 0;
+    gSchedRingIdx = 0;
+    D_802B9C7C = 0;
+    gNmiAsserted = 0;
+    D_802B9C84 = 1;
+    D_802B9C88 = 1;
+    
+    if ((sc && sc) != 0) {} // fakematch
+    
+    sc->clientList = 0;
+    sc->curRSPTask = 0;
+    sc->curRDPTask = 0;
+    sc->frameCount = 0;
+    sc->audioListHead = 0;
+    sc->gfxListHead = 0;
+    sc->audioListTail = (OSScTask*)&sc->audioListHead;
+    sc->gfxListTail = (OSScTask*)&sc->gfxListHead;
+    sc->retraceMsg.type = OS_SC_RETRACE_MSG;
+    sc->prenmiMsg.type = OS_SC_PRE_NMI_MSG;
+
+    osCreateMesgQueue(&sc->interruptQ, sc->intBuf, OS_SC_MAX_MESGS);
+    osCreateMesgQueue(&sc->cmdQ, sc->cmdMsgBuf, OS_SC_MAX_MESGS);
+    osCreateViManager(OS_PRIORITY_VIMGR);
+    osViSetMode(&osViModeTable[mode]);
+    osViSwapBuffer((void* )0x80100000);
+    osViBlack(TRUE);
+    osSetEventMesg(OS_EVENT_SP, &sc->interruptQ, (OSMesg)RSP_DONE_MSG);
+    osSetEventMesg(OS_EVENT_DP, &sc->interruptQ, (OSMesg)RDP_DONE_MSG);
+    osSetEventMesg(OS_EVENT_PRENMI, &sc->interruptQ, (OSMesg)PRE_NMI_MSG);
+    osViSetEvent(&sc->interruptQ, (OSMesg)VIDEO_MSG, (u32) numFields);
+
+    osCreateThread(&sc->thread, 4, _uvScMain, (void*)sc, stack, priority);
+    osStartThread(&sc->thread);
+    
+    func_80206150(6);
+    func_8022C34C();
+}
 
 // #pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/_uvScAddClient.s")
 void _uvScAddClient(OSSched* sc, OSScClient* client, OSMesgQueue* mq) {

@@ -127,7 +127,7 @@ uvSobjPosm          = 0x8022CFC4; // type:func
 uvSobjModel         = 0x8022D218; // type:func
 
 uvMemInitBlocks     = 0x8022A3C0; // type:func
-uvSysInit           = 0x8022A4F4; // type:func
+uvMemScanBlocks     = 0x8022A4F4; // type:func
 _uvJumpHeap         = 0x8022A674; // type:func
 _uvMediaCopy        = 0x8022A760; // type:func
 uvMemRead           = 0x8022A8E0; // type:func
@@ -156,7 +156,7 @@ uvDbgCnt            = 0x802334E4; // type:func
 
 uvFileWrite         = 0x8022DEF0; // type:func
 uvFileRead          = 0x8022DFE8; // type:func
-uvSysInitEEPROM     = 0x8022E0E0; // type:func
+uvSysInit           = 0x8022E0E0; // type:func
 uvSetVideoMode      = 0x8022E36C; // type:func
 _uvDMA              = 0x8022ED30; // type:func
 _uvDebugPrintf      = 0x8022ED14; // type:func

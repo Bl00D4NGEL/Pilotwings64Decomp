@@ -24,11 +24,11 @@ void func_80205FFC(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/clocks/uvClkGetSec.s")
 
 // #pragma GLOBAL_ASM("asm/nonmatchings/kernel/clocks/func_80206150.s")
-void func_80206150(s32 arg0) {
+void func_80206150(s32 clk_id) {
     uvClockState_t* temp_v0;
 
     func_80205FFC();
-    temp_v0 = &D_80263478[arg0];
+    temp_v0 = &D_80263478[clk_id];
     temp_v0->unk4 = (s32) D_80263470;
     temp_v0->unk0 = (s32) D_80263474;
 }

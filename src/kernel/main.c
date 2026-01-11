@@ -54,7 +54,7 @@ void func_8022E2DC(char arg0);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/uvFileRead.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/uvSysInitEEPROM.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/uvSysInit.s")
 
 // #pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/func_8022E2D4.s")
 s32 func_8022E2D4(s32 arg0) {
