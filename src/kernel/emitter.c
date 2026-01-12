@@ -5,11 +5,11 @@ extern ALSndId* gSndVoiceTable;
 extern uvaEmitter_t gSndEmitterTable[];
 extern uvaEmitter_t D_8025BE48;
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/osSyncPrintf.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/osSyncPrintf.s")
 void osSyncPrintf(const char *fmt, ...) {
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/uvEmitterInitTable.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/uvEmitterInitTable.s")
 void uvEmitterInitTable(void) {
     uvaEmitter_t *term = &D_8025BE48, *iter = gSndEmitterTable;
     do {
@@ -20,7 +20,7 @@ void uvEmitterInitTable(void) {
 }
 
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/uvEmitterInit.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/uvEmitterInit.s")
 void uvEmitterInit(uvaEmitter_t* obj) {
     Mtx4F_t temp;
 
@@ -58,7 +58,7 @@ void uvEmitterInit(uvaEmitter_t* obj) {
     obj->far = 1000.0f;
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/uvEmitterLookup.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/uvEmitterLookup.s")
 u8 uvEmitterLookup(void) {
     u8 obj_id;
 
@@ -76,7 +76,7 @@ u8 uvEmitterLookup(void) {
     }
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/uvEmitterFromModel.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/uvEmitterFromModel.s")
 void uvEmitterFromModel(u8 obj_id, u8 mdl_id) {
     osSyncPrintf("assigning model %d to emitter %d\n", mdl_id, obj_id);
     if (obj_id < 0xFF) {
@@ -91,57 +91,57 @@ void uvEmitterFromModel(u8 obj_id, u8 mdl_id) {
     }
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/func_802013F8.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/func_802013F8.s")
 void uvEmitterSetMatrix(u8 obj_id, Mtx4F_t msrc) {
     if (obj_id < 0xFF) {
         Mat4_Copy(gSndEmitterTable[obj_id].m1, msrc);
     }
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/func_80201444.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/func_80201444.s")
 void uvEmitterGetMatrix(u8 obj_id, Mtx4F_t mdst) {
     if (obj_id < 0xFF) {
         Mat4_Copy(mdst, gSndEmitterTable[obj_id].m1);
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/func_80201494.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/func_80201494.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/func_802015D8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/func_802015D8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/func_80201614.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/func_80201614.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/func_8020165C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/func_8020165C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/func_80201698.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/func_80201698.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/func_802016D4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/func_802016D4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/uvEmitterProp.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/uvEmitterProp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/uvEmitterTrigger.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/uvEmitterTrigger.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/uvEmitterRelease.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/uvEmitterRelease.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/uvEmitterStatus.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/uvEmitterStatus.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/_uvaSoundBegin.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/_uvaSoundBegin.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/_uvaSoundEnd.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/_uvaSoundEnd.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/uvEmitterFlush.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/uvEmitterFlush.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/func_80201D08.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/func_80201D08.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/_uvaUpdatePlayList.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/_uvaUpdatePlayList.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/_uvaPlaylistRemove.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/_uvaPlaylistRemove.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/_uvaPlay.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/_uvaPlay.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/_uvaStartVoice.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/_uvaStartVoice.s")
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/_uvaUpdateVoice.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/_uvaUpdateVoice.s")
 void _uvaUpdateVoice(u8 obj_id) {
     uvaEmitter_t* obj;
 
@@ -155,7 +155,7 @@ void _uvaUpdateVoice(u8 obj_id) {
     alSndpSetPan(gSndPlayer, obj->playPan);
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/_uvaStopVoice.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/_uvaStopVoice.s")
 void _uvaStopVoice(u8 voice_id) {
     if (voice_id < 0x10) {
         osSyncPrintf("stopping voice%d\n", voice_id);
@@ -169,7 +169,7 @@ void _uvaStopVoice(u8 voice_id) {
     osSyncPrintf("%d is not a valid voice\n", voice_id);
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_2130/_uvaStatus.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/_uvaStatus.s")
 void _uvaStatus(u8 obj_id) {
     uvaEmitter_t* obj;
 
