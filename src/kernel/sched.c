@@ -1,10 +1,10 @@
 #include <uv_sched.h>
 #include <uv_clocks.h>
 
-#define VIDEO_MSG       666
-#define RSP_DONE_MSG    667
-#define RDP_DONE_MSG    668
-#define PRE_NMI_MSG     669
+#define VIDEO_MSG 666
+#define RSP_DONE_MSG 667
+#define RDP_DONE_MSG 668
+#define PRE_NMI_MSG 669
 
 extern OSViMode osViModeTable[];
 extern s32 gNmiAsserted;
@@ -17,8 +17,8 @@ extern OSMesgQueue D_802C3920;
 extern s32 D_802B9C00[];
 extern s32 D_802B9C18[];
 extern double D_802B9C30[];
-extern OSScTask *D_802B9C58;
-extern OSScTask *D_802B9C60[];
+extern OSScTask* D_802B9C58;
+extern OSScTask* D_802B9C60[];
 extern u8 D_802B9C68;
 extern u8 D_802B9C6B;
 extern u8 D_802B9C6C;
@@ -86,7 +86,7 @@ void _uvScRunAud(void) {
 }
 
 void _uvScRunGfx(void) {
-    OSScTask *scTask;
+    OSScTask* scTask;
 
     scTask = D_802B9C60[D_802B9C6E];
     if ((gNmiAsserted == 0) || (D_802B9C6C != 0)) {
@@ -142,9 +142,9 @@ void _uvScCreateScheduler(OSSched* sc, void* stack, s32 priority, u8 mode, u8 nu
     gNmiAsserted = 0;
     D_802B9C84 = 1;
     D_802B9C88 = 1;
-    
-    if ((sc && sc) != 0) {} // fakematch
-    
+
+    if ((sc && sc) != 0) { } // fakematch
+
     sc->clientList = 0;
     sc->curRSPTask = 0;
     sc->curRDPTask = 0;
@@ -160,16 +160,16 @@ void _uvScCreateScheduler(OSSched* sc, void* stack, s32 priority, u8 mode, u8 nu
     osCreateMesgQueue(&sc->cmdQ, sc->cmdMsgBuf, OS_SC_MAX_MESGS);
     osCreateViManager(OS_PRIORITY_VIMGR);
     osViSetMode(&osViModeTable[mode]);
-    osViSwapBuffer((void* )0x80100000);
+    osViSwapBuffer((void*)0x80100000);
     osViBlack(TRUE);
     osSetEventMesg(OS_EVENT_SP, &sc->interruptQ, (OSMesg)RSP_DONE_MSG);
     osSetEventMesg(OS_EVENT_DP, &sc->interruptQ, (OSMesg)RDP_DONE_MSG);
     osSetEventMesg(OS_EVENT_PRENMI, &sc->interruptQ, (OSMesg)PRE_NMI_MSG);
-    osViSetEvent(&sc->interruptQ, (OSMesg)VIDEO_MSG, (u32) numFields);
+    osViSetEvent(&sc->interruptQ, (OSMesg)VIDEO_MSG, (u32)numFields);
 
     osCreateThread(&sc->thread, 4, _uvScMain, (void*)sc, stack, priority);
     osStartThread(&sc->thread);
-    
+
     func_80206150(6);
     func_8022C34C();
 }
@@ -177,10 +177,10 @@ void _uvScCreateScheduler(OSSched* sc, void* stack, s32 priority, u8 mode, u8 nu
 void _uvScAddClient(OSSched* sc, OSScClient* client, OSMesgQueue* mq) {
     client->msgQ = mq;
     client->next = sc->clientList;
-    sc->clientList = (OSScClient* )client;
+    sc->clientList = (OSScClient*)client;
 }
 
-OSMesgQueue *_uvScGetCmdQ(OSSched *s) {
+OSMesgQueue* _uvScGetCmdQ(OSSched* s) {
     return &s->cmdQ;
 }
 
@@ -212,14 +212,13 @@ void _uvScMain(void* arg0) {
 }
 
 void _uvScHandleRetrace(void) {
-    OSScTask *msg;
+    OSScTask* msg;
     u32 taskType;
     OSScClient* var_s0;
 
     msg = NULL;
     func_80205FFC();
     if (gNmiAsserted == 0) {
-
         D_802B9C84 = 1;
         if (gSchedRspStatus) {
             D_802B9C70 += 1;

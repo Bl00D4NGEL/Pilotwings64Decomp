@@ -44,7 +44,7 @@ void Mat3_Copy(Mtx4F_t m_dst, Mtx4F_t m_src) {
     m_dst[2][2] = m_src[2][2];
 }
 
-void Mat4_Init(Mtx *mat, Mtx init) {
+void Mat4_Init(Mtx* mat, Mtx init) {
     mat->m[0][0] = init.m[0][0];
     mat->m[0][1] = init.m[0][1];
     mat->m[0][2] = init.m[0][2];
@@ -182,60 +182,60 @@ void Mat4_UnkOp1(Mtx4F_t mat, float arg1, char axis) {
         sp6C = func_80229EC0(arg1);
         fv0 = func_8022A080(arg1);
         switch (axis) {
-            case 'x':
-                m_scratch[0][0] = mat[0][0];
-                m_scratch[0][1] = mat[0][1];
-                m_scratch[0][2] = mat[0][2];
-                m_scratch[0][3] = mat[0][3];
-                m_scratch[1][0] = (fv0 * mat[1][0]) + (sp6C * mat[2][0]);
-                m_scratch[1][1] = (fv0 * mat[1][1]) + (sp6C * mat[2][1]);
-                m_scratch[1][2] = (fv0 * mat[1][2]) + (sp6C * mat[2][2]);
-                m_scratch[1][3] = (fv0 * mat[1][3]) + (sp6C * mat[2][3]);
-                m_scratch[2][0] = (fv0 * mat[2][0]) - (sp6C * mat[1][0]);
-                m_scratch[2][1] = (fv0 * mat[2][1]) - (sp6C * mat[1][1]);
-                m_scratch[2][2] = (fv0 * mat[2][2]) - (sp6C * mat[1][2]);
-                m_scratch[2][3] = (fv0 * mat[2][3]) - (sp6C * mat[1][3]);
-                m_scratch[3][0] = mat[3][0];
-                m_scratch[3][1] = mat[3][1];
-                m_scratch[3][2] = mat[3][2];
-                m_scratch[3][3] = mat[3][3];
-                break;
-            case 'y':
-                m_scratch[0][0] = (fv0 * mat[0][0]) - (sp6C * mat[2][0]);
-                m_scratch[0][1] = (fv0 * mat[0][1]) - (sp6C * mat[2][1]);
-                m_scratch[0][2] = (fv0 * mat[0][2]) - (sp6C * mat[2][2]);
-                m_scratch[0][3] = (fv0 * mat[0][3]) - (sp6C * mat[2][3]);
-                m_scratch[1][0] = mat[1][0];
-                m_scratch[1][1] = mat[1][1];
-                m_scratch[1][2] = mat[1][2];
-                m_scratch[1][3] = mat[1][3];
-                m_scratch[2][0] = (sp6C * mat[0][0]) + (fv0 * mat[2][0]);
-                m_scratch[2][1] = (sp6C * mat[0][1]) + (fv0 * mat[2][1]);
-                m_scratch[2][2] = (sp6C * mat[0][2]) + (fv0 * mat[2][2]);
-                m_scratch[2][3] = (sp6C * mat[0][3]) + (fv0 * mat[2][3]);
-                m_scratch[3][0] = mat[3][0];
-                m_scratch[3][1] = mat[3][1];
-                m_scratch[3][2] = mat[3][2];
-                m_scratch[3][3] = mat[3][3];
-                break;
-            case 'z':
-                m_scratch[0][0] = (fv0 * mat[0][0]) + (sp6C * mat[1][0]);
-                m_scratch[0][1] = (fv0 * mat[0][1]) + (sp6C * mat[1][1]);
-                m_scratch[0][2] = (fv0 * mat[0][2]) + (sp6C * mat[1][2]);
-                m_scratch[0][3] = (fv0 * mat[0][3]) + (sp6C * mat[1][3]);
-                m_scratch[1][0] = (fv0 * mat[1][0]) - (sp6C * mat[0][0]);
-                m_scratch[1][1] = (fv0 * mat[1][1]) - (sp6C * mat[0][1]);
-                m_scratch[1][2] = (fv0 * mat[1][2]) - (sp6C * mat[0][2]);
-                m_scratch[1][3] = (fv0 * mat[1][3]) - (sp6C * mat[0][3]);
-                m_scratch[2][0] = mat[2][0];
-                m_scratch[2][1] = mat[2][1];
-                m_scratch[2][2] = mat[2][2];
-                m_scratch[2][3] = mat[2][3];
-                m_scratch[3][0] = mat[3][0];
-                m_scratch[3][1] = mat[3][1];
-                m_scratch[3][2] = mat[3][2];
-                m_scratch[3][3] = mat[3][3];
-                break;
+        case 'x':
+            m_scratch[0][0] = mat[0][0];
+            m_scratch[0][1] = mat[0][1];
+            m_scratch[0][2] = mat[0][2];
+            m_scratch[0][3] = mat[0][3];
+            m_scratch[1][0] = (fv0 * mat[1][0]) + (sp6C * mat[2][0]);
+            m_scratch[1][1] = (fv0 * mat[1][1]) + (sp6C * mat[2][1]);
+            m_scratch[1][2] = (fv0 * mat[1][2]) + (sp6C * mat[2][2]);
+            m_scratch[1][3] = (fv0 * mat[1][3]) + (sp6C * mat[2][3]);
+            m_scratch[2][0] = (fv0 * mat[2][0]) - (sp6C * mat[1][0]);
+            m_scratch[2][1] = (fv0 * mat[2][1]) - (sp6C * mat[1][1]);
+            m_scratch[2][2] = (fv0 * mat[2][2]) - (sp6C * mat[1][2]);
+            m_scratch[2][3] = (fv0 * mat[2][3]) - (sp6C * mat[1][3]);
+            m_scratch[3][0] = mat[3][0];
+            m_scratch[3][1] = mat[3][1];
+            m_scratch[3][2] = mat[3][2];
+            m_scratch[3][3] = mat[3][3];
+            break;
+        case 'y':
+            m_scratch[0][0] = (fv0 * mat[0][0]) - (sp6C * mat[2][0]);
+            m_scratch[0][1] = (fv0 * mat[0][1]) - (sp6C * mat[2][1]);
+            m_scratch[0][2] = (fv0 * mat[0][2]) - (sp6C * mat[2][2]);
+            m_scratch[0][3] = (fv0 * mat[0][3]) - (sp6C * mat[2][3]);
+            m_scratch[1][0] = mat[1][0];
+            m_scratch[1][1] = mat[1][1];
+            m_scratch[1][2] = mat[1][2];
+            m_scratch[1][3] = mat[1][3];
+            m_scratch[2][0] = (sp6C * mat[0][0]) + (fv0 * mat[2][0]);
+            m_scratch[2][1] = (sp6C * mat[0][1]) + (fv0 * mat[2][1]);
+            m_scratch[2][2] = (sp6C * mat[0][2]) + (fv0 * mat[2][2]);
+            m_scratch[2][3] = (sp6C * mat[0][3]) + (fv0 * mat[2][3]);
+            m_scratch[3][0] = mat[3][0];
+            m_scratch[3][1] = mat[3][1];
+            m_scratch[3][2] = mat[3][2];
+            m_scratch[3][3] = mat[3][3];
+            break;
+        case 'z':
+            m_scratch[0][0] = (fv0 * mat[0][0]) + (sp6C * mat[1][0]);
+            m_scratch[0][1] = (fv0 * mat[0][1]) + (sp6C * mat[1][1]);
+            m_scratch[0][2] = (fv0 * mat[0][2]) + (sp6C * mat[1][2]);
+            m_scratch[0][3] = (fv0 * mat[0][3]) + (sp6C * mat[1][3]);
+            m_scratch[1][0] = (fv0 * mat[1][0]) - (sp6C * mat[0][0]);
+            m_scratch[1][1] = (fv0 * mat[1][1]) - (sp6C * mat[0][1]);
+            m_scratch[1][2] = (fv0 * mat[1][2]) - (sp6C * mat[0][2]);
+            m_scratch[1][3] = (fv0 * mat[1][3]) - (sp6C * mat[0][3]);
+            m_scratch[2][0] = mat[2][0];
+            m_scratch[2][1] = mat[2][1];
+            m_scratch[2][2] = mat[2][2];
+            m_scratch[2][3] = mat[2][3];
+            m_scratch[3][0] = mat[3][0];
+            m_scratch[3][1] = mat[3][1];
+            m_scratch[3][2] = mat[3][2];
+            m_scratch[3][3] = mat[3][3];
+            break;
         }
         Mat4_Copy(mat, m_scratch);
     }
@@ -256,7 +256,7 @@ void Mat4_UnkOp2(Mtx4F_t mat, float arg1, float arg2, float arg3) {
     tmpmat[2][1] = mat[2][1];
     tmpmat[2][2] = mat[2][2];
     tmpmat[2][3] = mat[2][3];
-    tmpmat[3][0] = (arg1 * mat[0][0]) + (arg2 * mat[1][0]) + (arg3 * mat[2][0]) + mat[3][0] ;
+    tmpmat[3][0] = (arg1 * mat[0][0]) + (arg2 * mat[1][0]) + (arg3 * mat[2][0]) + mat[3][0];
     tmpmat[3][1] = (arg1 * mat[0][1]) + (arg2 * mat[1][1]) + (arg3 * mat[2][1]) + mat[3][1];
     tmpmat[3][2] = (arg1 * mat[0][2]) + (arg2 * mat[1][2]) + (arg3 * mat[2][2]) + mat[3][2];
     tmpmat[3][3] = (arg1 * mat[0][3]) + (arg2 * mat[1][3]) + (arg3 * mat[2][3]) + mat[3][3];
@@ -305,10 +305,10 @@ void Mat4_SetUnk2(Mtx4F_t mat, float arg1, float arg2, float arg3, float arg4, f
     mat[1][1] = two5 / (arg4 - arg3);
     mat[2][0] = (arg2 + arg1) / (arg2 - arg1);
     mat[2][1] = (arg4 + arg3) / (arg4 - arg3);
-    mat[2][2]  = -(arg6 + arg5) / (arg6 - arg5);
+    mat[2][2] = -(arg6 + arg5) / (arg6 - arg5);
     mat[2][3] = -1.0f;
     mat[3][2] = -(two5 * arg6) / (arg6 - arg5);
-    if (0) {} // fakematch
+    if (0) { } // fakematch
     mat[3][3] = 0.0f;
     mat[3][1] = 0.0f;
     mat[3][0] = 0.0f;

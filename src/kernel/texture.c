@@ -61,7 +61,7 @@ typedef struct {
     s32 unk1C;
     s32 unk20;
     s32 unk24;
-    Unk802270BC_48 *unk28;
+    Unk802270BC_48* unk28;
 } Unk802270BC_2C;
 
 typedef struct {
@@ -113,7 +113,6 @@ extern u32 D_802B6A34[];
 extern u32 D_802B6E2C;
 extern u32 D_802B892C;
 
-
 void func_802246A0(void) {
     s32 sp64;
     s32 temp_v0;
@@ -132,53 +131,53 @@ void func_802246A0(void) {
         if (var_v0 == 'TABL') { // 0x5441424C
             for (var_a1 = 0, var_a0 = (UVBlockHeader*)sp58; var_a1 < sp5C; var_a1 += 8, var_a0++) {
                 switch (var_a0->tag) {
-                    case 0:
-                        break;
-                    case 'UVSY': // 0x55565359
-                        gUVBlockOffsets.UVSY = romOffset;
-                        break;
-                    case 'UVAN': // 0x5556414E
-                        gUVBlockOffsets.UVAN[gUVBlockCounts.UVAN++] = romOffset;
-                        break;
-                    case 'UVFT': // 0x55564654
-                        gUVBlockOffsets.UVFT[gUVBlockCounts.UVFT++] = romOffset;
-                        break;
-                    case 'UVBT': // 0x55564254
-                        gUVBlockOffsets.UVBT[gUVBlockCounts.UVBT++] = romOffset;
-                        break;
-                    case 'UVMD': // 0x55564D44
-                        gUVBlockOffsets.UVMD[gUVBlockCounts.UVMD++] = romOffset;
-                        break;
-                    case 'UVCT': // 0x55564354
-                        gUVBlockOffsets.UVCT[gUVBlockCounts.UVCT++] = romOffset;
-                        break;
-                    case 'UVTX': // 0x55565458
-                        gUVBlockOffsets.UVTX[gUVBlockCounts.UVTX++] = romOffset;
-                        break;
-                    case 'UVEN': // 0x5556454E
-                        gUVBlockOffsets.UVEN[gUVBlockCounts.UVEN++] = romOffset;
-                        break;
-                    case 'UVLT': // 0x55564C54
-                        gUVBlockOffsets.UVLT[gUVBlockCounts.UVLT++] = romOffset;
-                        break;
-                    case 'UVLV': // 0x55564C56
-                        gUVBlockOffsets.UVLV[gUVBlockCounts.UVLV++] = romOffset;
-                        break;
-                    case 'UVSQ': // 0x55565351
-                        gUVBlockOffsets.UVSQ[gUVBlockCounts.UVSQ++] = romOffset;
-                        break;
-                    case 'UVTR': // 0x55565452
-                        gUVBlockOffsets.UVTR[gUVBlockCounts.UVTR++] = romOffset;
-                        break;
-                    case 'UVTP': // 0x55565450
-                        gUVBlockOffsets.UVTP[gUVBlockCounts.UVTP++] = romOffset;
-                        break;
-                    case 'UVSX': // 0x55565358
-                        gUVBlockOffsets.UVSX[gUVBlockCounts.UVSX++] = romOffset;
-                        break;
-                    default:
-                        gUVBlockOffsets.unk1838[gUVBlockCounts.unk1C++] = romOffset;
-                        break;
+                case 0:
+                    break;
+                case 'UVSY': // 0x55565359
+                    gUVBlockOffsets.UVSY = romOffset;
+                    break;
+                case 'UVAN': // 0x5556414E
+                    gUVBlockOffsets.UVAN[gUVBlockCounts.UVAN++] = romOffset;
+                    break;
+                case 'UVFT': // 0x55564654
+                    gUVBlockOffsets.UVFT[gUVBlockCounts.UVFT++] = romOffset;
+                    break;
+                case 'UVBT': // 0x55564254
+                    gUVBlockOffsets.UVBT[gUVBlockCounts.UVBT++] = romOffset;
+                    break;
+                case 'UVMD': // 0x55564D44
+                    gUVBlockOffsets.UVMD[gUVBlockCounts.UVMD++] = romOffset;
+                    break;
+                case 'UVCT': // 0x55564354
+                    gUVBlockOffsets.UVCT[gUVBlockCounts.UVCT++] = romOffset;
+                    break;
+                case 'UVTX': // 0x55565458
+                    gUVBlockOffsets.UVTX[gUVBlockCounts.UVTX++] = romOffset;
+                    break;
+                case 'UVEN': // 0x5556454E
+                    gUVBlockOffsets.UVEN[gUVBlockCounts.UVEN++] = romOffset;
+                    break;
+                case 'UVLT': // 0x55564C54
+                    gUVBlockOffsets.UVLT[gUVBlockCounts.UVLT++] = romOffset;
+                    break;
+                case 'UVLV': // 0x55564C56
+                    gUVBlockOffsets.UVLV[gUVBlockCounts.UVLV++] = romOffset;
+                    break;
+                case 'UVSQ': // 0x55565351
+                    gUVBlockOffsets.UVSQ[gUVBlockCounts.UVSQ++] = romOffset;
+                    break;
+                case 'UVTR': // 0x55565452
+                    gUVBlockOffsets.UVTR[gUVBlockCounts.UVTR++] = romOffset;
+                    break;
+                case 'UVTP': // 0x55565450
+                    gUVBlockOffsets.UVTP[gUVBlockCounts.UVTP++] = romOffset;
+                    break;
+                case 'UVSX': // 0x55565358
+                    gUVBlockOffsets.UVSX[gUVBlockCounts.UVSX++] = romOffset;
+                    break;
+                default:
+                    gUVBlockOffsets.unk1838[gUVBlockCounts.unk1C++] = romOffset;
+                    break;
                 }
                 romOffset += var_a0->size;
             }
@@ -194,47 +193,47 @@ void* func_80224A90(u32 tag, s32 arg1) {
     ret = NULL;
     _uvJumpHeap(&D_802B892C);
     do {
-        if (1) {} // fakematch
+        if (1) { } // fakematch
         switch (tag) {
-            case 'UVSQ': // 0x55565351
-                ret = func_80227DE4(arg1);
-                break;
-            case 'UVEN': // 0x5556454E
-                ret = func_802278C0(arg1);
-                break;
-            case 'UVTR': // 0x55565452
-                ret = func_80227B5C(arg1);
-                break;
-            case 'UVCT': // 0x55564354
-                ret = func_80227804(arg1);
-                break;
-            case 'UVLV': // 0x55564C56
-                ret = func_80227938(arg1);
-                break;
-            case 'UVMD': // 0x55564D44
-                ret = func_80227AA0(arg1);
-                break;
-            case 'UVTX': // 0x55565458
-                ret = func_80227BD4(arg1);
-                break;
-            case 'UVTI': // 0x55565449
-                ret = func_80227C84(arg1);
-                break;
-            case 'UVLT': // 0x55564C54
-                ret = func_80227A28(arg1);
-                break;
-            case 'UVAN': // 0x5556414E
-                ret = uvJanimLoad(arg1);
-                break;
-            case 'UVFT': // 0x55564654
-                ret = func_80219270(arg1);
-                break;
-            case 'UVBT': // 0x55564254
-                ret = func_80227D34(arg1);
-                break;
-            case 'UVTP': // 0x55565450
-                ret = func_802279B0(arg1);
-                break;
+        case 'UVSQ': // 0x55565351
+            ret = func_80227DE4(arg1);
+            break;
+        case 'UVEN': // 0x5556454E
+            ret = func_802278C0(arg1);
+            break;
+        case 'UVTR': // 0x55565452
+            ret = func_80227B5C(arg1);
+            break;
+        case 'UVCT': // 0x55564354
+            ret = func_80227804(arg1);
+            break;
+        case 'UVLV': // 0x55564C56
+            ret = func_80227938(arg1);
+            break;
+        case 'UVMD': // 0x55564D44
+            ret = func_80227AA0(arg1);
+            break;
+        case 'UVTX': // 0x55565458
+            ret = func_80227BD4(arg1);
+            break;
+        case 'UVTI': // 0x55565449
+            ret = func_80227C84(arg1);
+            break;
+        case 'UVLT': // 0x55564C54
+            ret = func_80227A28(arg1);
+            break;
+        case 'UVAN': // 0x5556414E
+            ret = uvJanimLoad(arg1);
+            break;
+        case 'UVFT': // 0x55564654
+            ret = func_80219270(arg1);
+            break;
+        case 'UVBT': // 0x55564254
+            ret = func_80227D34(arg1);
+            break;
+        case 'UVTP': // 0x55565450
+            ret = func_802279B0(arg1);
+            break;
         }
     } while (_uvJumpHeap(&D_802B892C) == 0);
     return ret;
@@ -244,7 +243,7 @@ void uvMemLoadPal(s32 arg0) {
     u32 temp_v0;
 
     if (arg0 == 0xFFFF) {
-       D_802B53C0 = NULL;
+        D_802B53C0 = NULL;
     } else {
         D_802B53C0 = func_80224A90('UVTP', arg0); // 0x55565450
         if (D_802B53C0 == NULL) {
@@ -257,22 +256,22 @@ void uvMemLoadPal(s32 arg0) {
 
 void func_80225394(void* dst, void** ptr, s32 size) {
     switch (size) {
-        case 1:
-            *(s8*)dst = uvMemRead(*ptr, size);
-            *(u8**)ptr += 1;
-            break;
-        case 2:
-            *(s16*)dst = uvMemRead(*ptr, size);
-            *(u8**)ptr += 2;
-            break;
-        case 4:
-            *(s32*)dst = uvMemRead(*ptr, size);
-            *(u8**)ptr += 4;
-            break;
-        default:
-            _uvMediaCopy(dst, *ptr, size);
-            *(u8**)ptr += size;
-            break;
+    case 1:
+        *(s8*)dst = uvMemRead(*ptr, size);
+        *(u8**)ptr += 1;
+        break;
+    case 2:
+        *(s16*)dst = uvMemRead(*ptr, size);
+        *(u8**)ptr += 2;
+        break;
+    case 4:
+        *(s32*)dst = uvMemRead(*ptr, size);
+        *(u8**)ptr += 4;
+        break;
+    default:
+        _uvMediaCopy(dst, *ptr, size);
+        *(u8**)ptr += size;
+        break;
     }
 }
 
@@ -292,11 +291,11 @@ void* func_802254B0(void* arg0) {
     func_80225394(&count, &arg0, 1);
     temp_s3 = (Unk80219270_4*)_uvMemAlloc(count * 4, 4);
 
-    for(var_s0 = 0; var_s0 < (s32) count; var_s0++) {
+    for (var_s0 = 0; var_s0 < (s32)count; var_s0++) {
         func_80225394(&temp_s3[var_s0].unk0, &arg0, 2);
         func_80225394(&temp_s3[var_s0].unk4, &arg0, 1);
     }
-    
+
     temp_v0 = (Unk80219270_3C*)_uvMemAlloc(sizeof(Unk80219270_3C), 4);
     func_80225394(temp_v0, &arg0, sizeof(Unk80219270_3C));
     temp_v0->count = count;
@@ -314,7 +313,7 @@ void* func_802255A0(void* arg0) {
     func_80225394(&count, &arg0, 1);
     temp_s3 = (Unk802255A0_8*)_uvMemAlloc(count * 8, 4);
 
-    for(idx = 0; idx < (s32) count; idx++) {
+    for (idx = 0; idx < (s32)count; idx++) {
         func_80225394(&temp_s3[idx].unk0, &arg0, 2);
         func_80225394(&temp_s3[idx].unk4, &arg0, 4);
         temp_s3[idx].unk2 = 0xFF;
@@ -371,7 +370,7 @@ void* func_80226FD0(void* arg0) {
     temp_s2->unk4 = (u16*)_uvMemAlloc(count * 2, 4);
     temp_s2->unk8 = (u16*)_uvMemAlloc(count * 2, 4);
 
-    for(idx = 0; idx < count; idx++) {
+    for (idx = 0; idx < count; idx++) {
         func_80225394(&temp_s2->unk4[idx], &arg0, 2);
         func_80225394(&temp_s2->unk8[idx], &arg0, 2);
     }
@@ -380,7 +379,7 @@ void* func_80226FD0(void* arg0) {
 }
 
 void* func_802270BC(void* arg0) {
-    Unk802270BC_48 *ptr;
+    Unk802270BC_48* ptr;
     Unk802270BC_2C* temp_v0;
     s32 count;
     s32 idx;
@@ -397,7 +396,7 @@ void* func_802270BC(void* arg0) {
     count = temp_v0->unk18 * temp_v0->unk19;
     temp_v0->unk28 = (Unk802270BC_48*)_uvMemAlloc(count * sizeof(Unk802270BC_48), 4);
 
-    for(idx = 0; idx < count; idx++) {
+    for (idx = 0; idx < count; idx++) {
         ptr = &temp_v0->unk28[idx];
         func_80225394(&sp47, &arg0, 1);
         if (sp47 == 0) {
@@ -425,7 +424,7 @@ void* func_80227804(s32 arg0) {
     idx = func_80223E80(D_802B5A34[arg0]);
     while ((tag = func_80223F7C(idx, &sp3C, &sp38, 1)) != 0) {
         if (tag == 'COMM') { // 0x434F4D4D
-            if (1) {} // fakematch
+            if (1) { }       // fakematch
             ret = func_80225FBC(sp38);
         }
     }
@@ -504,7 +503,7 @@ void* func_80227AA0(s32 arg0) {
     idx = func_80223E80(D_802B53F4[arg0]);
     while ((tag = func_80223F7C(idx, &sp3C, &sp38, 1)) != 0) {
         if (tag == 'COMM') { // 0x434F4D4D
-            if (1) {} // fakematch
+            if (1) { }       // fakematch
             ret = func_802256B8(sp38);
         }
     }
@@ -537,7 +536,7 @@ void* func_80227BD4(s32 arg0) {
     idx = func_80223E80(D_802B5C34[arg0]);
     while ((tag = func_80223F7C(idx, &sp34, &sp30, 1)) != 0) {
         if (tag == 'COMM') { // 0x434F4D4D
-            if (1) {} // fakematch
+            if (1) { }       // fakematch
             ret = _uvExpandTexture(sp30);
         }
     }
@@ -556,7 +555,7 @@ void* func_80227C84(s32 arg0) {
 
     while ((tag = func_80223F7C(idx, &sp34, &sp30, 1)) != 0) {
         if (tag == 'COMM') { // 0x434F4D4D
-            if (1) {} // fakematch
+            if (1) { }       // fakematch
             ret = _uvExpandTextureImg(sp30);
         }
     }
@@ -574,7 +573,7 @@ void* func_80227D34(s32 arg0) {
     idx = func_80223E80(D_802B6A34[arg0]);
     while ((tag = func_80223F7C(idx, &sp3C, &sp38, 0)) != 0) {
         if (tag == 'COMM') { // 0x434F4D4D
-            if (1) {} // fakematch
+            if (1) { }       // fakematch
             ret = func_80227260(sp38);
         }
     }

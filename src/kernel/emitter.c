@@ -5,7 +5,7 @@ extern ALSndId* gSndVoiceTable;
 extern uvaEmitter_t gSndEmitterTable[];
 extern uvaEmitter_t D_8025BE48;
 
-void osSyncPrintf(const char *fmt, ...) {
+void osSyncPrintf(const char* fmt, ...) {
 }
 
 void uvEmitterInitTable(void) {
@@ -16,7 +16,6 @@ void uvEmitterInitTable(void) {
     } while (iter != term);
     uvEmitterInit(term);
 }
-
 
 void uvEmitterInit(uvaEmitter_t* obj) {
     Mtx4F_t temp;

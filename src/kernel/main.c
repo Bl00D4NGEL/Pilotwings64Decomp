@@ -6,9 +6,9 @@
 void Thread_App(void* arg);
 void Thread_Kernel(void* arg);
 void Thread_Render(void* arg);
-void app_entrypoint(s32);                              /* extern */
+void app_entrypoint(s32); /* extern */
 void uvSetVideoMode(void);
-void func_8022E558(void);                                  /* extern */
+void func_8022E558(void); /* extern */
 
 extern u8 app_ROM_START[];
 extern u8 app_ROM_END[];
@@ -61,7 +61,7 @@ s32 func_8022E2D4(s32 arg0) {
 }
 
 void func_8022E2DC(char arg0) {
-    switch (arg0) {                              
+    switch (arg0) {
     case 0:
         osRecvMesg(&gPiDmaQ, NULL, 1);
         return;
@@ -99,7 +99,7 @@ void Thread_Render(void* arg) {
 
     sp1C = NULL;
     osCreateMesgQueue(&D_802C3300, D_802C3318, 1);
-    osSetEventMesg(OS_EVENT_FAULT, &D_802C3300, (void* )0x10);
+    osSetEventMesg(OS_EVENT_FAULT, &D_802C3300, (void*)0x10);
     osRecvMesg(&D_802C3300, &sp1C, 1);
     D_802C331C = __osGetActiveQueue()->context.pc;
     while (1) {
@@ -109,7 +109,7 @@ void Thread_Render(void* arg) {
     }
 }
 
-void Thread_App(void *arg) {
+void Thread_App(void* arg) {
     _uvMediaCopy(app_TEXT_START, app_ROM_START, app_ROM_END - app_ROM_START);
     uvMemSet(app_BSS_START, 0, app_BSS_END - app_BSS_START);
     app_entrypoint(arg);
@@ -126,7 +126,7 @@ void Thread_Kernel(void* arg) {
         osStartThread(&gAppThread);
     }
     osSetThreadPri(NULL, 0);
-    while(1) { }
+    while (1) { }
 }
 
 u8 func_8022EA80(void) {
@@ -140,7 +140,7 @@ u8 func_8022EA80(void) {
     osSetTimer(&sp30, 0x1388, 0, &sp50, &sp68);
     osRecvMesg(&sp50, &sp2C, 1);
     osCreateMesgQueue(&gSiContQ, gSiContBuf, 3);
-    osSetEventMesg(OS_EVENT_SI, &gSiContQ, (void* )0x33333333);
+    osSetEventMesg(OS_EVENT_SI, &gSiContQ, (void*)0x33333333);
     osContInit(&gSiContQ, &gSiContPattern, &gSiContStatus);
     temp = gSiContPattern;
     return temp;
@@ -148,7 +148,7 @@ u8 func_8022EA80(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/main/func_8022EB38.s")
 
-void _uvDebugPrintf(char *fmt, ...) {
+void _uvDebugPrintf(char* fmt, ...) {
 }
 
 void _uvDMA(void* vAddr, u32 devAddr, u32 nbytes) {
@@ -163,14 +163,14 @@ void _uvDMA(void* vAddr, u32 devAddr, u32 nbytes) {
             return;
         }
         if ((u32)osMemSize < nbytes) {
-            _uvDebugPrintf("_uvDMA: nbytes invalid %d\n", (s32) nbytes);
+            _uvDebugPrintf("_uvDMA: nbytes invalid %d\n", (s32)nbytes);
             return;
         }
         if (nbytes & 1) {
             nbytes = (nbytes + 1) & ~1;
         }
-        osWritebackDCache((void* )dest, (s32)nbytes);
-        osPiStartDma(&gPiDmaBlockReq, 0, 0, devAddr, (void*) dest, nbytes, &gPiDmaQ);
+        osWritebackDCache((void*)dest, (s32)nbytes);
+        osPiStartDma(&gPiDmaBlockReq, 0, 0, devAddr, (void*)dest, nbytes, &gPiDmaQ);
         osInvalDCache((void*)dest, (s32)nbytes);
         func_8022E2DC(0);
     }

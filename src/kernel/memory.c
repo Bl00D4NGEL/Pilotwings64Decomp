@@ -38,17 +38,17 @@ extern void myfree(void);
 
 void uvMemInitBlocks(void) {
     D_802B8830[0].start = 0x800DA800;
-    D_802B8830[0].end   = 0x80100000;
+    D_802B8830[0].end = 0x80100000;
     D_802B8830[1].start = 0x80100000;
-    D_802B8830[1].end   = 0x80125800;
+    D_802B8830[1].end = 0x80125800;
     D_802B8830[2].start = 0x803DA800;
-    D_802B8830[2].end   = 0x80400000;
+    D_802B8830[2].end = 0x80400000;
     D_802B8830[3].start = 0x80000400;
-    D_802B8830[3].end   = 0x800417DC;
+    D_802B8830[3].end = 0x800417DC;
     D_802B8830[4].start = 0x80200000;
-    D_802B8830[4].end   = &D_803805E0;
+    D_802B8830[4].end = &D_803805E0;
     D_802B8830[5].start = 0x80000000;
-    D_802B8830[5].end   = 0x80000400;
+    D_802B8830[5].end = 0x80000400;
     D_802B8820 = 6;
     D_802B8824 = 0;
     D_802B8920[0] = 0;
@@ -58,7 +58,7 @@ void uvMemInitBlocks(void) {
 }
 
 void func_8022A47C(void) {
-    u32 *a;
+    u32* a;
 
     for (a = (u32*)0x800417DC; a < (u32*)0x800DA800; a++) {
         *a = 0;
@@ -84,7 +84,8 @@ void uvMemScanBlocks(void) {
                 if ((D_802B8830[j].start < D_802B8830[i].end) && (D_802B8830[i].start < D_802B8830[j].end)) {
                     if (1) { // fakematch
                         _uvDebugPrintf("uvSysInit: memory overlap with blocks %d and %d\n", i, j);
-                        _uvDebugPrintf("           [ 0x%x , 0x%x ] and [ 0x%x , 0x%x ]\n", D_802B8830[i].start, D_802B8830[i].end, D_802B8830[j].start, D_802B8830[j].end);
+                        _uvDebugPrintf("           [ 0x%x , 0x%x ] and [ 0x%x , 0x%x ]\n", D_802B8830[i].start, D_802B8830[i].end, D_802B8830[j].start,
+                                       D_802B8830[j].end);
                     }
                     break;
                 }
@@ -100,10 +101,10 @@ s32 func_8022A5F4(u32 startAddr, u32 length) {
     endAddr = startAddr + length;
 
     for (i = 0; i < D_802B8820; i++) {
-        if ((endAddr >= D_802B8830[i].start) && (endAddr < (u32) D_802B8830[i].end)) {
+        if ((endAddr >= D_802B8830[i].start) && (endAddr < (u32)D_802B8830[i].end)) {
             return 0;
         }
-        if ((startAddr >= D_802B8830[i].start) && (startAddr < (u32) D_802B8830[i].end)) {
+        if ((startAddr >= D_802B8830[i].start) && (startAddr < (u32)D_802B8830[i].end)) {
             return 0;
         }
     }
@@ -133,11 +134,11 @@ s32 _uvJumpHeap(u32* arg0) {
 
 void _uvMediaCopy(void* vAddr, void* devAddr, u32 nbytes) {
     s32 i;
-    u8 *alignCeil;
+    u8* alignCeil;
     s32 alignDiff;
     u8 buf[8];
-    u8 *dst;
-    u8 *src;
+    u8* dst;
+    u8* src;
 
     dst = vAddr;
     src = devAddr;
@@ -156,7 +157,7 @@ void _uvMediaCopy(void* vAddr, void* devAddr, u32 nbytes) {
     }
 
     if (nbytes != 0) {
-        if (((s32)src | (s32) dst | nbytes) & 1) {
+        if (((s32)src | (s32)dst | nbytes) & 1) {
             _uvDebugPrintf("Media copy src and dst && nbytes must be even\n");
             // it appears the devs intended to cause a fault by storing to an unaligned address,
             // but IDO outsmarted them and broke this into two `sb` instructions
@@ -225,7 +226,6 @@ void uvMemSet(void* vAddr, u8 value, u32 nbytes) {
     }
 }
 
-
 s32 uvMemCmp(u8* lhs, u8* rhs, u32 count) {
     s32 i;
 
@@ -285,24 +285,24 @@ s32 _uvMemAlloc(u32 size, u32 alignment) {
     return alignedStart;
 }
 
-void _uvMemFreeScratch(void *addr) {
+void _uvMemFreeScratch(void* addr) {
     switch ((u32)addr) {
-        case 0x803DA800:
-            D_802B8920[0] = 0;
-            break;
-        case 0x800DA800:
-            D_802B8920[1] = 0;
-            break;
-        case 0x80100000:
-            D_802B8920[2] = 0;
-            break;
-        default:
-            _uvDebugPrintf("_uvMemFreeScratch: 0x%x not a scratch area\n", addr);
-            break;
+    case 0x803DA800:
+        D_802B8920[0] = 0;
+        break;
+    case 0x800DA800:
+        D_802B8920[1] = 0;
+        break;
+    case 0x80100000:
+        D_802B8920[2] = 0;
+        break;
+    default:
+        _uvDebugPrintf("_uvMemFreeScratch: 0x%x not a scratch area\n", addr);
+        break;
     }
 }
 
-void *_uvMemGetScratch(u32 size) {
+void* _uvMemGetScratch(u32 size) {
     if (size >= 0x25800) {
         _uvDebugPrintf("_uvMemGetScratch: size too big ( %d bytes )\n", size);
     } else {
@@ -316,7 +316,7 @@ void *_uvMemGetScratch(u32 size) {
         } else {
             _uvDebugPrintf("_uvMemGetScratch: all scratch areas are full\n", size);
         }
-    // clang-format on
+        // clang-format on
     }
     return NULL;
 }
@@ -358,7 +358,7 @@ void uvLevelInit(void) {
     while ((var_v0 = func_80223F7C(temp_v0, &length, &source, 0)) != 0) {
         if (var_v0 == 'COMM') { // 0x434F4D4D
             _uvMediaCopy(&gUVBlockCounts, source, length);
-            if (1) {} // fakematch
+            if (1) { } // fakematch
             *((float*)&initialize_emu_text_0000[0x1608]) = gUVBlockCounts.unk0;
         }
     }

@@ -27,7 +27,7 @@ f32 uvRandF_RANLUX(void) {
     if (var_v1 <= 0) {
         var_v1 += 0x7FFFFFAA;
     }
-    return (f32) (var_v1 - 1) / 2.1474835e9f;
+    return (f32)(var_v1 - 1) / 2.1474835e9f;
 }
 
 #if 1
@@ -89,9 +89,9 @@ void uvVec3Cross(Vec3F_t vd, Vec3F_t va, Vec3F_t vb) {
     f32 ax = va[0], ay = va[1], az = va[2];
     f32 bx = vb[0], by = vb[1], bz = vb[2];
 
-    vd[0] =  ((ay * bz) - (az * by));
+    vd[0] = ((ay * bz) - (az * by));
     vd[1] = -((ax * bz) - (az * bx));
-    vd[2] =  ((ax * by) - (ay * bx));
+    vd[2] = ((ax * by) - (ay * bx));
 }
 
 void uvVec3Add(Vec3F_t vd, Vec3F_t va, Vec3F_t vb) {
@@ -115,9 +115,9 @@ s32 uvVec3Normal(Vec3F_t vd, Vec3F_t va) {
         return 0;
     }
     len_inv = 1.0f / len;
-    vd[0] = (f32) (ax * len_inv);
-    vd[1] = (f32) (ay * len_inv);
-    vd[2] = (f32) (az * len_inv);
+    vd[0] = (f32)(ax * len_inv);
+    vd[1] = (f32)(ay * len_inv);
+    vd[2] = (f32)(az * len_inv);
     return 1;
 }
 

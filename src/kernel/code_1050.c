@@ -26,7 +26,7 @@ void func_802000A0(void) {
 
 void func_802000DC(u16 arg0) {
     Mtx4F_t mIdent;
-    UnkStruct_80200144_t *temp_a0;
+    UnkStruct_80200144_t* temp_a0;
 
     temp_a0 = &D_80250E80[arg0];
 
@@ -36,7 +36,6 @@ void func_802000DC(u16 arg0) {
     temp_a0->vec[0] = 1.0f;
     temp_a0->vec[1] = 1.0f;
 }
-
 
 void func_80200144(u16 arg0, Mtx4F_t arg1) {
     Mat4_Copy(D_80250E80[arg0].mat, arg1);

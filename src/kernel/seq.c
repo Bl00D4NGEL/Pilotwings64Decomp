@@ -7,8 +7,8 @@ extern ALSeqPlayer* gSeqPlayer;
 #if 1
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/seq/uvaSeqNew.s")
 #else
-void _uvMediaCopy(void*, void*, s32);                      /* extern */
-void uvaSeqStop(void);                                     /* extern */
+void _uvMediaCopy(void*, void*, s32); /* extern */
+void uvaSeqStop(void);                /* extern */
 extern ALSeqPlayer* gSeqPlayer;
 extern ALBank* D_80261210;
 extern u8* D_8026121C;
@@ -30,7 +30,7 @@ void uvaSeqNew(s32 arg0) {
     _uvMediaCopy(D_80261220, ((ALSeqFile*)(D_8026121C + arg0 * 8))->seqArray[0].offset, seq_align);
     alCSeqNew(&D_80261230, D_80261220);
     alSeqpSetBank(gSeqPlayer, D_80261210);
-    alSeqpSetSeq(gSeqPlayer, (ALSeq* ) &D_80261230);
+    alSeqpSetSeq(gSeqPlayer, (ALSeq*)&D_80261230);
 }
 #endif
 
@@ -43,13 +43,13 @@ void uvaSeqPlay(void) {
 
 void uvaSeqSetTempo(f32 tempo) {
     if (alSeqpGetState(gSeqPlayer) != 0) {
-        alSeqpSetTempo(gSeqPlayer, (s32) (60000000.0 / (f64) tempo));
+        alSeqpSetTempo(gSeqPlayer, (s32)(60000000.0 / (f64)tempo));
     }
 }
 
 void uvaSeqSetVol(f32 vol) {
     if (alSeqpGetState(gSeqPlayer) != 0) {
-        alSeqpSetVol(gSeqPlayer, (s16) (vol * 32767.0f));
+        alSeqpSetVol(gSeqPlayer, (s16)(vol * 32767.0f));
     }
 }
 
@@ -62,8 +62,7 @@ void uvaSeqStop(void) {
                 _uvDebugPrintf("uvaSeqStop timed out\n");
                 return;
             }
-        }
-        while (alSeqpGetState(gSeqPlayer) != 0);
+        } while (alSeqpGetState(gSeqPlayer) != 0);
     }
 }
 
