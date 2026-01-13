@@ -36,7 +36,6 @@ extern u8 initialize_emu_text_0000[];
 
 extern void myfree(void);
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/uvMemInitBlocks.s")
 void uvMemInitBlocks(void) {
     D_802B8830[0].start = 0x800DA800;
     D_802B8830[0].end   = 0x80100000;
@@ -58,7 +57,6 @@ void uvMemInitBlocks(void) {
     uvMemScanBlocks();
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/func_8022A47C.s")
 void func_8022A47C(void) {
     u32 *a;
 
@@ -76,7 +74,6 @@ void func_8022A47C(void) {
     }
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/uvMemScanBlocks.s")
 void uvMemScanBlocks(void) {
     s32 j;
     s32 i;
@@ -96,7 +93,6 @@ void uvMemScanBlocks(void) {
     }
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/func_8022A5F4.s")
 s32 func_8022A5F4(u32 startAddr, u32 length) {
     s32 i;
     u32 endAddr;
@@ -115,7 +111,6 @@ s32 func_8022A5F4(u32 startAddr, u32 length) {
     return 1;
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/_uvJumpHeap.s")
 s32 _uvJumpHeap(u32* arg0) {
     s32 iter;
     s32 retVal;
@@ -136,7 +131,6 @@ s32 _uvJumpHeap(u32* arg0) {
     return retVal;
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/_uvMediaCopy.s")
 void _uvMediaCopy(void* vAddr, void* devAddr, u32 nbytes) {
     s32 i;
     u8 *alignCeil;
@@ -186,7 +180,6 @@ void _uvMediaCopy(void* vAddr, void* devAddr, u32 nbytes) {
     }
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/uvMemRead.s")
 u64 uvMemRead(void* vAddr, u32 nbytes) {
     u64 out;
     u64 temp1;
@@ -218,7 +211,6 @@ u64 uvMemRead(void* vAddr, u32 nbytes) {
     return out;
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/uvMemSet.s")
 void uvMemSet(void* vAddr, u8 value, u32 nbytes) {
     u32 count;
     u8* dest;
@@ -234,7 +226,6 @@ void uvMemSet(void* vAddr, u8 value, u32 nbytes) {
 }
 
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/uvMemCmp.s")
 s32 uvMemCmp(u8* lhs, u8* rhs, u32 count) {
     s32 i;
 
@@ -250,7 +241,6 @@ s32 uvMemCmp(u8* lhs, u8* rhs, u32 count) {
     return 0;
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/_uvMemOverAlloc.s")
 s32 _uvMemOverAlloc(u32 size, u32 alignment) {
     u32 alignedStart;
 
@@ -271,7 +261,6 @@ s32 _uvMemOverAlloc(u32 size, u32 alignment) {
     }
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/_uvMemAlloc.s")
 s32 _uvMemAlloc(u32 size, u32 alignment) {
     u32 alignedStart;
 
@@ -296,7 +285,6 @@ s32 _uvMemAlloc(u32 size, u32 alignment) {
     return alignedStart;
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/_uvMemFreeScratch.s")
 void _uvMemFreeScratch(void *addr) {
     switch ((u32)addr) {
         case 0x803DA800:
@@ -314,7 +302,6 @@ void _uvMemFreeScratch(void *addr) {
     }
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/_uvMemGetScratch.s")
 void *_uvMemGetScratch(u32 size) {
     if (size >= 0x25800) {
         _uvDebugPrintf("_uvMemGetScratch: size too big ( %d bytes )\n", size);
@@ -333,7 +320,6 @@ void *_uvMemGetScratch(u32 size) {
     return NULL;
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/_uvMemGetBlocks.s")
 void _uvMemGetBlocks(u32 arg0, u32 arg1) {
     if (arg0 != arg1) {
         if (D_802B8824 >= 0x14) {
@@ -348,7 +334,6 @@ void _uvMemGetBlocks(u32 arg0, u32 arg1) {
     }
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/uvLevelInit.s")
 void uvLevelInit(void) {
     s32 temp_v0;
     s32 var_v0;
@@ -382,7 +367,6 @@ void uvLevelInit(void) {
     }
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/memory/_uvMemAllocAlign8.s")
 void _uvMemAllocAlign8(u32 size) {
     _uvMemAlloc(size, 8);
 }

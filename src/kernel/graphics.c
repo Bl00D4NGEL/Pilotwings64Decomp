@@ -42,7 +42,6 @@ extern u8 gGfxStateStackIdx;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_80220FF8.s")
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_802210C4.s")
 void func_802210C4(s32 arg0) {
     UnkStruct_gfx_8b_t* temp_v1;
 
@@ -63,7 +62,6 @@ void func_802210C4(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_80222100.s")
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_80222170.s")
 void func_80222170(s32 arg0) {
     D_80249230 = arg0;
 }
@@ -92,12 +90,10 @@ void func_80222170(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/uvGfxUnkMatrixOp2.s")
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_802233C4.s")
 void* func_802233C4(void) {
     return &D_802A9988[(D_8024920C * 0x5780) + (D_80249218 << 6)];
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_80223408.s")
 void func_80223408(f32 arg0) {
     D_8024921C = arg0;
 }
@@ -110,7 +106,6 @@ void func_80223408(f32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_802235A4.s")
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_802236A8.s")
 void func_802236A8(void) {
     UnkStruct_gfx_8b_t* temp_v1;
 
@@ -123,7 +118,6 @@ void func_802236A8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/uvGfxGetCnt.s")
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/uvGfxStatePush.s")
 void uvGfxStatePush(void) {
     if (gGfxStateStackIdx >= 0x1F) {
         _uvDebugPrintf("uvGfxStatePush: stack full\n");
@@ -146,7 +140,6 @@ void uvGfxStatePush(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_80223BB8.s")
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_80223BF4.s")
 void func_80223BF4(s32 arg0) {
     D_802491E8 = arg0;
 }
@@ -157,19 +150,16 @@ void func_80223BF4(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_80223E80.s")
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_80223F30.s")
 void func_80223F30(s32 arg0) {
     if ((arg0 >= 0) && (arg0 <= 0)) {
         D_802B5300[arg0].unk0 = 0;
     }
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_80223F54.s")
 s32 func_80223F54(s32 arg0) {
     return D_802B5308[arg0].unk0;
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_80223F68.s")
 s32 func_80223F68(s32 arg0) {
     return D_802B5304[arg0].unk0;
 }
@@ -178,7 +168,6 @@ s32 func_80223F68(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_80224170.s")
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_8022427C.s")
 void func_8022427C(u32 arg0) {
     D_802B530C[arg0].unk0 = 0xC;
 }

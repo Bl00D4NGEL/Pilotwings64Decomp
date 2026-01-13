@@ -5,11 +5,9 @@ extern ALSndId* gSndVoiceTable;
 extern uvaEmitter_t gSndEmitterTable[];
 extern uvaEmitter_t D_8025BE48;
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/osSyncPrintf.s")
 void osSyncPrintf(const char *fmt, ...) {
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/uvEmitterInitTable.s")
 void uvEmitterInitTable(void) {
     uvaEmitter_t *term = &D_8025BE48, *iter = gSndEmitterTable;
     do {
@@ -20,7 +18,6 @@ void uvEmitterInitTable(void) {
 }
 
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/uvEmitterInit.s")
 void uvEmitterInit(uvaEmitter_t* obj) {
     Mtx4F_t temp;
 
@@ -58,25 +55,20 @@ void uvEmitterInit(uvaEmitter_t* obj) {
     obj->far = 1000.0f;
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/uvEmitterLookup.s")
 u8 uvEmitterLookup(void) {
-    u8 obj_id;
+    u8 var_v1;
 
     osSyncPrintf("looking for emitter\n");
-    obj_id = 0; while (1) {
-        if (gSndEmitterTable[obj_id].sound == 0xFF) {
-            osSyncPrintf("Returning emitter %d\n", obj_id);
-            return obj_id;
-        }
-
-        if (++obj_id >= 0xFF) {
-            _uvDebugPrintf("no free emitters\n");
-            return 0xFFU;
+    for (var_v1 = 0; var_v1 < 0xFF; var_v1++) {
+        if (gSndEmitterTable[var_v1].sound == 0xFF) {
+            osSyncPrintf("Returning emitter %d\n", var_v1);
+            return var_v1;
         }
     }
+    _uvDebugPrintf("no free emitters\n");
+    return 0xFF;
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/uvEmitterFromModel.s")
 void uvEmitterFromModel(u8 obj_id, u8 mdl_id) {
     osSyncPrintf("assigning model %d to emitter %d\n", mdl_id, obj_id);
     if (obj_id < 0xFF) {
@@ -91,14 +83,12 @@ void uvEmitterFromModel(u8 obj_id, u8 mdl_id) {
     }
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/func_802013F8.s")
 void uvEmitterSetMatrix(u8 obj_id, Mtx4F_t msrc) {
     if (obj_id < 0xFF) {
         Mat4_Copy(gSndEmitterTable[obj_id].m1, msrc);
     }
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/func_80201444.s")
 void uvEmitterGetMatrix(u8 obj_id, Mtx4F_t mdst) {
     if (obj_id < 0xFF) {
         Mat4_Copy(mdst, gSndEmitterTable[obj_id].m1);
@@ -141,7 +131,6 @@ void uvEmitterGetMatrix(u8 obj_id, Mtx4F_t mdst) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/_uvaStartVoice.s")
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/_uvaUpdateVoice.s")
 void _uvaUpdateVoice(u8 obj_id) {
     uvaEmitter_t* obj;
 
@@ -155,7 +144,6 @@ void _uvaUpdateVoice(u8 obj_id) {
     alSndpSetPan(gSndPlayer, obj->playPan);
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/_uvaStopVoice.s")
 void _uvaStopVoice(u8 voice_id) {
     if (voice_id < 0x10) {
         osSyncPrintf("stopping voice%d\n", voice_id);
@@ -169,7 +157,6 @@ void _uvaStopVoice(u8 voice_id) {
     osSyncPrintf("%d is not a valid voice\n", voice_id);
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/emitter/_uvaStatus.s")
 void _uvaStatus(u8 obj_id) {
     uvaEmitter_t* obj;
 

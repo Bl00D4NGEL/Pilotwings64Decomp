@@ -34,7 +34,6 @@ void uvaSeqNew(s32 arg0) {
 }
 #endif
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/seq/uvaSeqPlay.s")
 void uvaSeqPlay(void) {
     if (alSeqpGetState(gSeqPlayer) != 0) {
         uvaSeqStop();
@@ -42,21 +41,18 @@ void uvaSeqPlay(void) {
     alSeqpPlay(gSeqPlayer);
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/seq/uvaSeqSetTempo.s")
 void uvaSeqSetTempo(f32 tempo) {
     if (alSeqpGetState(gSeqPlayer) != 0) {
         alSeqpSetTempo(gSeqPlayer, (s32) (60000000.0 / (f64) tempo));
     }
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/seq/uvaSeqSetVol.s")
 void uvaSeqSetVol(f32 vol) {
     if (alSeqpGetState(gSeqPlayer) != 0) {
         alSeqpSetVol(gSeqPlayer, (s16) (vol * 32767.0f));
     }
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/seq/uvaSeqStop.s")
 void uvaSeqStop(void) {
     alSeqpStop(gSeqPlayer);
     func_80206150(7);

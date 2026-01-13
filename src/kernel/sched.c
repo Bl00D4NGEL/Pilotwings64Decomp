@@ -33,7 +33,6 @@ extern s32 D_802B9C88;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/func_8022B0A0.s")
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/_uvScDoneGfx.s")
 void _uvScDoneGfx(void) {
     OSScTask* scTask = D_802B9C60[D_802B9C6E];
 
@@ -57,7 +56,6 @@ void _uvScDoneGfx(void) {
     }
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/_uvScDoneAud.s")
 void _uvScDoneAud(void) {
     if (D_802B9C58 == NULL) {
         _uvDebugPrintf("_uvScDoneAud: no audio task\n");
@@ -73,7 +71,6 @@ void _uvScDoneAud(void) {
     }
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/_uvScRunAud.s")
 void _uvScRunAud(void) {
     if (gNmiAsserted == 0) {
         if (D_802B9C58 == NULL) {
@@ -88,7 +85,6 @@ void _uvScRunAud(void) {
     }
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/_uvScRunGfx.s")
 void _uvScRunGfx(void) {
     OSScTask *scTask;
 
@@ -115,7 +111,6 @@ void _uvScRunGfx(void) {
     }
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/_uvScDlistRecover.s")
 void _uvScDlistRecover(void) {
     _uvDebugPrintf("Recovered from a bad display list\n");
 
@@ -128,7 +123,6 @@ void _uvScDlistRecover(void) {
     }
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/_uvScCreateScheduler.s")
 void _uvScCreateScheduler(OSSched* sc, void* stack, s32 priority, u8 mode, u8 numFields) {
     ((OSScTask*)D_802B9C60)->state = 0;
     ((OSScTask*)D_802B9C60)->next = 0;
@@ -180,19 +174,16 @@ void _uvScCreateScheduler(OSSched* sc, void* stack, s32 priority, u8 mode, u8 nu
     func_8022C34C();
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/_uvScAddClient.s")
 void _uvScAddClient(OSSched* sc, OSScClient* client, OSMesgQueue* mq) {
     client->msgQ = mq;
     client->next = sc->clientList;
     sc->clientList = (OSScClient* )client;
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/_uvScGetCmdQ.s")
 OSMesgQueue *_uvScGetCmdQ(OSSched *s) {
     return &s->cmdQ;
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/_uvScMain.s")
 void _uvScMain(void* arg0) {
     OSMesg msg;
     msg = NULL;
@@ -220,7 +211,6 @@ void _uvScMain(void* arg0) {
     }
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/_uvScHandleRetrace.s")
 void _uvScHandleRetrace(void) {
     OSScTask *msg;
     u32 taskType;
@@ -309,7 +299,6 @@ void _uvScHandleRetrace(void) {
     }
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/_uvScHandleRSP.s")
 void _uvScHandleRSP(void) {
     if (gSchedRspStatus == 0) {
         _uvDebugPrintf("_uvScHandleRSP -- state error, should have been busy\n");
@@ -352,7 +341,6 @@ void _uvScHandleRSP(void) {
     }
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/_uvScHandleRDP.s")
 void _uvScHandleRDP(void) {
     gSchedRdpStatus = 0;
     D_802B9C6F = 0;
@@ -362,20 +350,17 @@ void _uvScHandleRDP(void) {
     }
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/_uvScHandleNMI.s")
 void _uvScHandleNMI(void) {
     gNmiAsserted = 1;
     osViBlack(1);
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/func_8022BEB8.s")
 void func_8022BEB8(s32 arg0) {
     D_802B9C88 = arg0;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/_uvScLogCpuEvent.s")
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/_uvScLogIntoRing.s")
 void _uvScLogIntoRing(void) {
     s32 ring;
     s32 iter;
@@ -389,7 +374,6 @@ void _uvScLogIntoRing(void) {
     D_802B9C84 = 0;
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/kernel/sched/func_8022C34C.s")
 void func_8022C34C(void) {
     gSchedRingIdx = gSchedRingIdx + 1;
     if (gSchedRingIdx >= 5) {
