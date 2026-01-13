@@ -306,7 +306,7 @@ void *_uvMemGetScratch(u32 size) {
     if (size >= 0x25800) {
         _uvDebugPrintf("_uvMemGetScratch: size too big ( %d bytes )\n", size);
     } else {
-        // returns need to be on same line to match reordering
+        // clang-format off: returns need to be on same line to match reordering
         if (D_802B8920[0] == 0) {
             D_802B8920[0] = 1; return 0x803DA800;
         } else if (D_802B8920[1] == 0) {
@@ -316,6 +316,7 @@ void *_uvMemGetScratch(u32 size) {
         } else {
             _uvDebugPrintf("_uvMemGetScratch: all scratch areas are full\n", size);
         }
+    // clang-format on
     }
     return NULL;
 }

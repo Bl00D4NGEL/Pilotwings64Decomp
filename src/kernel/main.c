@@ -79,11 +79,13 @@ void uvSetVideoMode(void) {
     s32 viMode;
 
     osCreateMesgQueue(&D_802C3B90, D_802C3B68, 0xA);
+    // clang-format off: statements need to be on same line for matching
     switch (osTvType) {
     case 0:  viMode = 0x10; _uvDebugPrintf("PAL video mode\n"); break;
     case 1:  viMode = 0x02; _uvDebugPrintf("NTSC video mode\n"); break;
     default: viMode = 0x10; _uvDebugPrintf("PAL video mode\n"); break;
     }
+    // clang-format on
     _uvScCreateScheduler(&gSchedInst, gSchedStack, 0x7F, viMode, 1);
     _uvScAddClient(&gSchedInst, (OSScClient*)gSchedStack, &D_802C3B50);
 }
