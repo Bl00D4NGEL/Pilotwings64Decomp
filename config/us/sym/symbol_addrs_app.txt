@@ -1,0 +1,44 @@
+// Visit https://github.com/ethteck/splat/wiki/Adding-Symbols for documentation about this file
+
+SqrtF               = 0x80229EA0; // type:func
+Length2D            = 0x8022A208; // type:func
+Length3D            = 0x8022A23C; // type:func
+
+app_firstfunc       = 0x802CA900; // type:func
+db_getgnd           = 0x802DFE70; // type:func
+db_getstart         = 0x802E0304; // type:func
+env_loadtpal        = 0x802E1990; // type:func
+fx_create           = 0x802EA03C; // type:func
+fx_create_fire      = 0x802EA8E0; // type:func
+hsound_callback     = 0x8030A390; // type:func
+app_entrypoint      = 0x8030FE20; // type:func
+map3d               = 0x8030FF00; // type:func
+map3d_mslot         = 0x80312684; // type:func
+
+sdive_land          = 0x80331794; // type:func
+sdive_getpoints     = 0x80331A78; // type:func
+sdive_below         = 0x80331B88; // type:func
+
+smoke_create        = 0x80336934; // type:func
+smoke_props         = 0x80336A04; // type:func
+smoke_getprops      = 0x80336EC0; // type:func
+smoke_delete        = 0x80337154; // type:func
+smoke_puff_add      = 0x8033720C; // type:func
+smoke_create_terra  = 0x80337528; // type:func
+
+snd_makedev         = 0x8033F860; // type:func
+snd_event           = 0x8033FB44; // type:func
+snd_getpilot        = 0x8033FBCC; // type:func
+
+snow_create         = 0x8033FE40; // type:func
+snow_draw           = 0x8033FF30; // type:func
+snow_update         = 0x8033FFB4; // type:func
+
+spath_create        = 0x80340610; // type:func
+spath_free          = 0x80340800; // type:func
+spath_update2       = 0x80340868; // type:func
+spath_update        = 0x80340B74; // type:func
+splash_add          = 0x803417CC; // type:func
+toy_animate         = 0x80347E9C; // type:func
+wind_render         = 0x8034CD68; // type:func
+

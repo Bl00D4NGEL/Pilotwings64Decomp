@@ -8,7 +8,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/matrix/_uvDbMstackPop.s")
 
-void Mat4_Copy(Mtx4F_t m_dst, Mtx4F_t m_src) {
+void uvMat4Copy(Mtx4F_t m_dst, Mtx4F_t m_src) {
     m_dst[0][0] = m_src[0][0];
     m_dst[0][1] = m_src[0][1];
     m_dst[0][2] = m_src[0][2];
@@ -30,7 +30,7 @@ void Mat4_Copy(Mtx4F_t m_dst, Mtx4F_t m_src) {
     m_dst[3][3] = m_src[3][3];
 }
 
-void Mat3_Copy(Mtx4F_t m_dst, Mtx4F_t m_src) {
+void uvMat4CopyXYZ(Mtx4F_t m_dst, Mtx4F_t m_src) {
     m_dst[0][0] = m_src[0][0];
     m_dst[0][1] = m_src[0][1];
     m_dst[0][2] = m_src[0][2];
@@ -44,7 +44,7 @@ void Mat3_Copy(Mtx4F_t m_dst, Mtx4F_t m_src) {
     m_dst[2][2] = m_src[2][2];
 }
 
-void Mat4_Init(Mtx* mat, Mtx init) {
+void uvMat4Init(Mtx* mat, Mtx init) {
     mat->m[0][0] = init.m[0][0];
     mat->m[0][1] = init.m[0][1];
     mat->m[0][2] = init.m[0][2];
@@ -67,7 +67,7 @@ void Mat4_Init(Mtx* mat, Mtx init) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/matrix/func_80228440.s")
 
-void Mat4_SetIdentity(Mtx4F_t mat) {
+void uvMat4SetIdentity(Mtx4F_t mat) {
     mat[0][0] = 1.0f;
     mat[0][1] = 0.0f;
     mat[0][2] = 0.0f;
@@ -89,7 +89,7 @@ void Mat4_SetIdentity(Mtx4F_t mat) {
     mat[3][3] = 1.0f;
 }
 
-void Mat4_SetUnk1(Mtx_t mat) {
+void uvMat4SetUnk1(Mtx_t mat) {
     mat[0][0] = 0x10000;
     mat[0][1] = 0;
     mat[0][2] = 1;
@@ -111,7 +111,7 @@ void Mat4_SetUnk1(Mtx_t mat) {
     mat[3][3] = 0;
 }
 
-void Mat4_MultOp1(Mtx4F_t m_dst, Mtx4F_t mat1, Mtx4F_t mat2) {
+void uvMat4Mul(Mtx4F_t m_dst, Mtx4F_t mat1, Mtx4F_t mat2) {
     float unused1, unused2; // stack
     float (*pmat)[4];
     Mtx4F_t m_scratch;
@@ -137,11 +137,11 @@ void Mat4_MultOp1(Mtx4F_t m_dst, Mtx4F_t mat1, Mtx4F_t mat2) {
     (pmat)[3][2] = mat1[3][0] * mat2[0][2] + mat1[3][1] * mat2[1][2] + mat1[3][2] * mat2[2][2] + mat1[3][3] * mat2[3][2];
     (pmat)[3][3] = mat1[3][0] * mat2[0][3] + mat1[3][1] * mat2[1][3] + mat1[3][2] * mat2[2][3] + mat1[3][3] * mat2[3][3];
     if (mat1 == m_dst || mat2 == m_dst) {
-        Mat4_Copy(m_dst, m_scratch);
+        uvMat4Copy(m_dst, m_scratch);
     }
 }
 
-void Mat4_MultOp2(Mtx4F_t m_dst, Mtx4F_t mat1, Mtx4F_t mat2) {
+void uvMat4MulBA(Mtx4F_t m_dst, Mtx4F_t mat1, Mtx4F_t mat2) {
     float unused1, unused2; // stack
     float (*pmat)[4];
     Mtx4F_t m_scratch;
@@ -167,20 +167,20 @@ void Mat4_MultOp2(Mtx4F_t m_dst, Mtx4F_t mat1, Mtx4F_t mat2) {
     (pmat)[3][2] = mat2[3][0] * mat1[0][2] + mat2[3][1] * mat1[1][2] + mat2[3][2] * mat1[2][2] + mat2[3][3] * mat1[3][2];
     (pmat)[3][3] = mat2[3][0] * mat1[0][3] + mat2[3][1] * mat1[1][3] + mat2[3][2] * mat1[2][3] + mat2[3][3] * mat1[3][3];
     if (mat1 == m_dst || mat2 == m_dst) {
-        Mat4_Copy(m_dst, m_scratch);
+        uvMat4Copy(m_dst, m_scratch);
     }
 }
 
-void Mat4_UnkOp1(Mtx4F_t mat, float arg1, char axis) {
+void uvMat4RotateAxis(Mtx4F_t mat, float angle, char axis) {
     float sp6C;
     float fv0;
     float unused1;
     float unused2;
     Mtx4F_t m_scratch;
 
-    if (arg1 != 0.0f) {
-        sp6C = func_80229EC0(arg1);
-        fv0 = func_8022A080(arg1);
+    if (angle != 0.0f) {
+        sp6C = func_80229EC0(angle);
+        fv0 = func_8022A080(angle);
         switch (axis) {
         case 'x':
             m_scratch[0][0] = mat[0][0];
@@ -237,11 +237,11 @@ void Mat4_UnkOp1(Mtx4F_t mat, float arg1, char axis) {
             m_scratch[3][3] = mat[3][3];
             break;
         }
-        Mat4_Copy(mat, m_scratch);
+        uvMat4Copy(mat, m_scratch);
     }
 }
 
-void Mat4_UnkOp2(Mtx4F_t mat, float arg1, float arg2, float arg3) {
+void uvMat4UnkOp2(Mtx4F_t mat, float arg1, float arg2, float arg3) {
     float unused1, unused2; // for stack
     Mtx4F_t tmpmat;
     tmpmat[0][0] = mat[0][0];
@@ -260,10 +260,10 @@ void Mat4_UnkOp2(Mtx4F_t mat, float arg1, float arg2, float arg3) {
     tmpmat[3][1] = (arg1 * mat[0][1]) + (arg2 * mat[1][1]) + (arg3 * mat[2][1]) + mat[3][1];
     tmpmat[3][2] = (arg1 * mat[0][2]) + (arg2 * mat[1][2]) + (arg3 * mat[2][2]) + mat[3][2];
     tmpmat[3][3] = (arg1 * mat[0][3]) + (arg2 * mat[1][3]) + (arg3 * mat[2][3]) + mat[3][3];
-    Mat4_Copy(mat, tmpmat);
+    uvMat4Copy(mat, tmpmat);
 }
 
-void Mat4_UnkOp3(Mtx4F_t mat, float arg1, float arg2, float arg3) {
+void uvMat4UnkOp3(Mtx4F_t mat, float arg1, float arg2, float arg3) {
     float unused1, unused2; // for stack
     Mtx4F_t scaled;
 
@@ -283,12 +283,12 @@ void Mat4_UnkOp3(Mtx4F_t mat, float arg1, float arg2, float arg3) {
     scaled[3][1] = mat[3][1];
     scaled[3][2] = mat[3][2];
     scaled[3][3] = mat[3][3];
-    Mat4_Copy(mat, scaled);
+    uvMat4Copy(mat, scaled);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/matrix/Mat4_UnkOp4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/matrix/uvMat4UnkOp4.s")
 
-void Mat4_UnkOp5(Mtx4F_t mat, Vec3F_t* vec1, Vec3F_t* vec2) {
+void uvMat4UnkOp5(Mtx4F_t mat, Vec3F_t* vec1, Vec3F_t* vec2) {
     float tmp0 = vec2->f[0];
     float tmp1 = vec2->f[1];
     float tmp2 = vec2->f[2];
@@ -299,7 +299,7 @@ void Mat4_UnkOp5(Mtx4F_t mat, Vec3F_t* vec1, Vec3F_t* vec2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/matrix/func_80229AA0.s")
 
-void Mat4_SetUnk2(Mtx4F_t mat, float arg1, float arg2, float arg3, float arg4, float arg5, float arg6) {
+void uvMat4SetUnk2(Mtx4F_t mat, float arg1, float arg2, float arg3, float arg4, float arg5, float arg6) {
     float two5 = 2.0f * arg5;
     mat[0][0] = two5 / (arg2 - arg1);
     mat[1][1] = two5 / (arg4 - arg3);
@@ -320,7 +320,7 @@ void Mat4_SetUnk2(Mtx4F_t mat, float arg1, float arg2, float arg3, float arg4, f
     mat[0][1] = 0.0f;
 }
 
-void Mat4_SetUnk3(Mtx4F_t mat, float arg1, float arg2, float arg3, float arg4) {
+void uvMat4SetUnk3(Mtx4F_t mat, float arg1, float arg2, float arg3, float arg4) {
     float tmp21 = arg2 - arg1;
     float tmp43 = arg4 - arg3;
     mat[0][0] = 2.0f / tmp21;
@@ -341,7 +341,7 @@ void Mat4_SetUnk3(Mtx4F_t mat, float arg1, float arg2, float arg3, float arg4) {
     mat[3][3] = 1.0f;
 }
 
-void Mat4_SetUnk4(Mtx4F_t mat, float arg1, float arg2, float arg3, float arg4) {
+void uvMat4SetUnk4(Mtx4F_t mat, float arg1, float arg2, float arg3, float arg4) {
     mat[0][0] = 1.0f - (2.0f * (arg2 * arg2 + arg3 * arg3));
     mat[0][1] = 2.0f * (arg1 * arg2 - arg3 * arg4);
     mat[0][2] = 2.0f * (arg3 * arg1 + arg2 * arg4);
@@ -352,3 +352,4 @@ void Mat4_SetUnk4(Mtx4F_t mat, float arg1, float arg2, float arg3, float arg4) {
     mat[2][1] = 2.0f * (arg2 * arg3 + arg1 * arg4);
     mat[2][2] = 1.0f - (2.0f * (arg2 * arg2 + arg1 * arg1));
 }
+

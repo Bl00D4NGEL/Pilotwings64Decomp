@@ -46,6 +46,8 @@ extern void* D_802B53C0;
 extern UVBlockCounts gUVBlockCounts; // D_802B53C8
 extern UVBlockOffsets gUVBlockOffsets; // D_802B53F0
 
+void mio0_decompress(void* src, u8* dst);
+
 void uvMemInitBlocks(void);
 
 void func_8022A47C(void);

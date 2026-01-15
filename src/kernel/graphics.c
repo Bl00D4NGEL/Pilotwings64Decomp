@@ -1,6 +1,5 @@
 #include <uv_graphics.h>
 #include <uv_memory.h>
-#include <uv_memory.h>
 
 typedef struct UnkStruct_gfx_8b {
     s32 unk0;
