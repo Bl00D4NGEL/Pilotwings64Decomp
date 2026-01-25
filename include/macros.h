@@ -70,7 +70,7 @@
 
 #define SQ(x) ((x) * (x))
 
-#define FABS(x) ((x) >= 0.0f ? (x) : -(x))
+#define FABS(x) (0.0f < (x) ? ((x)) : (-(x)))
 
 #define ABS(x) ((x) >= 0 ? (x) : -(x))
 

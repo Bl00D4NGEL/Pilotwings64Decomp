@@ -49,55 +49,26 @@ typedef struct {
         u8 countHOPD; // count HOPD
         u8 countOBSV; // count OBSV
     } comm;
-    void* dataNAME; // ptr NAME
-    void* dataINFO; // ptr INFO
-    void* dataJPTX; // ptr JPTX
-    void* dataTHER; // ptr THER
-    void* dataLWIN; // ptr LWIN
-    void* dataTPAD; // ptr TPAD
-    void* dataLPAD; // ptr LPAD
-    void* dataLSTP; // ptr LSTP
-    void* dataRNGS; // ptr RNGS
-    void* dataBALS; // ptr BALS
-    void* dataTARG; // ptr TARG
-    void* dataHPAD; // ptr HPAD
-    void* dataBTGT; // ptr BTGT
-    void* dataPHTS; // ptr PHTS
-    void* dataFALC; // ptr FALC
-    void* dataSDFM; // ptr SDFM
-    void* dataCNTG; // ptr CNTG
-    void* dataHOPD; // ptr HOPD
-    void* dataOBSV; // ptr OBSV
+    void* dataNAME;      // ptr NAME
+    void* dataINFO;      // ptr INFO
+    void* dataJPTX;      // ptr JPTX
+    void* dataTHER;      // ptr THER
+    void* dataLWIN;      // ptr LWIN
+    void* dataTPAD;      // ptr TPAD
+    void* dataLPAD;      // ptr LPAD
+    void* dataLSTP;      // ptr LSTP
+    void* dataRNGS;      // ptr RNGS
+    void* dataBALS;      // ptr BALS
+    void* dataTARG;      // ptr TARG
+    void* dataHPAD;      // ptr HPAD
+    void* dataBTGT;      // ptr BTGT
+    void* dataPHTS;      // ptr PHTS
+    void* dataFALC;      // ptr FALC
+    void* dataSDFM;      // ptr SDFM
+    void* dataCNTG;      // ptr CNTG
+    void* dataHOPD;      // ptr HOPD
+    LevelOBSV* dataOBSV; // ptr OBSV
 } Unk8037A600;
-
-typedef struct {
-    u8 unk0[0x22C];
-    u8 unk22C;
-} Unk80362690_Unk0_Unk7C; // this could be Unk8037A600
-
-typedef struct {
-    void* unk0;
-    u16 unk4;
-    u16 unk6;
-    u8 unk8[0x6];
-    u16 unkE;
-    s32 unk10;
-    u16 unk14;
-    u8 unk16[0x62];
-    s32 unk78;
-    Unk80362690_Unk0_Unk7C* unk7C;
-    u8 unk80[0xC];
-} Unk80362690_Unk0;
-
-typedef struct {
-    Unk80362690_Unk0 unk0[1];
-    s32 unk8C;
-    s32 unk90;
-    s32 unk94;
-    s32 unk98;
-    s32 unk9C;
-    u8 unkA0;
-} Unk80362690;
 
 typedef struct {
     void* unk0;
@@ -662,7 +633,7 @@ u8 levelDataGetCNTG(void** data) {
     return D_8035078C->comm.countCNTG;
 }
 
-u8 levelDataGetOBSV(void** data) {
+u8 levelDataGetOBSV(LevelOBSV** data) {
     *data = D_8035078C->dataOBSV;
     return D_8035078C->comm.countOBSV;
 }
@@ -778,7 +749,7 @@ Unk8037A600* func_80345CE4(u32 arg0) {
             dst->dataCNTG = func_80312740(dst->comm.countCNTG * 0x1C);
             dst->dataSDFM = func_80312740(dst->comm.countSDFM * 0x4C);
             dst->dataHOPD = func_80312740(dst->comm.countHOPD * 0x20);
-            dst->dataOBSV = func_80312740(dst->comm.countOBSV * 0x10);
+            dst->dataOBSV = (LevelOBSV*)func_80312740(dst->comm.countOBSV * sizeof(LevelOBSV));
             break;
         case 'THER': // 0x54484552
             _uvMediaCopy(dst->dataTHER, sp24, sp2C);

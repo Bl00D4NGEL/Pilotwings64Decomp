@@ -46,6 +46,7 @@
 asm/
 bin/
 build/
+nonmatchings/
 
 # debug information files
 *.dwo

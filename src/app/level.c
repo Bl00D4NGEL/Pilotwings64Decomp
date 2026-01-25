@@ -6,11 +6,6 @@
 #include <uv_util.h>
 
 typedef struct {
-    u8 pad0[8];
-    u16 unk8;
-} Unk80362690;
-
-typedef struct {
     s32 unk0;
 } Unk8034F410;
 
@@ -84,7 +79,7 @@ void func_8030B6C0(u8 arg0, u8 arg1, u8 arg2, s32 arg3) {
     D_8034F40C = arg0;
     uvLevelInit();
     func_80341F10(0x42);
-    env_loadtpal(D_80362690->unk8);
+    env_loadtpal(D_80362690->unk0[0].unk8);
     uvMemLoadDS(arg0);
     switch (arg0) {
     case 1:
@@ -116,7 +111,7 @@ void func_8030B6C0(u8 arg0, u8 arg1, u8 arg2, s32 arg3) {
     uvMemLoadDS(0xC);
     uvMemLoadDS(0xD);
     uvMemLoadDS(0x2E);
-    func_802E1444(D_80362690->unk8);
+    func_802E1444(D_80362690->unk0[0].unk8);
     if (arg3 != 0) {
         func_8030B868();
     }
