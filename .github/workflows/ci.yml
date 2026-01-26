@@ -12,6 +12,8 @@ jobs:
 
     strategy:
       fail-fast: false
+      matrix:
+        version: [us]
 
     steps:
     - name: Checkout
@@ -43,6 +45,16 @@ jobs:
 
     - name: Build
       run: make extract; make
+
+    - name: Generate Progress Report
+      run: python3 -m mapfile_parser objdiff_report --version ${{ matrix.version }}
+
+    - name: Upload Progress Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.version }}_report
+        path: build/progress.json
       
     - name: Cleanup
       run: rm -f baserom.us.z64
+
