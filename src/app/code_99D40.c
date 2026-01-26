@@ -6,8 +6,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app/code_99D40/func_80312B50.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app/code_99D40/D_80354480.s")
-
 #pragma GLOBAL_ASM("asm/nonmatchings/app/code_99D40/func_80312B5C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app/code_99D40/func_80312F38.s")

@@ -17,9 +17,3 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/app/code_97350/func_80312514.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app/code_97350/map3d_mslot.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/app/code_97350/func_80312740.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/app/code_97350/func_803127BC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/app/code_97350/func_803127F0.s")
