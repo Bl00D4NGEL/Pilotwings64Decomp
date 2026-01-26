@@ -9,7 +9,7 @@ versions:
     target: "baserom.us.z64"
     build_dir: "build"
     map: "build/pilotwings64.us.map"
-    compiled_target: "build/pokemonsnap.z64"
+    compiled_target: "build/pilotwings64.us.z64"
     elf: "build/pilotwings64.us.elf"
     expected_dir: "expected"
     asm: "asm"
