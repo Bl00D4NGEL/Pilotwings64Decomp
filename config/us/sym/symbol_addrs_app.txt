@@ -65,7 +65,24 @@ levelDataGetPHTS    = 0x80345C3C; // type:func
 levelDataGetFALC    = 0x80345C5C; // type:func
 levelDataGetHOPD    = 0x80346474; // type:func
 
-// not sure why this symbol doesn't get migrated...
+D_8035145C = 0x8035145C; // type:f32 force_migration:True
+D_80351464 = 0x80351464; // type:f32 force_migration:True
+D_80351468 = 0x80351468; // type:f32 force_migration:True
+D_8035146C = 0x8035146C; // type:f32 force_migration:True
+D_80351470 = 0x80351470; // type:f32 force_migration:True
+D_80351478 = 0x80351478; // type:f32 force_migration:True
+D_8035147C = 0x8035147C; // type:f32 force_migration:True
+D_80351480 = 0x80351480; // type:f32 force_migration:True
+D_80351488 = 0x80351488; // type:f32 force_migration:True
+D_8035148C = 0x8035148C; // type:f32 force_migration:True
+D_80351490 = 0x80351490; // type:f32 force_migration:True
+D_80351494 = 0x80351494; // type:f32 force_migration:True
+D_80351498 = 0x80351498; // type:f32 force_migration:True
+D_8035149C = 0x8035149C; // type:f32 force_migration:True
+D_803514A0 = 0x803514A0; // type:f32 force_migration:True
+D_803514A4 = 0x803514A4; // type:f32 force_migration:True
+D_803514A8 = 0x803514A8; // type:f32 force_migration:True
+
 D_80353578 = 0x80353578; // type:f64 force_migration:True
 D_80355000 = 0x80355000; // type:f32 force_migration:True
 D_80355008 = 0x80355008; // type:f32 force_migration:True
