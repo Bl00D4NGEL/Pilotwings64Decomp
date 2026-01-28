@@ -2,7 +2,7 @@
 #include <uv_matrix.h>
 
 typedef struct Unk802D3658_Unk230 {
-    MtxF unk0;
+    Mtx4F unk0;
     f32 unk40;
     struct Unk802D3658_Unk230* unk44;
     u8 unk48[4];
@@ -10,13 +10,13 @@ typedef struct Unk802D3658_Unk230 {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app/code_72010/func_802EAAE0.s")
 
-void func_802EABAC(Unk802D3658_Unk230* arg0, f32 arg1, Mtx4F_t arg2) {
+void func_802EABAC(Unk802D3658_Unk230* arg0, f32 arg1, Mtx4F* arg2) {
     Unk802D3658_Unk230* var_s0;
     s32 var_s1;
 
     var_s0 = arg0;
     for (var_s1 = 0; var_s1 < 50; var_s1++) {
-        uvMat4Copy(var_s0->unk0.mf, arg2);
+        uvMat4Copy(&var_s0->unk0, arg2);
         var_s0->unk40 = arg1;
         var_s0 = var_s0->unk44;
     }

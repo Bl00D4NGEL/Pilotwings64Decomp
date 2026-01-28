@@ -6,12 +6,12 @@
 #include <uv_util.h>
 
 typedef struct uvaEmitter {
-/* 00 */ Mtx4F_t m1;
-/* 40 */ Vec3F_t unk40;
-/* 4C */ Vec3F_t unk4C;
-/* 58 */ Vec3F_t unk58;
-/* 64 */ Vec3F_t unk64;
-/* 70 */ Vec4F_t unk70;
+/* 00 */ Mtx4F m1;
+/* 40 */ Vec3F unk40;
+/* 4C */ Vec3F unk4C;
+/* 58 */ Vec3F unk58;
+/* 64 */ Vec3F unk64;
+/* 70 */ Vec4F unk70;
 /* 80 */ f32 unk80;
 /* 84 */ f32 unk84;
 /* 88 */ s32 priority;
@@ -38,8 +38,8 @@ void uvEmitterInitTable(void);
 void uvEmitterInit(uvaEmitter_t*);
 u8 uvEmitterLookup(void);
 void uvEmitterFromModel(u8 obj_id, u8 mdl_id);
-void uvEmitterSetMatrix(u8 obj_id, Mtx4F_t msrc);
-void uvEmitterGetMatrix(u8 obj_id, Mtx4F_t mdst);
+void uvEmitterSetMatrix(u8 obj_id, Mtx4F* src);
+void uvEmitterGetMatrix(u8 obj_id, Mtx4F* dst);
 
 void _uvaUpdateVoice(u8 obj_id);
 void _uvaStopVoice(u8 voice_id);

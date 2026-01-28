@@ -19,9 +19,9 @@ void uvEmitterInitTable(void) {
 }
 
 void uvEmitterInit(uvaEmitter_t* obj) {
-    Mtx4F_t temp;
+    Mtx4F temp;
 
-    uvMat4SetIdentity(temp);
+    uvMat4SetIdentity(&temp);
     obj->playVoice = 0x11;
     obj->playState = 0;
     obj->playVolume = 0x7FFF;
@@ -30,7 +30,7 @@ void uvEmitterInit(uvaEmitter_t* obj) {
     obj->playTimeout = 0;
     obj->playPitch = 1.0f;
 
-    uvMat4Copy(obj->m1, temp);
+    uvMat4Copy(&obj->m1, &temp);
     obj->sound = 0xFF;
     obj->priority = 0;
     obj->unk98 = 0;
@@ -83,20 +83,20 @@ void uvEmitterFromModel(u8 obj_id, u8 mdl_id) {
     }
 }
 
-void uvEmitterSetMatrix(u8 obj_id, Mtx4F_t msrc) {
+void uvEmitterSetMatrix(u8 obj_id, Mtx4F* src) {
     if (obj_id < 0xFF) {
-        uvMat4Copy(gSndEmitterTable[obj_id].m1, msrc);
+        uvMat4Copy(&gSndEmitterTable[obj_id].m1, src);
     }
 }
 
-void uvEmitterGetMatrix(u8 obj_id, Mtx4F_t mdst) {
+void uvEmitterGetMatrix(u8 obj_id, Mtx4F* dst) {
     if (obj_id < 0xFF) {
-        uvMat4Copy(mdst, gSndEmitterTable[obj_id].m1);
+        uvMat4Copy(dst, &gSndEmitterTable[obj_id].m1);
     }
 }
 
-void func_80201494(u8 arg0, Vec3F_t arg1, Vec3F_t arg4) {
-    Vec3F_t sp44;
+void func_80201494(u8 arg0, Vec3F arg1, Vec3F arg4) {
+    Vec3F sp44;
     f32 temp_fv0;
     uvaEmitter_t* temp_s0;
 

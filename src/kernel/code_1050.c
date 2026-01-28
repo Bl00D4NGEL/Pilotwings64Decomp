@@ -2,7 +2,7 @@
 #include <uv_matrix.h>
 
 typedef struct UnkStruct_80200144 {
-    Mtx4F_t mat;
+    Mtx4F mat;
     float vec[4];
 } UnkStruct_80200144_t;
 
@@ -25,20 +25,20 @@ void func_802000A0(void) {
 }
 
 void func_802000DC(u16 arg0) {
-    Mtx4F_t mIdent;
+    Mtx4F ident;
     UnkStruct_80200144_t* temp_a0;
 
     temp_a0 = &D_80250E80[arg0];
 
-    uvMat4SetIdentity(mIdent);
-    uvMat4Copy(temp_a0->mat, mIdent);
+    uvMat4SetIdentity(&ident);
+    uvMat4Copy(&temp_a0->mat, &ident);
     *(u32*)&temp_a0->vec[3] = 2;
     temp_a0->vec[0] = 1.0f;
     temp_a0->vec[1] = 1.0f;
 }
 
-void func_80200144(u16 arg0, Mtx4F_t arg1) {
-    uvMat4Copy(D_80250E80[arg0].mat, arg1);
+void func_80200144(u16 arg0, Mtx4F* arg1) {
+    uvMat4Copy(&D_80250E80[arg0].mat, arg1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_1050/func_80200180.s")

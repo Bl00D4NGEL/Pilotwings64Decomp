@@ -5,46 +5,44 @@
 #include <uv_math.h>
 #include <uv_util.h>
 
-typedef float Mtx4F_t[4][4];
-
 typedef union {
-    Mtx4F_t mf;
+    float m[4][4];
     struct {
         float xx, yx, zx, wx,
               xy, yy, zy, wy,
               xz, yz, zz, wz,
               xw, yw, zw, ww;
     };
-} MtxF;
+} Mtx4F;
 
 void _uvDbMstackReset(void);
-Mtx4F_t* _uvDbMstackTop(void);
-void _uvDbMstackPush(Mtx4F_t mat);
+Mtx4F* _uvDbMstackTop(void);
+void _uvDbMstackPush(Mtx4F* src);
 void _uvDbMstackPop(void);
 
-void uvMat4Copy(Mtx4F_t m_dst, Mtx4F_t m_src);
-void uvMat4CopyXYZ(Mtx4F_t m_dst, Mtx4F_t m_src);
-void uvMat4Init(Mtx *mat, Mtx init);
-void uvMat4SetIdentity(Mtx4F_t mat);
-void uvMat4SetUnk1(Mtx_t mat);
+void uvMat4Copy(Mtx4F* dst, Mtx4F* src);
+void uvMat4CopyXYZ(Mtx4F* dst, Mtx4F* src);
+void uvMat4Init(Mtx4F* dst, Mtx src);
+void uvMat4SetIdentity(Mtx4F* dst);
+void uvMat4SetUnk1(Mtx4F* dst);
 
-// matrix multiplication: m_dst = mat1 x mat2
-// if m_dst is either mat1 or mat2, uses stack matrix
-void uvMat4Mul(Mtx4F_t m_dst, Mtx4F_t mat1, Mtx4F_t mat2);
+// matrix multiplication: dst = mat1 x mat2
+// if dst is either mat1 or mat2, uses stack matrix
+void uvMat4Mul(Mtx4F* dst, Mtx4F* mat1, Mtx4F* mat2);
 
-// matrix multiplication: m_dst = mat2 x mat1
-// if m_dst is either mat1 or mat2, uses stack matrix
-void uvMat4MulBA(Mtx4F_t m_dst, Mtx4F_t mat1, Mtx4F_t mat2);
+// matrix multiplication: dst = mat2 x mat1
+// if dst is either mat1 or mat2, uses stack matrix
+void uvMat4MulBA(Mtx4F* dst, Mtx4F* mat1, Mtx4F* mat2);
 
-void uvMat4RotateAxis(Mtx4F_t mat, float angle, char axis);
-void uvMat4UnkOp2(Mtx4F_t mat, float arg1, float arg2, float arg3);
-void uvMat4UnkOp3(Mtx4F_t mat, float arg1, float arg2, float arg3);
-void uvMat4UnkOp4(Mtx4F_t mat, Mtx4F_t mat2);
-void uvMat4UnkOp5(Mtx4F_t mat, Vec3F_t *vec1, Vec3F_t *vec2);
-void uvMat4UnkOp6(Mtx4F_t mat, Mtx4F_t mat2, Mtx4F_t mat3);
-void uvMat4SetUnk2(Mtx4F_t mat, float arg1, float arg2, float arg3, float arg4, float arg5, float arg6);
-void uvMat4Viewport(Mtx4F_t mat, float arg1, float arg2, float arg3, float arg4);
-void uvMat4SetUnk4(Mtx4F_t mat, float arg1, float arg2, float arg3, float arg4);
+void uvMat4RotateAxis(Mtx4F* dst, float angle, char axis);
+void uvMat4UnkOp2(Mtx4F* dst, float arg1, float arg2, float arg3);
+void uvMat4UnkOp3(Mtx4F* dst, float arg1, float arg2, float arg3);
+void uvMat4UnkOp4(Mtx4F* dst, Mtx4F* mat2);
+void uvMat4UnkOp5(Mtx4F* dst, Vec3F *vec1, Vec3F *vec2);
+void uvMat4UnkOp6(Mtx4F* dst, Mtx4F* mat2, Mtx4F* mat3);
+void uvMat4SetUnk2(Mtx4F* dst, float arg1, float arg2, float arg3, float arg4, float arg5, float arg6);
+void uvMat4Viewport(Mtx4F* dst, float arg1, float arg2, float arg3, float arg4);
+void uvMat4SetUnk4(Mtx4F* dst, float arg1, float arg2, float arg3, float arg4);
 
 float func_80229EC0(float);
 float func_8022A080(float);

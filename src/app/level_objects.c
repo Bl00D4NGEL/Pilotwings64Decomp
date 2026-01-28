@@ -516,8 +516,8 @@ s32 func_803456D8(Unk80345464_Arg0* arg0) {
     u8 temp_v0;
     u8 var_s1;
     u8 sp85;
-    Vec3F_t sp78;
-    Vec3F_t sp6C;
+    Vec3F sp78;
+    Vec3F sp6C;
     f32 temp_fv1;
     s32 temp_v0_2;
     s32 var_s2;

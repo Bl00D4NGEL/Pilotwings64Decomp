@@ -274,15 +274,15 @@ void func_8022E558(void) {
     u8 var_fp;
     u8 var_s6;
     u8 var_s7;
-    Mtx4F_t sp74;
+    Mtx4F sp74;
 
     uvGfxStatePush();
     uvGfxSetFlags(0x000FFF);
     uvGfxClearFlags(0xB00000);
-    uvMat4Viewport(sp74, 0.0f, 320.0f, 0.0f, 240.0f);
-    func_80222100(sp74);
-    uvMat4SetIdentity(sp74);
-    func_80221A78(sp74);
+    uvMat4Viewport(&sp74, 0.0f, 320.0f, 0.0f, 240.0f);
+    func_80222100(&sp74);
+    uvMat4SetIdentity(&sp74);
+    func_80221A78(&sp74);
     uvVtxBeginPoly();
     uvVtx(0xF, 0xF, 0, 0, 0, 0, 0x80, 0, 0xFF);
     uvVtx(0x50, 0xF, 0, 0, 0, 0, 0x80, 0, 0xFF);
