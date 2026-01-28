@@ -9,8 +9,8 @@ typedef struct {
     u32 offset;
 } Unk802B5300;
 
-extern u16 D_8024920C;
-extern u8* D_80299270[2];
+extern u16 gGfxFbIndex;
+extern u8* gGfxFbPtrs[2];
 extern Unk802B5300 D_802B5300[1];
 
 s32 func_80223E80(s32 addr) {
@@ -74,7 +74,7 @@ u32 func_80223F7C(s32 idx, u32* sizeOut, void** arg2, s32 arg3) {
         size = (u32)uvMemRead((void*)(dataInfo->address + dataInfo->offset + 0xC), 4);
         if (!(arg3 & 2)) {
             scratchMem = _uvMemGetScratch(size);
-            temp_v0 = D_80299270[D_8024920C];
+            temp_v0 = gGfxFbPtrs[gGfxFbIndex];
             _uvMediaCopy((void*)temp_v0, *arg2, *sizeOut);
             mio0_decompress(&temp_v0[8], scratchMem);
             _uvMemFreeScratch(scratchMem);

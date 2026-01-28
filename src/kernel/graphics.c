@@ -12,14 +12,14 @@ typedef struct {
 extern s32 D_80249230;
 extern f32 D_8024921C;
 extern s32 D_802491E8;
-extern Gfx* D_80298AB0;
+extern Gfx* gGfxDisplayListHead;
 
-extern u16 D_8024920C;
-extern s16 D_80249218;
-extern u8 D_802A9988[0xAF00];
-extern u8* D_80299270[2];
+extern u16 gGfxFbIndex;
+extern s16 gGfxMatrixIndex;
+extern u8 gGfxMatrixData[0xAF00];
+extern u8* gGfxFbPtrs[2];
 
-extern void* D_802491F0;
+extern void* gGfxFbCurrPtr;
 extern s16 D_802A9980;
 extern s16 D_802A9982;
 extern s16 D_802A9984;
@@ -42,7 +42,7 @@ extern u8 gGfxStateStackIdx;
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_80220FF8.s")
 
 void func_802210C4(s32 dl) {
-    gSPDisplayList(D_80298AB0++, dl);
+    gSPDisplayList(gGfxDisplayListHead++, dl);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_802210E8.s")
@@ -64,13 +64,13 @@ void func_80222170(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/uvGfxEnd.s")
 
 void func_802228F0(u8 r, u8 g, u8 b, u8 a) {
-    gDPPipeSync(D_80298AB0++);
-    gDPSetCycleType(D_80298AB0++, G_CYC_FILL);
-    gDPSetColorImage(D_80298AB0++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 320, osVirtualToPhysical(D_802491F0));
-    gDPSetFillColor(D_80298AB0++, GPACK_RGBA5551(r, g, b, a) << 16 | GPACK_RGBA5551(r, g, b, a));
-    gDPFillRectangle(D_80298AB0++, D_802A9980, (0xF0 - D_802A9986), (D_802A9982 - 1), (0xEF - D_802A9984));
-    gDPPipeSync(D_80298AB0++);
-    gDPSetCycleType(D_80298AB0++, G_CYC_2CYCLE);
+    gDPPipeSync(gGfxDisplayListHead++);
+    gDPSetCycleType(gGfxDisplayListHead++, G_CYC_FILL);
+    gDPSetColorImage(gGfxDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 320, osVirtualToPhysical(gGfxFbCurrPtr));
+    gDPSetFillColor(gGfxDisplayListHead++, GPACK_RGBA5551(r, g, b, a) << 16 | GPACK_RGBA5551(r, g, b, a));
+    gDPFillRectangle(gGfxDisplayListHead++, D_802A9980, (0xF0 - D_802A9986), (D_802A9982 - 1), (0xEF - D_802A9984));
+    gDPPipeSync(gGfxDisplayListHead++);
+    gDPSetCycleType(gGfxDisplayListHead++, G_CYC_2CYCLE);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_80222A98.s")
@@ -94,7 +94,7 @@ void func_802228F0(u8 r, u8 g, u8 b, u8 a) {
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/uvGfxUnkMatrixOp2.s")
 
 void* func_802233C4(void) {
-    return &D_802A9988[(D_8024920C * 0x5780) + (D_80249218 << 6)];
+    return &gGfxMatrixData[(gGfxFbIndex * 0x5780) + (gGfxMatrixIndex << 6)];
 }
 
 void func_80223408(f32 arg0) {
@@ -110,7 +110,7 @@ void func_80223408(f32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_802235A4.s")
 
 void func_802236A8(void) {
-    gSPPopMatrix(D_80298AB0++, 0);
+    gSPPopMatrix(gGfxDisplayListHead++, 0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/func_802236CC.s")
@@ -174,11 +174,11 @@ void uvCopyFrameBuf(s32 fb_id) {
         return;
     }
     if (fb_id == 1) {
-        fb_id = D_8024920C;
+        fb_id = gGfxFbIndex;
     } else {
-        fb_id = D_8024920C ^ 1;
+        fb_id = gGfxFbIndex ^ 1;
     }
-    src = D_80299270[fb_id];
-    dst = D_80299270[fb_id ^ 1];
+    src = gGfxFbPtrs[fb_id];
+    dst = gGfxFbPtrs[fb_id ^ 1];
     _uvMediaCopy(dst, src, 0x25800U);
 }

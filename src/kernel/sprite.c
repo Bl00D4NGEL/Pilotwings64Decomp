@@ -1,7 +1,7 @@
 #include <uv_sprite.h>
 #include "common.h"
 
-extern Gfx* D_80298AB0;
+extern Gfx* gGfxDisplayListHead;
 extern s32 gSprtUnkIndex;
 extern s32 gSprtUnkTable[];
 extern uvSprite_t gSprtTable1[];
@@ -35,10 +35,10 @@ void uvSprtDraw(s32 sprite_id) {
     }
     sprite = &gSprtTable1[sprite_id];
     if (sprite->unkA != 0xFFF) {
-        spInit(&D_80298AB0);
+        spInit(&gGfxDisplayListHead);
         func_80230B98(sprite);
-        spFinish(&D_80298AB0);
-        D_80298AB0--;
+        spFinish(&gGfxDisplayListHead);
+        gGfxDisplayListHead--;
     }
 }
 

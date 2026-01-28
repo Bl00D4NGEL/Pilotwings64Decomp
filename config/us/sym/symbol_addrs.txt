@@ -50,7 +50,16 @@ gSchedMsgQ          = 0x802C38E8;
 
 gGfxStateStack      = 0x802B48C8;
 gGfxStateStackIdx   = 0x802B4948;
+gGfxDisplayListHead = 0x80298AB0;
 gGfxStateStackData  = 0x80299268;
+gGfxDisplayListBase = 0x80299280;
+
+gGfxMatrixIndex     = 0x80249218;
+gGfxMatrixData      = 0x802A9988;
+
+gGfxFbCurrPtr       = 0x802491F0;
+gGfxFbIndex         = 0x8024920C;
+gGfxFbPtrs          = 0x80299270;
 
 gSeqPlayer          = 0x80248C90;
 gSndPlayer          = 0x80248C94;
