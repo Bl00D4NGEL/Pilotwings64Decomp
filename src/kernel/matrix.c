@@ -68,7 +68,7 @@ void uvMat4CopyXYZ(Mtx4F* dst, Mtx4F* src) {
     dst->m[2][2] = src->m[2][2];
 }
 
-void uvMat4Init(Mtx4F* dst, Mtx src) {
+void uvMat4CopyL(Mtx4F* dst, Mtx src) {
     *(long*)&dst->m[0][0] = src.m[0][0];
     *(long*)&dst->m[0][1] = src.m[0][1];
     *(long*)&dst->m[0][2] = src.m[0][2];

@@ -221,7 +221,7 @@ uvPathPoseLine      = 0x8031EAD0; // type:func
 
 uvMat4Copy          = 0x80228028; // type:func
 uvMat4CopyXYZ       = 0x802280AC; // type:func
-uvMat4Init          = 0x802280F8; // type:func
+uvMat4CopyL         = 0x802280F8; // type:func
 uvMat4SetUnk5       = 0x80228180; // type:func
 uvMat4SetUnk6       = 0x80228440; // type:func
 uvMat4SetIdentity   = 0x80228954; // type:func
