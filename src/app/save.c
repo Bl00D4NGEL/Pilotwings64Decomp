@@ -75,7 +75,7 @@ void func_802E81BC(char* arg0) {
     temp_s0 = 160 - (func_802197EC(arg0) / 2);
     for (;;) {
         uvGfxBegin();
-        func_802228F0(0, 0, 0, 0);
+        uvGfxClearScreen(0, 0, 0, 0);
         func_80219ACC(temp_s0, 100, arg0);
         func_80219EA8();
         uvGfxEnd();

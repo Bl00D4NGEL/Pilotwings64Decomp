@@ -100,7 +100,6 @@ extern s32 gControllerPattern;
 extern OSContPad gControllerPads[];
 
 s32 func_8022E2D4(s32 arg0);
-void func_8022E2DC(char arg0);
 
 s32 uvFileWrite(u8* dst, s32 offs, s32 nbytes) {
     if (gEepromFound == 0) {
@@ -205,16 +204,16 @@ s32 func_8022E2D4(s32 arg0) {
     return arg0;
 }
 
-void func_8022E2DC(char arg0) {
-    switch (arg0) {
-    case 0:
-        osRecvMesg(&gPiDmaQ, NULL, 1);
+void uvWaitForMesg(char msg_type) {
+    switch (msg_type) {
+    case UV_MESG_DMA:
+        osRecvMesg(&gPiDmaQ, NULL, OS_MESG_BLOCK);
         return;
-    case 2:
-        osRecvMesg(&D_802C3B50, NULL, 1);
+    case UV_MESG_SCHED:
+        osRecvMesg(&D_802C3B50, NULL, OS_MESG_BLOCK);
         return;
-    case 4:
-        osRecvMesg(&D_802C3B90, NULL, 1);
+    case UV_MESG_GFX:
+        osRecvMesg(&D_802C3B90, NULL, OS_MESG_BLOCK);
         D_80249200 = 0;
         return;
     }
@@ -321,7 +320,7 @@ void Thread_Render(void* arg) {
     sp1C = NULL;
     osCreateMesgQueue(&D_802C3300, D_802C3318, 1);
     osSetEventMesg(OS_EVENT_FAULT, &D_802C3300, (void*)0x10);
-    osRecvMesg(&D_802C3300, &sp1C, 1);
+    osRecvMesg(&D_802C3300, &sp1C, OS_MESG_BLOCK);
     D_802C331C = __osGetActiveQueue()->context.pc;
     while (1) {
         uvGfxBegin();
@@ -390,7 +389,7 @@ s32 uvReadController(ControllerInfo* contInfo, s32 contIdx) {
         return 0;
     }
 
-    osRecvMesg(&gSiContQ, &sp34, 1);
+    osRecvMesg(&gSiContQ, &sp34, OS_MESG_BLOCK);
     osContGetReadData(&gControllerPads[0]);
     contPad = &gControllerPads[contIdx];
     stickX = contPad->stick_x;
@@ -458,7 +457,7 @@ void _uvDMA(void* vAddr, u32 devAddr, u32 nbytes) {
         osWritebackDCache((void*)dest, (s32)nbytes);
         osPiStartDma(&gPiDmaBlockReq, 0, 0, devAddr, (void*)dest, nbytes, &gPiDmaQ);
         osInvalDCache((void*)dest, (s32)nbytes);
-        func_8022E2DC(0);
+        uvWaitForMesg(UV_MESG_DMA);
     }
 }
 

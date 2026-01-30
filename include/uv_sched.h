@@ -5,6 +5,12 @@
 #include <PR/sched.h>
 #include <uv_util.h>
 
+#define UV_MESG_DMA     0
+#define UV_MESG_SCHED   2
+#define UV_MESG_GFX     4
+
+void uvWaitForMesg(char msg_type);
+
 void _uvScDoneGfx(void);
 void _uvScDoneAud(void);
 void _uvScRunAud(void);

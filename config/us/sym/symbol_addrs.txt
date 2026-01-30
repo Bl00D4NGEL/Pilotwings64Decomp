@@ -48,14 +48,16 @@ gSchedRdpStatus     = 0x802B9C6A;
 gSchedRingIdx       = 0x802B9C78;
 gSchedMsgQ          = 0x802C38E8;
 
+gGfxBeginFlag       = 0x80249204;
+gGfxLookCount       = 0x80298AE0;
 gGfxStateStack      = 0x802B48C8;
 gGfxStateStackIdx   = 0x802B4948;
 gGfxDisplayListHead = 0x80298AB0;
 gGfxStateStackData  = 0x80299268;
 gGfxDisplayListBase = 0x80299280;
 
-gGfxMatrixIndex     = 0x80249218;
-gGfxMatrixData      = 0x802A9988;
+gGfxMstackIdx       = 0x80249218;
+gGfxMstack          = 0x802A9988;
 
 gGfxFbCurrPtr       = 0x802491F0;
 gGfxFbIndex         = 0x8024920C;

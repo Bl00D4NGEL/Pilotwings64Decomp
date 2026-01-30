@@ -5,9 +5,16 @@
 #include <uv_util.h>
 #include <uv_matrix.h>
 
+typedef struct {
+    s32 unk0;
+    s16 unk4;
+    s16 unk6;
+    s32 unk8;
+} uvGfxState_t;
+
 void uvGfxInit(void);
 void uvGfxBegin(void);
-void uvGfxStateDraw(void *arg0);
+void uvGfxStateDraw(uvGfxState_t* arg0);
 void uvGfxEnd(void);
 s32 uvGfxGetCnt(u32 arg0);
 void uvGfxStatePush(void);
@@ -24,7 +31,15 @@ void func_802236A8(void);
 void uvGfxSetFlags(s32 flags);
 void uvGfxClearFlags(s32 flags);
 u32 func_80224170(s32 arg0, void* arg1, void** arg2, u32 tag, s32 palette, s32 arg5);
-void func_802228F0(u8 r, u8 g, u8 b, u8 a);
+void uvGfxClearScreen(u8 r, u8 g, u8 b, u8 a);
+
+void uvClampFunction(LookAt*, f32, f32, f32, f32, f32, f32, f32, f32, f32);
+void uvGfxPushMtxView(Mtx src);
+void uvGfxPushMtxProj(Mtx src);
+
+void uvGfxMstackPushUnk(Mtx4F* src);
+void uvGfxMstackPush(Mtx src);
+Mtx* uvGfxMstackTop(void);
 
 #endif // PILOTWINGS64_UV_GRAPHICS
 
