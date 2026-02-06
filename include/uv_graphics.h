@@ -100,11 +100,70 @@ void uvGfxSetUnkState0(s32 arg0);
 void uvGfx_80223C00(void);
 void uvCopyFrameBuf(s32 fb_id);
 
+// TODO from kernel/code_19B50.c -- split into uv_font.h?
 void uvFontSet(s32);
 void uvFont_80219550(f64, f64);
 void uvFont_8021956C(u8, u8, u8, u8);
 s32 uvFontWidth(char*);
 void uvFont_80219EA8(void);
 void uvFont_80219ACC(s32, s32, char*);
+
+// TODO from kernel/code_58E0 -- split into uv_???
+typedef struct {
+/* 000 */ u8 unk0;
+/* 001 */ u8 unk1;
+/* 002 */ u8 unk2;
+/* 003 */ u8 unk3;
+/* 004 */ u32 unk4;
+/* 008 */ u32 unk8;
+/* 00C */ u32 unkC;
+/* 010 */ Mtx4F unk10;
+/* 050 */ Mtx4F unk50;
+/* 090 */ Mtx4F unk90;
+/* 0D0 */ Mtx4F unkD0;
+/* 110 */ Mtx4F unk110;
+/* 150 */ Mtx4F unk150;
+/* 190 */ Mtx4F unk190;
+/* 1D0 */ f32 unk1D0;
+/* 1D4 */ f32 unk1D4;
+/* 1D8 */ f32 unk1D8;
+/* 1DC */ f32 unk1DC;
+/* 1E0 */ f32 unk1E0;
+/* 1E4 */ f32 unk1E4;
+/* 1E8 */ f32 unk1E8;
+/* 1EC */ f32 unk1EC;
+/* 1F0 */ f32 unk1F0;
+/* 1F4 */ f32 unk1F4;
+/* 1F8 */ f32 unk1F8;
+/* 1FC */ f32 unk1FC;
+/* 200 */ u8 pad1A4[0xE0];
+/* 2E0 */ u8 unk2E0[0x90];
+/* 370 */ s32 unk370;
+/* 374 */ s32 unk374;
+/* 378 */ s32 unk378;
+/* 37C */ s32 unk37C;
+/* 380 */ s32 unk380;
+/* 384 */ s32 unk384;
+/* 388 */ s32 unk388;
+/* 38C */ s16 unk38C;
+/* 38E */ s16 unk38E;
+/* 390 */ s16 unk390;
+/* 392 */ s16 unk392;
+/* 394 */ u8 pad394[0xC];
+} UnkStruct_80204D94; // size 3A0
+
+extern UnkStruct_80204D94 D_80261730[];
+extern UnkStruct_80204D94 D_80261736[];
+extern UnkStruct_80204D94 D_80261930[];
+extern UnkStruct_80204D94 D_80261934[];
+extern UnkStruct_80204D94 D_80261AC8[];
+extern UnkStruct_80204D94 D_80261ACC[];
+
+void func_80204A8C(s32 arg0, s32 arg1);
+void func_80204B08(s32 arg0, s32 arg1, s32 arg2);
+void func_80204C54(s32 arg0, Mtx4F *arg1);
+void func_80204D94(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+u8*  func_80204F9C(s32 arg0);
+void func_802057F4(Mtx4F *arg0, Mtx4F *arg1);
 
 #endif // PILOTWINGS64_UV_GRAPHICS

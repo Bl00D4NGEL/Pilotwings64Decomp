@@ -1,4 +1,5 @@
 #include "common.h"
+#include <uv_graphics.h>
 #include <uv_level.h>
 #include <uv_math.h>
 #include <uv_matrix.h>
@@ -21,9 +22,7 @@ extern f32 D_8034F854;
 extern Unk803599D0 D_803599D0;
 extern f32 D_80359A24;
 
-void func_80204A8C(u8, s32);
 void func_80204C94(u8, f32, f32, f32, f32, f32, f32);
-void func_80204D94(u8, s16, s16, s16, s32);
 void func_802D4514(Unk802D3658_Arg0*);
 void func_802D45C4(Unk802D3658_Arg0*, f32);
 s32 func_802D472C(Unk802D3658_Arg0*, Mtx4F*);
