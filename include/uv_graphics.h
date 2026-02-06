@@ -153,6 +153,8 @@ typedef struct {
 } UnkStruct_80204D94; // size 3A0
 
 extern UnkStruct_80204D94 D_80261730[];
+extern UnkStruct_80204D94 D_80261732[];
+extern UnkStruct_80204D94 D_80261734[];
 extern UnkStruct_80204D94 D_80261736[];
 extern UnkStruct_80204D94 D_80261930[];
 extern UnkStruct_80204D94 D_80261934[];
@@ -164,6 +166,8 @@ void func_80204B08(s32 arg0, s32 arg1, s32 arg2);
 void func_80204C54(s32 arg0, Mtx4F *arg1);
 void func_80204D94(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 u8*  func_80204F9C(s32 arg0);
+void func_80204FC4(s32 arg0);
+void func_80204FE4(s32 arg0);
 void func_802057F4(Mtx4F *arg0, Mtx4F *arg1);
 
 #endif // PILOTWINGS64_UV_GRAPHICS

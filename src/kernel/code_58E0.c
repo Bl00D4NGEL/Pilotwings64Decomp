@@ -5,6 +5,14 @@
 void func_802061A0(void*);
 s32 func_80206F64(void*, f32, f32, f32, f32);
 
+typedef struct {
+    s32 unk0;
+    s32 unk4;
+    u8 pad0[0x3C];
+    s32 unk44;
+} uvChanUnk_t;
+extern s32* gGfxUnkPtrs;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_58E0/func_80204930.s")
 
 void func_80204A8C(s32 arg0, s32 arg1) {
@@ -81,9 +89,21 @@ void func_80204D94(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     uvGfxClipViewport(arg0, arg1, arg2, arg3, arg4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_58E0/uvChanEnv.s")
+void uvChanEnv(s32 arg0, s32 arg1) {
+    if ((arg1 != 0xFFFF) && ((uvChanUnk_t*)((s32*)gGfxUnkPtrs + arg1))->unk44 == 0) {
+        _uvDebugPrintf("uvChanEnv: environment %d not in level\n", arg1);
+        return;
+    }
+    *(s16*)&D_80261732[arg0] = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_58E0/uvChanTerra.s")
+void uvChanTerra(s32 arg0, s32 arg1) {
+    if (((uvChanUnk_t*)((s32*)gGfxUnkPtrs + arg1))->unk4 == 0) {
+        _uvDebugPrintf("uvChanTerra: terra %d not in level\n");
+        return;
+    }
+    *(s16*)&D_80261734[arg0] = arg1;
+}
 
 s32 func_80204EC0(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     f32 x, y, z, w;
@@ -104,12 +124,14 @@ u8* func_80204F9C(s32 arg0) {
     return (u8*)&D_80261730[arg0].unk374;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_58E0/func_80204FC4.s")
+void func_80204FC4(s32 arg0) {
+    func_80204FE4(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_58E0/func_80204FE4.s")
 
 void func_80205724(s32 arg0, s32 arg1, Mtx4F* arg2) {
-    switch (arg1) { /* irregular */
+    switch (arg1) {
     case 1:
         uvMat4Copy(arg2, &D_80261730[arg0].unk110);
         return;
