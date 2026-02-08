@@ -1,11 +1,12 @@
 #include "common.h"
 #include <uv_controller.h>
+#include <uv_filesystem.h>
 #include <uv_math.h>
 #include <uv_memory.h>
 #include <uv_util.h>
 #include "code_9A960.h"
-#include "code_A7F20.h"
 #include "demo.h"
+#include "demo_attitude.h"
 
 typedef struct {
     s32 unk0;
@@ -167,12 +168,12 @@ void demoInit(void) {
     idx = 0;
     done = 0;
     demoAllocate();
-    temp_s4 = func_80223E80((s32)func_802314D0(demo_803229EC(D_8036DA44, D_8036DA48), 2));
+    temp_s4 = uvFileReadHeader((s32)func_802314D0(demo_803229EC(D_8036DA44, D_8036DA48), 2));
     uvMemSet(D_8036DA30->entries, 0, sizeof(D_8036DA30->entries));
     uvMemSet(&D_8036DA50, 0, sizeof(D_8036DA50));
 
     do {
-        tag = func_80223F7C(temp_s4, &size, &data, 1);
+        tag = uvFileReadBlock(temp_s4, &size, &data, 1);
         switch (tag) {
         case 'RPKT': // 0x52504B54
             _uvMediaCopy(&pkt, data, size);
@@ -190,16 +191,16 @@ void demoInit(void) {
             break;
         }
     } while ((!done) && (idx < ARRAY_COUNT(D_8036DA30->entries)));
-    func_80223F30(temp_s4);
+    uvFile_80223F30(temp_s4);
 }
 
-s32 demo_80322D60(s32 arg0, s32 arg1) {
+void demo_80322D60(s32 arg0, s32 arg1) {
     s32 idx;
     D_8036DA44 = arg0;
     D_8036DA48 = arg1;
     demoInit();
     idx = demo_803229EC(D_8036DA44, D_8036DA48);
-    return func_803209F0(idx);
+    demoAttInit(idx);
 }
 
 void demoSetRecMode(s32 mode) {

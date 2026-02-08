@@ -1,4 +1,5 @@
 #include "common.h"
+#include <uv_filesystem.h>
 #include <uv_graphics.h>
 #include <uv_memory.h>
 
@@ -20,13 +21,33 @@ typedef struct {
                       // (0xC0 allocated)
 } ParsedUVFT;
 
-extern u8 D_80248E64;
-extern u8 D_80248E68;
-extern u8 D_80248E6C;
-extern u8 D_80248E70;
+// clang-format off
+static s16 D_80248E20 = 0x0000;
+static s16 D_80248E24[] = {
+    0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x0000,
+    0x0001, 0x1234, 0xFFFF, 0xFFFF, 0x0000, 0x0000, 0x0000, 0x0000,
+    0x0000, 0x0001, 0x0294, 0x1F08, 0x000F, 0x0080,
+};
+static u8 D_80248E50[] = {
+    0x03, 0x00, 0x00, 0x00, 0x80, 0x26, 0xA0, 0x40, 0x80, 0x26,
+    0xA3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
 
-extern f32 D_80248E7C;
-extern f32 D_80248E80;
+static u8 D_80248E64 = 0xFF;
+static u8 D_80248E68 = 0xFF;
+static u8 D_80248E6C = 0xFF;
+static u8 D_80248E70 = 0xFF;
+static u8 D_80248E74 = 0x00;
+static u8 D_80248E78 = 0x00;
+
+static f32 D_80248E7C = 1;
+static f32 D_80248E80 = 1;
+static u32 D_80248E84 = 0;
+static u32 D_80248E88 = 8;
+static u32 D_80248E8C = 0;
+static u32 D_80248E90 = 0;
+static u32 D_80248E94 = 0;
+// clang-format on
 
 extern u32 D_802B69E4;
 
@@ -56,8 +77,8 @@ ParsedUVFT* uvParseTopUVFT(s32 arg0) {
 
     imagCount = 0;
     ret = (ParsedUVFT*)_uvMemAlloc(sizeof(ParsedUVFT), 4);
-    temp_v0 = func_80223E80((&D_802B69E4)[arg0]);
-    while ((tag = func_80223F7C(temp_v0, &nbytes, (void**)&srcAddr, 1)) != NULL) {
+    temp_v0 = uvFileReadHeader((&D_802B69E4)[arg0]);
+    while ((tag = uvFileReadBlock(temp_v0, &nbytes, (void**)&srcAddr, 1)) != NULL) {
         switch (tag) {
         case 'STRG':
             ret->strg = _uvMemAlloc(nbytes, 4);
@@ -82,7 +103,7 @@ ParsedUVFT* uvParseTopUVFT(s32 arg0) {
         }
     }
 
-    func_80223F30(temp_v0);
+    uvFile_80223F30(temp_v0);
     // update indexes to pointers allocated above
     for (i = 0; i < bitmCount; i++) {
         ret->bitm[i].imageRef = ret->imag[ret->bitm[i].imageRef];

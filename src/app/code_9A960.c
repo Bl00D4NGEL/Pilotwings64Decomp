@@ -11,8 +11,8 @@ void func_80313430(f32 arg0, f32 arg1, f32 arg2, f32* arg3, f32* arg4, f32* arg5
 
     sp20 = uvSqrtF((arg0 * arg0) + (arg1 * arg1));
     *arg3 = uvSqrtF((arg0 * arg0) + (arg1 * arg1) + (arg2 * arg2));
-    *arg4 = uvMath_8022A27C(arg1 / *arg3, arg0 / *arg3);
-    *arg5 = uvMath_8022A27C(arg2 / *arg3, sp20 / *arg3);
+    *arg4 = uvAtan2F(arg1 / *arg3, arg0 / *arg3);
+    *arg5 = uvAtan2F(arg2 / *arg3, sp20 / *arg3);
 }
 
 void func_803134D0(f32 arg0, f32 arg1, f32 arg2, f32* arg3, f32* arg4, f32* arg5) {
@@ -25,23 +25,25 @@ void func_803134D0(f32 arg0, f32 arg1, f32 arg2, f32* arg3, f32* arg4, f32* arg5
     *arg5 = uvSinF(arg2) * arg0;
 }
 
-void func_80313570(Mtx4F* arg0, f32* arg1, f32* arg2, f32* arg3, f32* arg4, f32* arg5, f32* arg6) {
-    *arg4 = uvMath_8022A27C(arg0->m[0][1], arg0->m[0][0]);
-    *arg5 = -uvMath_8022A27C(arg0->m[1][2], uvSqrtF(SQ(arg0->m[1][0]) + SQ(arg0->m[1][1])));
-    *arg6 = -uvMath_8022A27C(arg0->m[0][2], uvSqrtF(SQ(arg0->m[0][0]) + SQ(arg0->m[0][1])));
-    *arg1 = arg0->m[3][0];
-    *arg2 = arg0->m[3][1];
-    *arg3 = arg0->m[3][2];
+// gets translation and rotation parameters from matrix
+void func_80313570(Mtx4F* mat, f32* tx, f32* ty, f32* tz, f32* rz, f32* rx, f32* ry) {
+    *rz = uvAtan2F(mat->m[0][1], mat->m[0][0]);
+    *rx = -uvAtan2F(mat->m[1][2], uvSqrtF(SQ(mat->m[1][0]) + SQ(mat->m[1][1])));
+    *ry = -uvAtan2F(mat->m[0][2], uvSqrtF(SQ(mat->m[0][0]) + SQ(mat->m[0][1])));
+    *tx = mat->m[3][0];
+    *ty = mat->m[3][1];
+    *tz = mat->m[3][2];
 }
 
-void func_80313640(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, Mtx4F* arg6) {
-    uvMat4SetIdentity(arg6);
-    uvMat4RotateAxis(arg6, arg3, 'z');
-    uvMat4RotateAxis(arg6, arg4, 'x');
-    uvMat4RotateAxis(arg6, arg5, 'y');
-    arg6->m[3][0] = arg0;
-    arg6->m[3][1] = arg1;
-    arg6->m[3][2] = arg2;
+// initializes matrix with given translation and rotation
+void func_80313640(f32 tx, f32 ty, f32 tz, f32 rz, f32 rx, f32 ry, Mtx4F* mat) {
+    uvMat4SetIdentity(mat);
+    uvMat4RotateAxis(mat, rz, 'z');
+    uvMat4RotateAxis(mat, rx, 'x');
+    uvMat4RotateAxis(mat, ry, 'y');
+    mat->m[3][0] = tx;
+    mat->m[3][1] = ty;
+    mat->m[3][2] = tz;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app/code_9A960/func_803136C4.s")

@@ -156,9 +156,9 @@ void func_802D3444(Unk802D3658_Arg0* arg0) {
             func_802EABAC(arg0->unk230, arg0->unk14, &sp28);
             arg0->unkD = 0;
         }
-        arg0->unk1AC = uvMath_8022A27C(arg0->unk80.m[0][0], arg0->unk80.m[0][1]) - 1.5707963f; // almost DEG_TO_RAD(90)
-        if ((arg0->unk1AC - arg0->unk1A8) > 1.5707964f) {                                      // matches DEG_TO_RAD(90)
-            arg0->unk1A8 = arg0->unk1A8 + 6.2831855f;                                          // matches DEG_TO_RAD(360)
+        arg0->unk1AC = uvAtan2F(arg0->unk80.m[0][0], arg0->unk80.m[0][1]) - 1.5707963f; // almost DEG_TO_RAD(90)
+        if ((arg0->unk1AC - arg0->unk1A8) > 1.5707964f) {                               // matches DEG_TO_RAD(90)
+            arg0->unk1A8 = arg0->unk1A8 + 6.2831855f;                                   // matches DEG_TO_RAD(360)
         }
         if ((arg0->unk1AC - arg0->unk1A8) < -1.5707964f) { // matches DEG_TO_RAD(-90)
             arg0->unk1A8 -= 6.2831855f;                    // matches DEG_TO_RAD(360)
@@ -1004,7 +1004,7 @@ void func_802D5884(Unk802D3658_Arg0* arg0, u8 arg1) {
         arg0->unk1 = arg1;
         if (arg1 == 3) {
             arg0->unk198 = 0.52359873f; // almost DEG_TO_RAD(30)
-            arg0->unk194 = uvMath_8022A27C(arg0->unk80.m[0][0], arg0->unk80.m[0][1]);
+            arg0->unk194 = uvAtan2F(arg0->unk80.m[0][0], arg0->unk80.m[0][1]);
             arg0->unkE = 1;
         }
     }

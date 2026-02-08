@@ -15,7 +15,7 @@ f32 uvSinF(f32 x);
 f32 uvCosF(f32 x);
 f32 uvLength2D(f32 x, f32 y);
 f32 uvLength3D(f32 x, f32 y, f32 z);
-f32 uvMath_8022A27C(f32 arg0, f32 arg1);
+f32 uvAtan2F(f32 y, f32 x);
 
 #endif // PILOTWINGS64_UV_MATH
 

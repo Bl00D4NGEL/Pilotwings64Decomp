@@ -1,5 +1,9 @@
 #include "common.h"
 
+s32 gGfxUnkPtrs = 0x00000000;
+s32 D_80248DD4 = 0xFFFFFFFF;
+s32 __additional_scanline[] = { 0x00000000, 0x00000000 };
+
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_8170/osViExtendVStart.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/code_8170/_uvDbSortHits.s")
