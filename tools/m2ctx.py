@@ -16,8 +16,7 @@ CPP_FLAGS = [
     "-Isrc",
     "-Itools/ultralib/include",
     "-D_LANGUAGE_C",
-    "-D__sgi"
-    "-DF3DEX_GBI_2",
+    "-D__sgi",
     "-D_MIPS_SZLONG=32",
     "-ffreestanding",
     "-DM2CTX",
