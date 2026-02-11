@@ -13,13 +13,12 @@ typedef struct {
     u8 pad6[0xA];
     u16 unk10;
     u8 pad12[2];
-    s32 unk14;
-    u8 pad18[0x3C];
+    Mtx4F unk14;
     u16 unk54;
     u8 unk56;
     u8 pad57;
-    s32 unk58;
-    u8 pad5C[0x48];
+    Mtx4F unk58;
+    u8 pad98[0xA4-0x98];
     f32 unkA4;
     u8 padA8[8];
     Unk802D3658_Arg0* unkB0;

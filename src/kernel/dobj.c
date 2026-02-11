@@ -6,6 +6,7 @@
 
 extern u16 D_80269CB0[100];
 extern u16 D_80269F0A;
+extern Mtx4F D_80265080[300];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/dobj/uvDobjModel.s")
 
@@ -36,7 +37,7 @@ void uvDobjProps(s32 arg0, ...) {
             return;
         case 3:
             f0 = va_arg(args, f64);
-            temp_s1->unk38 = ((f32**)gGfxUnkPtrs)[temp_s1->unk0 + 50][7] * f0;
+            temp_s1->unk38 = ((f32**)gGfxUnkPtrs)[temp_s1->unk0 + 50/*unkC8*/][7] * f0;
             break;
         case 4:
             var_v0 = va_arg(args, s32);
@@ -56,7 +57,31 @@ void uvDobjProps(s32 arg0, ...) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/dobj/uvDobjPosm.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/dobj/uvDobjGetPosm.s")
+void uvDobjGetPosm(s32 arg0, s32 arg1, Mtx4F* arg2) {
+    Unk80263780* sp24;
+    f32* temp_v0;
+
+    if (arg0 >= 0x65) {
+        _uvDebugPrintf("uvDobjPosm - invalid object id number [%d]\n", arg0);
+        return;
+    }
+    sp24 = &D_80263780[arg0];
+    if (sp24->unk0 >= 0x190) {
+        _uvDebugPrintf("uvDobjGetPosm: null object id %d\n", arg0);
+        return;
+    }
+    uvMat4Copy(arg2, &D_80265080[sp24->unk2[arg1]]);
+    temp_v0 = ((f32**)gGfxUnkPtrs)[sp24->unk0 + 50 /* unkC8 */];
+    if (arg1 == 0) {
+        if (temp_v0[8] != 1.0f) {
+            uvMat4UnkOp3(arg2, temp_v0[8], temp_v0[8], temp_v0[8]);
+        }
+    } else {
+        arg2->m[3][0] /= temp_v0[8];
+        arg2->m[3][1] /= temp_v0[8];
+        arg2->m[3][2] /= temp_v0[8];
+    }
+}
 
 void uvDobjState(s32 arg0, s32 arg1) {
     s32 i;

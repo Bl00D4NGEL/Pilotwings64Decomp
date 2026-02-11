@@ -1,4 +1,5 @@
 #include "common.h"
+#include "proxanim.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app/proxanim/func_80321100.s")
 

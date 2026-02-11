@@ -1,4 +1,5 @@
 #include "common.h"
+#include <uv_janim.h>
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/janim/uvJanimLoad.s")
 
