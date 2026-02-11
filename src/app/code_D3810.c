@@ -18,7 +18,7 @@ typedef struct {
 } Unk8037F450;
 
 // .data
-extern s32 D_803509F0; // = 0;
+extern s32 D_803509F0;   // = 0;
 extern Vec3F D_803509F8; // = {1156.66f, 1770.82f, 0.0f};
 
 // .bss
@@ -59,7 +59,6 @@ static void func_8034C2E0(s32 arg0) {
     uvDobjPosm(D_8037F450[arg0].unk0, 1, &sp30);
 }
 
-
 static void func_8034C520(void) {
     Unk8037F450* var_s0;
     s32 i;
@@ -94,7 +93,7 @@ static s32 func_8034C6CC(s32 arg0, s32 arg1, s32 arg2) {
     Unk8037F450* var_s0;
     s32 i;
 
-    switch (arg1) {                                 /* irregular */
+    switch (arg1) {
     case 0:
         for (i = 0; i < ARRAY_COUNT(D_8037F450); i++) {
             var_s0 = &D_8037F450[i];
