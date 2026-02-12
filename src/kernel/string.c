@@ -7,12 +7,12 @@
 void strFormatFloat(f32, s32*, char*, s32);
 void strFormatInt(s32, s32 base, s32*, char*, s32, s32, s32);
 
-const char* uvStrchr(const char* s, const char c) {
+char* uvStrchr(const char* s, const char c) {
     while (*s != '\0' && c != *s) {
         s++;
     }
     if (*s != 0) {
-        return s;
+        return (char*)s;
     }
     return NULL;
 }
