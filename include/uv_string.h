@@ -3,7 +3,7 @@
 
 #include <PR/ultratypes.h>
 
-char* uvStrchr(const char* s, int c);
+char* uvStrchr(const char* s, const char c);
 u32 uvStrlen(const char* s);
 int uvStrcmp(const char* s1, const char* s2);
 void uvSprintf(char* dest, const char* fmt, ...);

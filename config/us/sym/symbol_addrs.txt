@@ -128,3 +128,7 @@ gLevelVehicle       = 0x8037AA80;
 gLevelCurMap        = 0x8034F40C;
 gLevelObjHeapPtr    = 0x8034F840;
 gLevelObjHeap       = 0x8036AA60; // size:5000
+
+sWindObjectsData    = 0x8037F910;
+sWindObjectsInLevel = 0x8037F914;
+sWindObjects        = 0x8037F918;

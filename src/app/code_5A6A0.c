@@ -19,7 +19,6 @@ typedef struct {
 
 extern f32 D_8034E9E0;
 extern u8 D_8034E9E4;
-extern f32 D_8034F854;
 extern Unk803599D0 D_803599D0;
 extern f32 D_80359A24;
 

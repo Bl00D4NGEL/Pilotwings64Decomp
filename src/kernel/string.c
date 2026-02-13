@@ -7,7 +7,15 @@
 void strFormatFloat(f32, s32*, char*, s32);
 void strFormatInt(s32, s32 base, s32*, char*, s32, s32, s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/kernel/string/uvStrchr.s")
+char* uvStrchr(const char* s, const char c) {
+    while (*s != '\0' && c != *s) {
+        s++;
+    }
+    if (*s != 0) {
+        return (char*)s;
+    }
+    return NULL;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/kernel/string/uvStrlen.s")
 

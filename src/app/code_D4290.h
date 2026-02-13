@@ -2,6 +2,7 @@
 #define APP_CODE_D4290_H
 
 #include <uv_vector.h>
+#include <PR/ultratypes.h>
 
 void func_8034CD60(void);
 void wind_render(void);
