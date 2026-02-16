@@ -395,7 +395,7 @@ segments:
       - [0x905C0, c, app/code_905C0]
       - [0x915B0, c, app/code_915B0]
       - [0x91670, c, app/hsound]
-      - [0x92810, c, app/code_92810]
+      - [0x92810, c, app/menu]
       - [0x92BF0, c, app/level]
       - [0x936F0, c, app/credits]
       - [0x94E60, c, app/code_94E60]
@@ -562,7 +562,7 @@ segments:
       - [0xDAC60, .rodata, app/code_905C0]
       - [0xDADB0, .rodata, app/code_915B0]
       - [0xDAE00, .rodata, app/hsound]
-      - [0xDAF00, .rodata, app/code_92810]
+      - [0xDAF00, .rodata, app/menu]
       - [0xDAF30, .rodata, app/level]
       - [0xDB1D0, .rodata, app/credits]
       - [0xDB750, .rodata, app/code_94E60]
@@ -615,6 +615,8 @@ segments:
       - [0xDE6B0, .rodata, app/wind_objects]
 
       - { type: bss, vram: 0x803571F0, name: app_bss_803571F0 }
+      - { type: .bss, vram: 0x80369F10, name: app/menu }
+      - { type: bss, vram: 0x80369F30, name: app_bss_80369F10 }
       - { type: .bss, vram: 0x8037AB50, name: app/thermals }
       - { type: bss, vram: 0x8037ACE0, name: app_bss_8037ACD8 }
 
