@@ -460,7 +460,7 @@ segments:
       - [0xD5F20, .data, app/cannonball]
       - [0xD5F40, .data, app/code_60020]
       - [0xD5F70, data] # app/code_51E30?
-      - [0xD6030, data]
+      - [0xD6030, .data, app/code_64070]
       - [0xD62D0, data]
       - [0xD62F0, data]
       - [0xD6360, data]

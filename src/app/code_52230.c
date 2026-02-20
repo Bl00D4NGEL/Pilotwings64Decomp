@@ -3,7 +3,7 @@
 
 // .data
 // list of model ids
-s32 D_8034E810[] = {0xF4, 0xF5, 0xF6};
+s32 D_8034E810[] = { 0xF4, 0xF5, 0xF6 };
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app/code_52230/func_802CAD00.s")
 

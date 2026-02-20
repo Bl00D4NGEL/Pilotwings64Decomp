@@ -1,10 +1,9 @@
 #include "common.h"
 
-
 s8 D_8034F7A0 = 0;
 s8 D_8034F7A4 = 0;
 u8 D_8034F7A8 = 0xFF;
-u8 D_8034F7AC[4] = { 0xFF, 0, 0, 0};
+u8 D_8034F7AC[4] = { 0xFF, 0, 0, 0 };
 u8 D_8034F7B0 = 0;
 s8 D_8034F7B4[4] = { 0 }; // might be u8
 u8 D_8034F7B8 = 0;
