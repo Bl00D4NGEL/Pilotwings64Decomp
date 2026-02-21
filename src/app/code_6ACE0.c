@@ -7,37 +7,30 @@ typedef struct {
     u8 pad255[0x258 - 0x255];
 } Unk8035A5F8;
 
+typedef struct {
+    s32 unk0;
+    void* unk4; // maybe f32 pointer
+    s32 unk8;   // always 0, maybe a pointer to something?
+} Unk8034EFB0;
+
 // .data
-f32 D_8034EFA0[] = {
-    0.0f,
-    0.0f,
-    0.0f,
-    0.0f,
-    1.401298464e-44f,
-    -4.93012673e-39f,
-    0.0f,
-    7.006492322e-45f,
-    -4.930132335e-39f,
-    0.0f,
-    8.407790786e-45f,
-    -4.93012673e-39f,
-    0.0f,
-    1.261168618e-44f,
-    -4.93013794e-39f,
-    0.0f,
-    1.121038771e-44f,
-    -4.930143545e-39f,
-    0.0f,
-    9.80908925e-45f,
-    -4.930143545e-39f,
-    0.0f,
-    5.605193857e-45f,
-    -4.930143545e-39f,
-    0.0f,
-    4.203895393e-45f,
-    -4.930143545e-39f,
-    0.0f,
-};
+f32 D_8034EFA0 = 0.0f;
+s32 padD_8034EFA4[3] = { 0 };
+
+extern f32 D_8035AF30;
+extern f32 D_8035AF34;
+extern f32 D_8035AF38;
+extern f32 D_8035AF3C;
+
+// referenced in D_8034F03C
+Unk8034EFB0 D_8034EFB0 = { 0xA, &D_8035AF30, 0 };
+Unk8034EFB0 D_8034EFBC = { 0x5, &D_8035AF34, 0 };
+Unk8034EFB0 D_8034EFC8 = { 0x6, &D_8035AF30, 0 };
+Unk8034EFB0 D_8034EFD4 = { 0x9, &D_8035AF38, 0 };
+Unk8034EFB0 D_8034EFE0 = { 0x8, &D_8035AF3C, 0 };
+Unk8034EFB0 D_8034EFEC = { 0x7, &D_8035AF3C, 0 };
+Unk8034EFB0 D_8034EFF8 = { 0x4, &D_8035AF3C, 0 };
+Unk8034EFB0 D_8034EF04 = { 0x3, &D_8035AF3C, 0 };
 
 // .bss
 extern Unk8035A5F8 D_8035A5F8[];
