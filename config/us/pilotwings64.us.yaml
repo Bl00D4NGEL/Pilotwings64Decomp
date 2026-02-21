@@ -464,8 +464,8 @@ segments:
       - [0xD62D0, .data, app/code_64730]
       - [0xD6410, .data, app/code_68220]
       - [0xD6450, data] # app/code_69BF0
-      - [0xD64D0, data] # app/code_6ACE0
-      - [0xD6540, data] # app/code_6ACE0
+      - [0xD64D0, .data, app/code_6ACE0]
+      - [0xD6540, data] # also part of app/code_6ACE0
       - [0xD65F0, data] # app/code_6ECD0
       - [0xD6610, .data, app/file_menu]
       - [0xD6650, data] # app/code_71500
