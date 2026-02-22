@@ -20,15 +20,11 @@
 #include "code_D2D50.h"
 #include "code_D3810.h"
 
-typedef struct {
-    s32 unk0;
-} Unk8034F410;
-
-extern s32 D_8034F400;
-extern s32 D_8034F404;
-extern LevelObjects* D_8034F408;
-extern s32 gLevelCurMap;
-extern Unk8034F410 D_8034F410[];
+s32 D_8034F400 = 0;
+s32 D_8034F404 = 0;
+LevelObjects* D_8034F408 = NULL;
+s32 gLevelCurMap = 0;
+s32 D_8034F410[] = { 0, 1, 2, 3 };
 
 // likely arrays of structs for level data
 extern s32 gLevelWOBJ;
@@ -278,7 +274,7 @@ LevelObjects* levelLoadMapObjects(u8 mapIdx) {
     LevelObjects* temp;
     u8 tmp8;
 
-    idx = uvFileReadHeader((s32)func_802314D0(D_8034F410[mapIdx].unk0, 2));
+    idx = uvFileReadHeader((s32)func_802314D0(D_8034F410[mapIdx], 2));
     temp = &gLevelObjects;
     uvMemSet((void*)temp, 0, sizeof(LevelObjects));
     gLevelObjects.dataWOBJ = &gLevelWOBJ;
