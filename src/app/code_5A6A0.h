@@ -23,6 +23,10 @@ typedef struct {
     f32 unk38;
     f32 unk3C;
     f32 unk40;
+    s32 pad44;
+    s32 pad48;
+    s32 pad4C;
+    s32 pad50;
 } Unk803599D0;
 
 typedef struct {

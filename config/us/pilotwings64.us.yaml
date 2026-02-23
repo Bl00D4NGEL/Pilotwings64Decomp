@@ -459,7 +459,7 @@ segments:
       - [0xD5F10, .data, app/code_5A6A0]
       - [0xD5F20, .data, app/cannonball]
       - [0xD5F40, .data, app/code_60020]
-      - [0xD5F70, data] # app/code_61A60
+      - [0xD5F70, .data, app/code_61A60]
       - [0xD6030, .data, app/code_64070]
       - [0xD62D0, .data, app/code_64730]
       - [0xD6410, .data, app/code_68220]
