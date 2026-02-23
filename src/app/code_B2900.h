@@ -4,6 +4,13 @@
 #include <PR/ultratypes.h>
 #include "save.h"
 
+typedef struct {
+    u16 unk0;
+    u16 unk2;
+    u16 unk4;
+} Unk8034FBD4;
+extern Unk8034FBD4 D_8034FBD4[];
+
 void func_8032B3D0(void*);
 s32 func_8032C080(s32);
 void func_8032B560(s32, u8, u8, u8);

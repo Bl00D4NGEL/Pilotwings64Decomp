@@ -1,4 +1,9 @@
 #include "common.h"
+#include <uv_vector.h>
+
+// used as an assignment
+Vec3F D_8034FBB0 = { 0.0f, 0.0f, 0.0f };
+s32 padD_8034FBBC[5] = { 0 };
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app/code_AF950/func_80328420.s")
 

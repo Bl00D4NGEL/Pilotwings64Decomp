@@ -494,13 +494,13 @@ segments:
       - [0xD6E40, .data, app/hud]
       - [0xD6EA0, .data, app/demo_attitude]
       - [0xD6EB0, data] # app/code_A8C30
-      - [0xD7000, data] # app/demo
+      - [0xD7000, .data, app/demo]
       - [0xD7010, data] # app/rings
-      - [0xD70D0, data] # app/code_AE460
-      - [0xD70E0, data] # app/code_AF950
-      - [0xD7100, data] # app/code_B2900
-      - [0xD7140, data] # app/code_B3A70
-      - [0xD7170, data] # app/code_B5280
+      - [0xD70D0, .data, app/code_AE460]
+      - [0xD70E0, .data, app/code_AF950]
+      - [0xD7100, .data, app/code_B2900]
+      - [0xD7140, .data, app/code_B3A70]
+      - [0xD7170, .data, app/code_B5280]
       - [0xD7500, data] # app/code_B6FE0
       - [0xD7990, data] # app/code_BB820
       - [0xD7A30, data] # app/code_BD670
