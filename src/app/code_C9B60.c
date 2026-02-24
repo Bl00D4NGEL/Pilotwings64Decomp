@@ -1,5 +1,9 @@
 #include "common.h"
 
+u8 D_80350690 = 1;
+s32 D_80350694 = 1;
+s32 D_80350698[] = { 0x188, 0x4E };
+
 #pragma GLOBAL_ASM("asm/nonmatchings/app/code_C9B60/func_80342630.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app/code_C9B60/func_803427FC.s")

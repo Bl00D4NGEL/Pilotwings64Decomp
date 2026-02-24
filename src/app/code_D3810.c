@@ -18,8 +18,9 @@ typedef struct {
 } Unk8037F450;
 
 // .data
-extern s32 D_803509F0;   // = 0;
-extern Vec3F D_803509F8; // = {1156.66f, 1770.82f, 0.0f};
+s32 D_803509F0 = 0;
+s32 padD_803509F4 = 0;
+Vec3F D_803509F8 = { 1156.66f, 1770.82f, 0.0f };
 
 // .bss
 extern Unk8037F450 D_8037F450[5];
