@@ -10,14 +10,14 @@
 #include "proxanim.h"
 
 // .data
-extern s32 D_803509C0;   // = 0xFFFF
-extern s32 D_803509C4;   // = 0xFFFF
-extern s32 D_803509C8;   // = 0xFF
-extern s32 D_803509CC;   // = 0
-extern f32 D_803509D0;   // = 0.0f
-extern f32 D_803509D4;   // = 0
-extern s32 D_803509D8;   // = 0
-extern Vec3F D_803509DC; // { 750.0f, 100.0f, 4.5f }
+s32 D_803509C0 = 0xFFFF;
+s32 D_803509C4 = 0xFFFF;
+s32 D_803509C8 = 0xFF;
+s32 D_803509CC = 0;
+f32 D_803509D0 = 0.0f;
+f32 D_803509D4 = 0;
+s32 D_803509D8 = 0;
+Vec3F D_803509DC = { 750.0f, 100.0f, 4.5f };
 
 // .bss
 extern Mtx4F D_8037F380;

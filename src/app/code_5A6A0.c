@@ -19,8 +19,12 @@ typedef struct {
     u8 pad20[0x40 - 0x20];
 } Unk802D472C_SP60;
 
-extern f32 D_8034E9E0;
-extern u8 D_8034E9E4;
+// .data
+f32 D_8034E9E0 = 1.0f;
+u8 D_8034E9E4 = 0;
+s32 pad_D_8034E9E8 = 0;
+
+// .bss
 extern Unk803599D0 D_803599D0;
 extern f32 D_80359A24;
 
@@ -36,7 +40,7 @@ static void func_802D532C(Unk802D3658_Arg0* arg0);
 static void func_802D559C(Unk802D3658_Arg0* arg0);
 static s32 func_802D4CA4(Unk802D3658_Arg0*, Mtx4F*);
 static void func_802D58EC(Unk802D3658_Arg0*, Mtx4F*);
-void func_802D4274(Unk802D3658_Arg0* arg0);
+/* static */ void func_802D4274(Unk802D3658_Arg0* arg0);
 
 void func_802D3170(u8 arg0, Unk802D3658_Arg0* arg1) {
     f32 one;

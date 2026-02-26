@@ -30,11 +30,41 @@ typedef struct {
     s16 unk2;
 } Unk8034F93C;
 
-extern f32 D_8034F910;
-extern s32 D_8034F914;
-extern s32 D_8034F938;
-extern Unk8034F93C D_8034F93C[3];
-extern Unk8034F93C D_8034F95C[4];
+f32 D_8034F910 = 0.0f;
+s32 D_8034F914 = 0;
+s32 D_8034F918[] = {
+    0x132,
+    0x131,
+    0x133,
+    0x134,
+};
+
+s32 D_8034F928[] = {
+    ~0x2C,
+    0x2D,
+    0x87,
+    ~0x86,
+};
+s32 D_8034F938 = 0;
+
+Unk8034F93C D_8034F93C[] = {
+    { 0xFFFF, 0xFFFF },
+    {      1, 0xFFFF },
+    {      1,      1 },
+    { 0xFFFF,      1 },
+    { 0xFFFF, 0xFFFF },
+    {      1, 0xFFFF },
+    {      1,      2 },
+    { 0xFFFF,      2 }
+};
+
+Unk8034F93C D_8034F95C[] = {
+    { 0xFFFF, 0 },
+    {      1, 0 },
+    {      0, 1 },
+    {      0, 0 },
+    {      0, 0 },
+};
 
 extern HUDState gHudState;
 

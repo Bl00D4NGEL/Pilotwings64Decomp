@@ -28,7 +28,10 @@ typedef struct Unk8036DA30 {
     DemoRecordingEntry entries[0x708];
 } DemoRecording;
 
-extern s32 D_8034FAD0;
+// .data
+s32 D_8034FAD0 = 0;
+
+// .bss
 extern DemoRecording* D_8036DA30;
 extern f32 D_8036DA34;
 extern f32 D_8036DA38;

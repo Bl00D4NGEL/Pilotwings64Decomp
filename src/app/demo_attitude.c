@@ -28,7 +28,10 @@ typedef struct Unk8034F970 {
     PPOS* unk4;
 } Unk8034F970;
 
-extern Unk8034F970* D_8034F970;
+// .data
+Unk8034F970* D_8034F970 = NULL;
+
+// .bss
 extern s32 D_8036D320;
 extern s32 D_8036D324;
 extern f32 D_8036D328;
