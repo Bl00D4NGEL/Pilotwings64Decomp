@@ -25,6 +25,11 @@ typedef struct Unk80371120 {
 } Unk80371120; // size: 0x1B0
 
 extern Unk80263780 D_80263780[100];
+extern Mtx4F D_80265080[300];
+extern u8 D_80269B80[300];
+extern u16 D_80269CB0[100];
+extern u16 D_80269F08;
+extern u16 D_80269F0A;
 
 void uvDobjModel(s32 objId, s32 mdlId);
 void uvDobjProps(s32 objId, ...);
@@ -36,10 +41,10 @@ void uvDobjClearState(s32 objId, s32 flags);
 s32 uvDobjAllocIdx(void);
 void uvDobjInit(void);
 void uvDobj_8021771C(UnkStruct_80204D94*);
-u8 uvDobj_80217AB4(uvGfxUnkStructModel*, f32);
+u8 uvDobj_80217AB4(ParsedUVMD*, f32);
 s32 uvDobj_80217B34(s32**);
-void uvDobj_80217B4C(Unk80263780*, uvGfxUnkStructModel*, u8);
-void uvDobj_80217E24(Unk80263780*, uvGfxUnkStructModel*, u8, f32, f32);
+void uvDobj_80217B4C(Unk80263780*, ParsedUVMD*, u8);
+void uvDobj_80217E24(Unk80263780*, ParsedUVMD*, u8, f32, f32);
 void uvDobj_802180DC(s32, Unk80371120*);
 
 #endif // UV_DOBJ_H
