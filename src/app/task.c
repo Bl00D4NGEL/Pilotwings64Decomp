@@ -26,7 +26,7 @@
 #include "code_B2900.h"
 #include "code_B6FE0.h"
 #include "code_BB820.h"
-#include "code_CB7C0.h"
+#include "targets.h"
 #include "code_D2D50.h"
 #include "code_D3810.h"
 #include "code_D4290.h"
