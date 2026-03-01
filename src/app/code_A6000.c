@@ -25,7 +25,7 @@ void uvPathPoseLine(Unk8037F098* arg0, Unk8037DCA0* arg1, f32 arg2) {
     s32 pad1;
     s32 pad2;
 
-    if (arg1->modelId == 0xFFFF) {
+    if (arg1->modelId == WORLD_MODEL_ID) {
         _uvDebugPrintf("uvPathPoseLine: Path has an invalid Model ID!\n");
         return;
     }
@@ -128,7 +128,7 @@ void func_8031EF60(Unk8037DCA0* arg0, s32 arg1) {
 }
 
 void func_8031EF68(Unk8037DCA0* arg0) {
-    if (arg0->modelId != 0xFFFF) {
-        arg0->modelId = 0xFFFF;
+    if (arg0->modelId != WORLD_MODEL_ID) {
+        arg0->modelId = WORLD_MODEL_ID;
     }
 }

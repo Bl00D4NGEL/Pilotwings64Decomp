@@ -10,8 +10,8 @@
 #include <uv_model.h>
 
 typedef struct {
-    Vec3F position;
-    Vec3F angle;
+    Vec3F pos;
+    Vec3F rot;
     u8 targetType;
     u8 unk19;
     s32 pad1C;
@@ -66,12 +66,13 @@ void func_803442F8(void) {
             if (var_s1->unk47 == 0) {
                 var_s1->unk44 = missileTarget->targetType;
                 var_s1->unk45 = missileTarget->unk19;
-                func_80313640(missileTarget->position.x, missileTarget->position.y, missileTarget->position.z, missileTarget->angle.x * 0.0174533f,
-                              missileTarget->angle.y * 0.0174533f, missileTarget->angle.z * 0.0174533f, &var_s1->unk4);
+                // multiplies with almost DEG_TO_RAD(1)
+                func_80313640(missileTarget->pos.x, missileTarget->pos.y, missileTarget->pos.z, missileTarget->rot.x * 0.0174533f,
+                              missileTarget->rot.y * 0.0174533f, missileTarget->rot.z * 0.0174533f, &var_s1->unk4);
                 var_s1->unk47 = 1;
             }
             var_s1->unk0 = uvDobjAllocIdx();
-            var_s1->unk48 = hud_8031A6C8(missileTarget->position.x, missileTarget->position.y, missileTarget->position.z);
+            var_s1->unk48 = hud_8031A6C8(missileTarget->pos.x, missileTarget->pos.y, missileTarget->pos.z);
             switch (missileTarget->targetType) {
             case 0:
                 uvDobjModel(var_s1->unk0, 0xF9);
@@ -162,7 +163,7 @@ f32 func_8034473C(s32 arg0, s32 arg1) {
             hudText_8031D8E0(0x18A, 1.5f, 8.0f);
         }
 
-        func_8032C080((s32)&sp48);
+        func_8032C080(&sp48);
         if (sp48 >= 2) {
             textFmtIntAt(textGetDataByIdx(0x29), sp48 - 1, 2, 0);
             hudWarningText(0x29, 1.5f, 8.0f);

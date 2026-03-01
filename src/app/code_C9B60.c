@@ -84,7 +84,7 @@ s32 func_80342630(void) {
     do {
         uvMat4SetIdentity(&D_80378CE0->unk1EC);
         var_fs0 += D_80378CE0->unk23C * D_8034F854;
-        uvMat4RotateAxis(&D_80378CE0->unk1EC, var_fs0, 0x7A);
+        uvMat4RotateAxis(&D_80378CE0->unk1EC, var_fs0, 'z');
         if (var_fs0 < -6.2831855f) {
             var_fs0 += 6.2831855f;
         }
@@ -203,8 +203,8 @@ static void func_80342D2C(void) {
     func_8031EF60(D_80378CE0->unk240[4], 0x131);
     func_8031EF60(D_80378CE0->unk240[5], 0x133);
     uvMat4SetIdentity(&D_80378CE0->unk16C);
-    uvMat4RotateAxis(&D_80378CE0->unk16C, -1.4835305f, 0x78);
-    uvMat4RotateAxis(&D_80378CE0->unk16C, 3.141594f, 0x79);
+    uvMat4RotateAxis(&D_80378CE0->unk16C, -1.4835305f, 'x');
+    uvMat4RotateAxis(&D_80378CE0->unk16C, 3.141594f, 'y');
 
 #define placeInUserPath(idx, modelId)                              \
     allocIdx = uvDobjAllocIdx();                                   \
