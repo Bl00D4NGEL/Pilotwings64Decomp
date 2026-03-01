@@ -178,7 +178,7 @@ static void func_803427FC(void) {
         var_v0 = 1;
     }
     if (var_v0 != D_803505B0) {
-        func_8033F748(var_v0 & 0xFFFF);
+        func_8033F748(var_v0);
         func_8033F964(0);
         func_8033FA88(0.75f);
         func_8033FCD0(0xFFU);
