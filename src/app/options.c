@@ -6,12 +6,12 @@
 #include <uv_sprite.h>
 #include <uv_texture.h>
 #include "kernel/code_1050.h"
-#include "code_B3A70.h"
 #include "credits.h"
 #include "demo.h"
 #include "menu.h"
 #include "menu_utils.h"
 #include "options.h"
+#include "replay_screen.h"
 #include "save.h"
 #include "snap.h"
 #include "snd.h"

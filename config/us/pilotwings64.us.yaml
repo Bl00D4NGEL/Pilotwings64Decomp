@@ -436,7 +436,7 @@ segments:
       - [0x91670, c, app/gyrocopter_sound]
       - [0x92810, c, app/menu]
       - [0x92BF0, c, app/level]
-      - [0x936F0, c, app/code_936F0]
+      - [0x936F0, c, app/test_summary]
       - [0x94090, c, app/credits]
       - [0x94E60, c, app/level_select]
       - [0x97350, c, app/map3d]
@@ -463,7 +463,7 @@ segments:
       - [0xAF950, c, app/rocket_belt]
       - [0xB1B30, c, app/rocket_belt_sound]
       - [0xB2900, c, app/code_B2900]
-      - [0xB3A70, c, app/code_B3A70]
+      - [0xB3A70, c, app/replay_screen]
       - [0xB5280, c, app/results]
       - [0xB6580, c, app/code_B6580]
       - [0xB6FE0, c, app/skydiving]
@@ -524,7 +524,7 @@ segments:
       - [0xD6910, .data, app/gyrocopter]
       - [0xD6920, .data, app/hover_pads]
       - [0xD6930, .data, app/level]
-      - [0xD6950, .data, app/code_936F0]
+      - [0xD6950, .data, app/test_summary]
       - [0xD6A10, .data, app/credits]
       - [0xD6CD0, .data, app/level_select]
       - [0xD6D20, .data, app/map3d]
@@ -543,7 +543,7 @@ segments:
       - [0xD70D0, .data, app/code_AE460]
       - [0xD70E0, .data, app/rocket_belt]
       - [0xD7100, .data, app/code_B2900]
-      - [0xD7140, .data, app/code_B3A70]
+      - [0xD7140, .data, app/replay_screen]
       - [0xD7170, .data, app/results]
       - [0xD7500, .data, app/skydiving]
       - [0xD7980, .data, app/code_BA190]
@@ -631,7 +631,7 @@ segments:
       - [0xDC8C0, .rodata, app/rocket_belt]
       - [0xDC9F0, .rodata, app/rocket_belt_sound]
       - [0xDCAF0, .rodata, app/code_B2900]
-      - [0xDCB20, .rodata, app/code_B3A70]
+      - [0xDCB20, .rodata, app/replay_screen]
       - [0xDCBE0, .rodata, app/results]
       - [0xDD240, .rodata, app/code_B6580]
       - [0xDD260, .rodata, app/skydiving]
@@ -703,7 +703,7 @@ segments:
       - { type: .bss, vram: 0x80369E50, name: app/gyrocopter_sound }
       - { type: .bss, vram: 0x80369F10, name: app/menu }
       - { type: .bss, vram: 0x80369F30, name: app/level }
-      - { type: .bss, vram: 0x8036A8A0, name: app/code_936F0 }
+      - { type: .bss, vram: 0x8036A8A0, name: app/test_summary }
       - { type: .bss, vram: 0x8036A8B0, name: app/credits }
       - { type: .bss, vram: 0x8036A8C0, name: app/level_select }
       - { type: .bss, vram: 0x8036A8E0, name: app/map3d }
