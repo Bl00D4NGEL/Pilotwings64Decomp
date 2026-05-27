@@ -420,10 +420,10 @@ segments:
       - [0x722D0, c, app/fountain]
       - [0x72910, c, app/code_72910]
       - [0x72EF0, c, app/game]
-      - [0x75A60, c, app/code_75A60]
-      - [0x76670, c, app/code_76670]
+      - [0x75A60, c, app/hang_glider0]
+      - [0x76670, c, app/hang_glider1]
       - [0x78620, c, app/glider_toys]
-      - [0x796C0, c, app/hang_glider]
+      - [0x796C0, c, app/hang_glider2]
       - [0x7B9A0, c, app/hang_glider_sound]
       - [0x7C4C0, c, app/code_7C4C0]
       - [0x7CF30, c, app/code_7CF30]
@@ -514,8 +514,8 @@ segments:
       - [0xD6660, .data, app/fountain]
       - [0xD6680, .data, app/code_72910]
       - [0xD6690, .data, app/game]
-      - [0xD66E0, .data, app/code_75A60]
-      - [0xD66F0, .data, app/hang_glider]
+      - [0xD66E0, .data, app/hang_glider0]
+      - [0xD66F0, .data, app/hang_glider2]
       - [0xD68A0, .data, app/code_7C4C0]
       - [0xD68B0, .data, app/code_7CF30]
       - [0xD68C0, .data, app/code_7FE00]
@@ -590,10 +590,10 @@ segments:
       - [0xD9810, .rodata, app/fountain]
       - [0xD9830, .rodata, app/code_72910]
       - [0xD9840, .rodata, app/game]
-      - [0xD99C0, .rodata, app/code_75A60]
-      - [0xD9A10, .rodata, app/code_76670]
+      - [0xD99C0, .rodata, app/hang_glider0]
+      - [0xD9A10, .rodata, app/hang_glider1]
       - [0xD9CF0, .rodata, app/glider_toys]
-      - [0xD9DF0, .rodata, app/hang_glider]
+      - [0xD9DF0, .rodata, app/hang_glider2]
       - [0xD9F20, .rodata, app/hang_glider_sound]
       - [0xDA000, .rodata, app/code_7C4C0]
       - [0xDA020, .rodata, app/code_7CF30]
@@ -687,10 +687,10 @@ segments:
       - { type: .bss, vram: 0x80362500, name: app/fire_effects }
       - { type: .bss, vram: 0x80362630, name: app/fountain }
       - { type: .bss, vram: 0x80362690, name: app/game }
-      - { type: .bss, vram: 0x80367A40, name: app/code_75A60 }
-      - { type: .bss, vram: 0x80367F60, name: app/code_76670 }
+      - { type: .bss, vram: 0x80367A40, name: app/hang_glider0 }
+      - { type: .bss, vram: 0x80367F60, name: app/hang_glider1 }
       - { type: .bss, vram: 0x80368010, name: app/glider_toys }
-      - { type: .bss, vram: 0x803680A0, name: app/hang_glider }
+      - { type: .bss, vram: 0x803680A0, name: app/hang_glider2 }
       - { type: .bss, vram: 0x80368310, name: app/hang_glider_sound }
       - { type: .bss, vram: 0x80368370, name: app/code_7C4C0 }
       - { type: .bss, vram: 0x80368880, name: app/code_7CF30 }
