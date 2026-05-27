@@ -3,7 +3,6 @@
 #include "code_9A960.h"
 #include "code_A6000.h"
 #include "code_A64C0.h"
-#include "code_C9B60.h"
 #include "code_D2B10.h"
 #include "demo.h"
 #include "menu.h"
@@ -11,6 +10,7 @@
 #include "snd.h"
 #include "spath.h"
 #include "text_data.h"
+#include "title_screen.h"
 #include "user_paths.h"
 #include <uv_graphics.h>
 #include <uv_matrix.h>

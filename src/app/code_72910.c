@@ -8,12 +8,12 @@
 #include "app/fire_effects.h"
 #include "app/game.h"
 #include "app/mist.h"
+#include "app/pilot_select.h"
 #include "app/smoke.h"
 #include "app/snd.h"
 #include "app/snow.h"
 #include "app/splash.h"
 #include "app/task.h"
-#include "app/code_64730.h"
 
 s16 D_8034F150 = 0;
 s16 D_8034F154[6] = { 0 };

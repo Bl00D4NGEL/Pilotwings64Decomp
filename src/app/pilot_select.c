@@ -1,13 +1,12 @@
 #include "common.h"
-#include "code_64730.h"
 #include "code_66160.h"
 #include "code_9A960.h"
 #include "code_D2B10.h"
 #include "demo.h"
 #include "file_menu.h"
+#include "pilot_select.h"
 #include "snd.h"
 #include "task.h"
-#include "code_64730.h"
 #include "text_data.h"
 #include <uv_anim.h>
 #include <uv_dobj.h>

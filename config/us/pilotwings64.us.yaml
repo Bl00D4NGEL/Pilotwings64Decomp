@@ -405,7 +405,7 @@ segments:
       - [0x611E0, c, app/cbsound]
       - [0x61A60, c, app/code_61A60]
       - [0x64070, c, app/control_info]
-      - [0x64730, c, app/code_64730]
+      - [0x64730, c, app/pilot_select]
       - [0x66160, c, app/code_66160]
       - [0x66F70, c, app/code_66F70]
       - [0x68220, c, app/environment]
@@ -438,7 +438,7 @@ segments:
       - [0x92BF0, c, app/level]
       - [0x936F0, c, app/code_936F0]
       - [0x94090, c, app/credits]
-      - [0x94E60, c, app/code_94E60]
+      - [0x94E60, c, app/level_select]
       - [0x97350, c, app/map3d]
       - [0x99C70, c, app/mem]
       - [0x99D40, c, app/menu_utils]
@@ -479,7 +479,7 @@ segments:
       - [0xC7B40, c, app/spath]
       - [0xC8990, c, app/splash]
       - [0xC9440, c, app/text_data]
-      - [0xC9B60, c, app/code_C9B60]
+      - [0xC9B60, c, app/title_screen]
       - [0xCB7C0, c, app/targets]
       - [0xCBEE0, c, app/task]
       - [0xCD9D0, c, app/code_CD9D0]
@@ -503,7 +503,7 @@ segments:
       - [0xD5F40, .data, app/code_60020]
       - [0xD5F70, .data, app/code_61A60]
       - [0xD6030, .data, app/control_info]
-      - [0xD62D0, .data, app/code_64730]
+      - [0xD62D0, .data, app/pilot_select]
       - [0xD6410, .data, app/environment]
       - [0xD6450, .data, app/env_sound]
       - [0xD64D0, .data, app/falco]
@@ -526,7 +526,7 @@ segments:
       - [0xD6930, .data, app/level]
       - [0xD6950, .data, app/code_936F0]
       - [0xD6A10, .data, app/credits]
-      - [0xD6CD0, .data, app/code_94E60]
+      - [0xD6CD0, .data, app/level_select]
       - [0xD6D20, .data, app/map3d]
       - [0xD6D70, .data, app/mem]
       - [0xD6D80, .data, app/code_9A960]
@@ -554,7 +554,7 @@ segments:
       - [0xD7AE0, .data, app/snd]
       - [0xD7B40, .data, app/snow]
       - [0xD7B80, .data, app/spath]
-      - [0xD7BC0, .data, app/code_C9B60]
+      - [0xD7BC0, .data, app/title_screen]
       - [0xD7BD0, .data, app/targets]
       - [0xD7CC0, .data, app/task]
       - [0xD7D20, .data, app/thermals]
@@ -577,7 +577,7 @@ segments:
       - [0xD8A00, .rodata, app/cbsound]
       - [0xD8B00, .rodata, app/code_61A60]
       - [0xD8B90, .rodata, app/control_info]
-      - [0xD8BF0, .rodata, app/code_64730]
+      - [0xD8BF0, .rodata, app/pilot_select]
       - [0xD8CE0, .rodata, app/code_66F70]
       - [0xD8DD0, .rodata, app/environment]
       - [0xD9080, .rodata, app/env_sound]
@@ -607,7 +607,7 @@ segments:
       - [0xDAF00, .rodata, app/menu]
       - [0xDAF30, .rodata, app/level]
       - [0xDB1D0, .rodata, app/credits]
-      - [0xDB750, .rodata, app/code_94E60]
+      - [0xDB750, .rodata, app/level_select]
       - [0xDB770, .rodata, app/map3d]
       - [0xDB9B0, .rodata, app/mem]
       - [0xDB9F0, .rodata, app/menu_utils]
@@ -645,7 +645,7 @@ segments:
       - [0xDDC80, .rodata, app/snd]
       - [0xDDDA0, .rodata, app/spath]
       - [0xDDEA0, .rodata, app/splash]
-      - [0xDDF40, .rodata, app/code_C9B60]
+      - [0xDDF40, .rodata, app/title_screen]
       - [0xDDFB0, .rodata, app/targets]
       - [0xDE020, .rodata, app/task]
       - [0xDE210, .rodata, app/thermals]
@@ -674,7 +674,7 @@ segments:
       - { type: .bss, vram: 0x80359BE0, name: app/cbsound }
       - { type: .bss, vram: 0x80359C40, name: app/code_61A60 }
       - { type: .bss, vram: 0x80359C90, name: app/control_info }
-      - { type: .bss, vram: 0x80359CA0, name: app/code_64730 }
+      - { type: .bss, vram: 0x80359CA0, name: app/pilot_select }
       - { type: .bss, vram: 0x80359D70, name: app/code_66F70 }
       - { type: .bss, vram: 0x80359D80, name: app/environment }
       - { type: .bss, vram: 0x80359DC0, name: app/env_sound }
@@ -705,7 +705,7 @@ segments:
       - { type: .bss, vram: 0x80369F30, name: app/level }
       - { type: .bss, vram: 0x8036A8A0, name: app/code_936F0 }
       - { type: .bss, vram: 0x8036A8B0, name: app/credits }
-      - { type: .bss, vram: 0x8036A8C0, name: app/code_94E60 }
+      - { type: .bss, vram: 0x8036A8C0, name: app/level_select }
       - { type: .bss, vram: 0x8036A8E0, name: app/map3d }
       - { type: .bss, vram: 0x8036AA60, name: app/mem }
       - { type: .bss, vram: 0x8036BDF0, name: app/menu_utils }
@@ -739,7 +739,7 @@ segments:
       - { type: .bss, vram: 0x80373F10, name: app/spath }
       - { type: .bss, vram: 0x80376CC0, name: app/splash }
       - { type: .bss, vram: 0x80377F10, name: app/text_data }
-      - { type: .bss, vram: 0x80378CE0, name: app/code_C9B60 }
+      - { type: .bss, vram: 0x80378CE0, name: app/title_screen }
       - { type: .bss, vram: 0x80378CF0, name: app/targets }
       - { type: .bss, vram: 0x803798E0, name: app/task }
       - { type: .bss, vram: 0x8037AB50, name: app/thermals }

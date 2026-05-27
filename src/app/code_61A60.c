@@ -14,7 +14,6 @@
 #include "code_61A60.h"
 #include "code_9A960.h"
 #include "code_B3A70.h"
-#include "code_C9B60.h"
 #include "code_D2B10.h"
 #include "demo.h"
 #include "env_sound.h"
@@ -23,6 +22,7 @@
 #include "level.h"
 #include "snd.h"
 #include "text_data.h"
+#include "title_screen.h"
 
 s32 D_8034EA40 = 0;
 u16 D_8034EA44 = 0xFFFF;
