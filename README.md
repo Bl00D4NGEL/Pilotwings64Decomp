@@ -14,10 +14,10 @@ The purpose of this project is to produce a reconstruction of the high-level sou
 > This repository does not contain any game assets, assembly code, or other copyrighted materials.
 > You must provide your own legally-obtained copy of the game in order to extract the assets necessary to build this repository.
 
-## Quick Start
+# Quick Start
 See the [Development](#development) section below for full details on different systems. For Debian/Ubuntu, the following steps can be taken to quickly get going:
 ```bash
-$ sudo apt install binutils-mips-linux-gnu gcc git make python3 python3-pip
+$ sudo xargs -a packages.txt apt-get install -y
 $ git clone --recurse-submodules https://github.com/gcsmith/Pilotwings64Decomp.git
 $ cd Pilotwings64Decomp
 $ python3 -m venv .venv
@@ -28,34 +28,48 @@ $ make dependencies
 $ make init
 ```
 
-## Development
+# Development
 
-### Git
+## Git
 This repository uses Git submodules. Make sure to either clone the repository with the `--recurse-submodules` flag or to run `git submodule update --init --recursive` after the initial clone.
 
 When pulling updates, you can update all submodules with `git submodule update --recursive`.
 
 > Note: If you intend on developing inside of the Windows Subsystem for Linux (WSL), consider placing the repository on the WSL Linux partition. Builds are considerably slower when done on the Windows partition through WSL.
 
-### Prerequisites
+## Prerequisites
 
-#### System packages
+### Windows
 
-##### Debian/Ubuntu Linux (also under WSL)
-The following packages should be all you need to compile this project:
+Install the Windows Subsystem for Linux (WSL) and a Linux distribution according to the [Installation Guide](https://learn.microsoft.com/en-us/windows/wsl/install).
+
+The following Linux instructions assume Ubuntu or Debian as the distribution.
+
+### Debian/Ubuntu Linux (also under WSL)
+The following packages are required for the build process:
 - binutils-mips-linux-gnu (or similar, e.g. mips64-elf-binutils)
-- gcc
+- build-essential
 - git
-- make
 - python3
 - python3-pip
 
-#### macOS
-Under macOS, ensure the Xcode command line tools are installed and the following homebrew packages:
+The following packages are also recommended but not strictly required:
+- clang
+- clang-format
+- clang-tidy
+- python3-venv
+
+### macOS
+First ensure that the following tools are installed:
+- [Xcode Command Line Tools](https://developer.apple.com/documentation/xcode/command-line-tools )
+- [Homebrew](https://brew.sh/)
+
+The following homebrew packages are required for the build process:
+- coreutils
 - make
 - tehzz/n64-dev/mips64-elf-binutils
 
-#### Python3 packages / venv
+### Python3 packages / venv
 This project has python3 dependencies defined in the repo's requirements.txt. These can be managed through a python virtual environment and pip or through uv.
 
 Example setup with python3 venv/pip
@@ -71,20 +85,20 @@ $ uv venv
 $ uv pip install -r requirements.txt
 ```
 
-### Setup
+## Setup
 1. Place an unmodified Pilotwings 64 ROM into the root of the repository as `baserom.us.z64` (SHA1SUM: `ec771aedf54ee1b214c25404fb4ec51cfd43191a`).
 2. Set up dependencies
     - `make dependencies`
 3. Init project
     - `make init`
 
-### Rebuilding
+## Rebuilding
 1. If any symbols or the splat config were changed, re-extract the ROM and rebuild the linker script:
     - `make extract`
 2. Rebuild the ROM:
     - `make -j`
 
-### Docker
+## Docker
 If you prefer to develop inside of a Docker container instead of installing everything in your local environment, use the provided Dockerfile in the root of the repository.
 
 Example usage:
@@ -99,5 +113,5 @@ docker run --rm -it -v $(pwd):/pw64 pw64decomp bash
 docker run --rm -it -v $(pwd):/pw64 pw64decomp pw64 build
 ```
 
-## Contributing
+# Contributing
 Pull requests are welcome. You can help with decompilation, renaming, documentation, and tooling. PRs are subject to code formatting checks, so there is an additional dependency of `clang-format` (provided by clang). Run `make format` to format your changes prior to starting the PR.
