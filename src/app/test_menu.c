@@ -174,9 +174,16 @@ void testMenuInitText(s32 testIdx) {
 }
 
 #if defined(VERSION_JP)
-// https://decomp.me/scratch/2H6Fi
-#pragma GLOBAL_ASM("asm/nonmatchings/app/test_menu/testMenuInit.s")
+#define SPRITE_PROP_DIM_X 60
+#define SPRITE_PROP_POS_X 54
+#define SPRITE_PROP_POS_X2 202
+#define SPRITE_PROP_POS_X3 80
 #else // VERSION_US
+#define SPRITE_PROP_DIM_X 64
+#define SPRITE_PROP_POS_X 50
+#define SPRITE_PROP_POS_X2 206
+#define SPRITE_PROP_POS_X3 64
+#endif
 void testMenuInit(Unk80367710* arg0, s32 arg1) {
     Unk80362690_Unk0* temp_v1;
 
@@ -220,23 +227,23 @@ void testMenuInit(Unk80367710* arg0, s32 arg1) {
     // clang-format off
     uvSprtProps(0,
         SPRT_PROP_ENABLED(TRUE),
-        SPRT_PROP_DIM(64, 18),
+        SPRT_PROP_DIM(SPRITE_PROP_DIM_X, 18),
         SPRT_PROP_BLIT(BLIT_TEST_MENU_BUTTON_SCORING),
         SPRT_PROP_COLOR(0xFF, 0xFF, 0xFF, 0xFF),
-        SPRT_PROP_POS(50, 46),
+        SPRT_PROP_POS(SPRITE_PROP_POS_X, 46),
         SPRT_PROP_END
     );
     uvSprtProps(1,
         SPRT_PROP_ENABLED(TRUE),
-        SPRT_PROP_DIM(64, 18),
-        SPRT_PROP_POS(50, 71),
+        SPRT_PROP_DIM(SPRITE_PROP_DIM_X, 18),
+        SPRT_PROP_POS(SPRITE_PROP_POS_X, 71),
         SPRT_PROP_COLOR(0xFF, 0xFF, 0xFF, 0xFF),
         SPRT_PROP_BLIT(BLIT_TEST_MENU_BUTTON_START),
         SPRT_PROP_END
     );
     uvSprtProps(2,
         SPRT_PROP_ENABLED(TRUE),
-        SPRT_PROP_DIM(64, 18),
+        SPRT_PROP_DIM(SPRITE_PROP_DIM_X, 18),
         SPRT_PROP_POS(128, 46),
         SPRT_PROP_COLOR(0xFF, 0xFF, 0xFF, 0xFF),
         SPRT_PROP_BLIT(BLIT_TEST_MENU_BUTTON_CONTROL),
@@ -244,7 +251,7 @@ void testMenuInit(Unk80367710* arg0, s32 arg1) {
     );
     uvSprtProps(3,
         SPRT_PROP_ENABLED(TRUE),
-        SPRT_PROP_DIM(64, 18),
+        SPRT_PROP_DIM(SPRITE_PROP_DIM_X, 18),
         SPRT_PROP_POS(128, 71),
         SPRT_PROP_COLOR(0xFF, 0xFF, 0xFF, 0xFF),
         SPRT_PROP_BLIT(BLIT_TEST_MENU_BUTTON_VIEW_MAP),
@@ -252,16 +259,16 @@ void testMenuInit(Unk80367710* arg0, s32 arg1) {
     );
     uvSprtProps(4,
         SPRT_PROP_ENABLED(TRUE),
-        SPRT_PROP_DIM(64, 18),
+        SPRT_PROP_DIM(SPRITE_PROP_DIM_X, 18),
         SPRT_PROP_COLOR(0xFF, 0xFF, 0xFF, 0xFF),
-        SPRT_PROP_POS(206, 46),
+        SPRT_PROP_POS(SPRITE_PROP_POS_X2, 46),
         SPRT_PROP_BLIT(BLIT_TEST_MENU_BUTTON_SAMPLE_PHOTO),
         SPRT_PROP_END
     );
     uvSprtProps(5,
         SPRT_PROP_ENABLED(TRUE),
-        SPRT_PROP_DIM(64, 18),
-        SPRT_PROP_POS(206, 71),
+        SPRT_PROP_DIM(SPRITE_PROP_DIM_X, 18),
+        SPRT_PROP_POS(SPRITE_PROP_POS_X2, 71),
         SPRT_PROP_COLOR(0xFF, 0xFF, 0xFF, 0xFF),
         SPRT_PROP_BLIT(BLIT_TEST_MENU_BUTTON_HINT),
         SPRT_PROP_END
@@ -282,15 +289,15 @@ void testMenuInit(Unk80367710* arg0, s32 arg1) {
     );
     uvSprtProps(8,
         SPRT_PROP_ENABLED(TRUE),
-        SPRT_PROP_DIM(64, 18),
-        SPRT_PROP_POS(206, 71),
+        SPRT_PROP_DIM(SPRITE_PROP_DIM_X, 18),
+        SPRT_PROP_POS(SPRITE_PROP_POS_X2, 71),
         SPRT_PROP_COLOR(0xFF, 0xFF, 0xFF, 0xFF),
         SPRT_PROP_BLIT(BLIT_TEST_MENU_BUTTON_RETURN),
         SPRT_PROP_END
     );
     uvSprtProps(9,
         SPRT_PROP_ENABLED(TRUE),
-        SPRT_PROP_DIM(64, 18),
+        SPRT_PROP_DIM(SPRITE_PROP_DIM_X, 18),
         SPRT_PROP_POS(128, 71),
         SPRT_PROP_COLOR(0xFF, 0xFF, 0xFF, 0xFF),
         SPRT_PROP_BLIT(BLIT_TEST_MENU_BUTTON_VIEW_DEMO),
@@ -300,7 +307,11 @@ void testMenuInit(Unk80367710* arg0, s32 arg1) {
     if (arg1 == 0) {
         sMenuCurX = 0;
         sMenuCurY = 1;
+#if defined(VERSION_JP)
+        sSelMenuScreenX = (sMenuCurX * 74) + 51;
+#else // VERSION_US
         sSelMenuScreenX = (sMenuCurX * 78) + 47;
+#endif
         sSelMenuScreenY = (sMenuCurY * 25) + 26;
         sStickDirX = sStickDirY = 0;
         D_80350984 = 0xFF;
@@ -308,12 +319,7 @@ void testMenuInit(Unk80367710* arg0, s32 arg1) {
     sDrawTestPts = FALSE;
     testMenuInitText(sCurTestIdx);
 }
-#endif
 
-#if defined(VERSION_JP)
-// https://decomp.me/scratch/O3gns
-#pragma GLOBAL_ASM("asm/nonmatchings/app/test_menu/testMenuHandler.s")
-#else // VERSION_US
 u8 testMenuHandler(Unk80367710* arg0) {
     Unk80362690_Unk0* sp6C;
     s32 testIdxAdj;
@@ -408,7 +414,11 @@ u8 testMenuHandler(Unk80367710* arg0) {
         if ((menuPrevX != sMenuCurX) || (menuPrevY != sMenuCurY)) {
             sndPlaySfxVolPitchPan(SFX_UI_MOVE_CHIME, 1.0f, 1.03f, 0.0f);
         }
+#if defined(VERSION_JP)
+        sSelMenuScreenX = (sMenuCurX * 74) + 51;
+#else // VERSION_US
         sSelMenuScreenX = (sMenuCurX * 78) + 47;
+#endif
         sSelMenuScreenY = (sMenuCurY * 25) + 26;
         sp64 = (sMenuCurX - sMenuMinX) + ((sMenuCurY - sMenuMinY) * ((sMenuMaxX - sMenuMinX) + 1));
         if (sTestMenuState != 2) {
@@ -425,7 +435,11 @@ u8 testMenuHandler(Unk80367710* arg0) {
                 var_a2 = sCurTestIdx;
                 sMenuCurX = sMenuMinX;
                 sMenuCurY = sMenuMaxY;
+#if defined(VERSION_JP)
+                sSelMenuScreenX = (sMenuCurX * 74) + 51;
+#else // VERSION_US
                 sSelMenuScreenX = (sMenuCurX * 78) + 47;
+#endif
                 sSelMenuScreenY = (sMenuCurY * 25) + 26;
                 sp64 = (sMenuCurX - sMenuMinX) + ((sMenuCurY - sMenuMinY) * ((sMenuMaxX - sMenuMinX) + 1));
 
@@ -531,7 +545,11 @@ u8 testMenuHandler(Unk80367710* arg0) {
                 sndPlaySfx(SFX_UI_CANCEL);
                 if (sTestMenuState == 2) {
                     // these u8 values are needed to load integer literals at runtime
+#if defined(VERSION_JP)
+                    u16 col2ScreenX = (2 * 74) + 51;
+#else // VERSION_US
                     u16 col2ScreenX = (2 * 78) + 47;
+#endif
                     u16 row1ScreenY = (1 * 25) + 26;
                     sTestMenuState = 0;
                     sMenuCurX = 2;
@@ -546,7 +564,6 @@ u8 testMenuHandler(Unk80367710* arg0) {
     }
     return 6;
 }
-#endif
 
 void testMenuDraw(Camera* camera, u8 classIdx, u8 vehIdx) {
     s32 pad1;

@@ -13,6 +13,7 @@ root_dir = os.path.abspath(os.path.join(script_dir, ".."))
 CPP_FLAGS = [
     "-I.",
     "-Iinclude",
+    "-Iinclude/kernel",
     "-Isrc",
     "-Itools/ultralib/include",
     "-Itools/ultralib/include/PR",
@@ -23,10 +24,10 @@ CPP_FLAGS = [
     "-DM2CTX",
 ]
 
-def import_c_file(in_file) -> str:
+def import_c_file(in_file: str, version: str) -> str:
     in_file = os.path.relpath(in_file, root_dir)
 
-    cpp_command = ["gcc", "-E", "-P", "-dD", *CPP_FLAGS, in_file]
+    cpp_command = ["gcc", "-E", "-P", "-dD", *CPP_FLAGS, f"-DVERSION_{version.upper()}", in_file]
 
     with tempfile.NamedTemporaryFile(suffix=".c") as tmp:
         stock_macros = subprocess.check_output(["gcc", "-E", "-P", "-dM", tmp.name], cwd=root_dir, encoding="utf-8")
@@ -73,9 +74,21 @@ def main():
         "c_file",
         help="""File from which to create context""",
     )
+    parser.add_argument(
+        "-v",
+        "--version",
+        help="""Which version to make the context for (US or JP)""",
+        default="us",
+
+    )
     args = parser.parse_args()
 
-    output = import_c_file(args.c_file)
+    version = args.version.upper()
+    if version != 'US' and version != 'JP':
+        print(f"given version ('{args.version}') is not supported. Defaulting to US")
+        version = 'US'
+
+    output = import_c_file(args.c_file, version)
 
     with open(os.path.join(root_dir, "ctx.c"), "w", encoding="UTF-8") as f:
         f.write(output)
