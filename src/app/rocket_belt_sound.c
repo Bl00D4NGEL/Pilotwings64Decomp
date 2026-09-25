@@ -5,6 +5,7 @@
 #include "hud.h"
 #include "rocket_belt.h"
 #include "snd.h"
+#include "text_data.h"
 
 STATIC_DATA EventCallbackInfo sRbSoundEventCbInfo;
 STATIC_DATA Unk803599D0 sRbSound_80371898;
@@ -73,11 +74,11 @@ STATIC_FUNC void rbSoundEventHandler(s32 event, void* userData, s32 eventData) {
             break;
         }
         sp48 = 0.0f;
-        if ((rbData->unkEB != 0) && (hudGet_8031DA9C() == 0x17B) && (rbData->unk394 < D_8034F850)) {
+        if ((rbData->unkEB != 0) && (hudGet_8031DA9C() == TEXT_FUEL_WAR) && (rbData->unk394 < D_8034F850)) {
             rbData->unk394 = D_8034F850 + 0.2f;
             sndPlaySfxVolPitchPan(0x6C, 0.8f, 0.707f, sp48);
         }
-        if ((rbData->unkEC != 0) && (hudGet_8031DA9C() == 0x4A) && (rbData->unk398 < D_8034F850)) {
+        if ((rbData->unkEC != 0) && (hudGet_8031DA9C() == TEXT_FUEL_OUT) && (rbData->unk398 < D_8034F850)) {
             rbData->unk398 = D_8034F850 + 0.2f;
             sndPlaySfxVolPitchPan(0x6C, 0.8f, 0.707f, sp48);
         }
@@ -203,7 +204,10 @@ STATIC_FUNC void rbSoundEvent12_22(RocketBeltData* rbData) {
             }
         }
         if ((rbData->unk90 == 4) && (D_80362690->state != 6)) {
-            if ((rbData->unk384 & 0x2) == 0 && (rbData->unk384 & 0x10) == 0) {
+#if !defined(VERSION_JP)
+            if ((rbData->unk384 & 0x2) == 0 && (rbData->unk384 & 0x10) == 0)
+#endif
+            {
                 if (rbData->unk64 != 0) {
                     sndSetMusic(BGM_ROCKET_BELT_LAND_OK);
                 } else {
@@ -284,4 +288,3 @@ STATIC_FUNC void rbSoundEvent13(RocketBeltData* rbData) {
     func_80200180(0, 4, 0.0f, 0);
     uvEventRemoveCb(sRbSoundEventCbInfo, 1, 0xD, 0x12, 0x13, 0x10, 0xC, 0x16, 0x24);
 }
-

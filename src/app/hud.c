@@ -83,7 +83,11 @@ void hudDemoContButton(s32 spriteId, s32 x, s32 y);
 
 void hudInit(void) {
     D_8034F914 = 0;
+#if defined(VERSION_JP)
+    D_8036D224 = 0;
+#else // VERSION_US
     D_8036D224 = 1;
+#endif
     D_8034F910 = 0.0f;
     sHudState.renderFlags = 0;
     sHudState.unkC = 0;
@@ -1161,7 +1165,11 @@ void hudDrawRadar(s32 x, s32 y, f32 xOff, f32 yOff, f32 heading, f32 pitch, HUDR
 
     D_8036D224++;
     if (D_8036D224 > 0xFD) {
+#if defined(VERSION_JP)
+        D_8036D224 = 0;
+#else // VERSION_US
         D_8036D224 = 1;
+#endif
     }
 
     for (i = 0; i < 10; i++) {
@@ -1785,7 +1793,11 @@ void hudDrawLowFuel(HUDState* hud) {
         } else {
             uvFontColor(0xFF, 0x00, 0x00, 0xFF); // red
         }
+#if defined(VERSION_JP)
+        uvFontPrintStr16((SCREEN_WIDTH / 2) - ((uvFontStr16Width(&hud->unkB40[0]) - 16) / 2), 125, &hud->unkB40[0], 0x14, 0xFFE);
+#else // VERSION_US
         uvFontPrintStr16((SCREEN_WIDTH / 2) - ((uvFontStr16Width(&hud->unkB40[0]) - 16) / 2), 125, &hud->unkB40[0], 0x28, 0xFFE);
+#endif
     }
 }
 
@@ -1803,7 +1815,11 @@ void hudDrawStartText(HUDState* hud) {
         } else {
             uvFontColor(0x00, 0x28, 0xFF, 0xFF); // blue
         }
+#if defined(VERSION_JP)
+        uvFontPrintStr16((SCREEN_WIDTH / 2) - ((uvFontStr16Width(&hud->unkBD0[0]) - 16) / 2), 140, &hud->unkBD0[0], 0x14, 0xFFE);
+#else // VERSION_US
         uvFontPrintStr16((SCREEN_WIDTH / 2) - ((uvFontStr16Width(&hud->unkBD0[0]) - 16) / 2), 140, &hud->unkBD0[0], 0x28, 0xFFE);
+#endif
     }
 }
 

@@ -228,6 +228,9 @@ void uvGfxStateDrawDL(uvGfxState_t* arg0) {
     gGfxNumTriangles[gGfxFbIndex] += arg0->triCount * 2;
 }
 
+#if defined(VERSION_JP)
+#pragma GLOBAL_ASM("asm/nonmatchings/kernel/graphics/uvGfxStateDraw.s")
+#else // VERSION_US
 void uvGfxStateDraw(uvGfxState_t* arg0) {
     u32 clearMode;
     u32 setMode;
@@ -423,6 +426,7 @@ void uvGfxStateDraw(uvGfxState_t* arg0) {
         gGfxNumTriangles[gGfxFbIndex] += arg0->triCount;
     }
 }
+#endif
 
 void uvGfxPushMtxUnk(Mtx4F* arg0) {
     Mtx spC8;
@@ -1128,4 +1132,3 @@ void uvCopyFrameBuf(s32 fb_id) {
     dst = gGfxFbPtrs[fb_id ^ 1];
     _uvMediaCopy(dst, src, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(u16));
 }
-

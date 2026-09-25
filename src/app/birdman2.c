@@ -562,15 +562,14 @@ void bird_802D0080(BirdmanData* bmData) {
     f32 var_fv1;
     f32 var_fa0;
     s32 sp258;
+#if !defined(VERSION_JP)
     Vec3F sp24C;
+#endif
     Vec3F sp240;
     Vec3F sp234;
     Vec3F sp228;
     Mtx4F sp1E8;
     Unk802D3658_Unk1224 spA4;
-    f32 temp_fv0;
-    f32 temp_fv1;
-    f32 temp_fa0;
 
     for (i = 0; i < 4; i++) {
         bmData->unk140[i] = 0.0f;
@@ -613,22 +612,17 @@ void bird_802D0080(BirdmanData* bmData) {
                 return;
             }
             if ((bmData->unk105 != 0) && (bmData->unk104 != 1)) {
+#if !defined(VERSION_JP)
                 uvVec3Copy(&sp24C, &bmData->unk200);
                 func_802DC074(&bmData->unk1C0, &bmData->unk200, &bmData->unk218, &temp_s1->unk34, 0.5f);
-                temp_fv0 = ABS_NOEQ(sp24C.x - bmData->unk200.x);
-                if (temp_fv0 < 0.1f) {
-                    temp_fv1 = ABS_NOEQ(sp24C.y - bmData->unk200.y);
-                    if (temp_fv1 < 0.1f) {
-                        temp_fa0 = ABS_NOEQ(sp24C.y - bmData->unk200.z);
-                        if (temp_fa0 < 0.1f) {
-                            bmData->unk200.x += temp_s1->unk34.x;
-                            bmData->unk200.y += temp_s1->unk34.y;
-                            bmData->unk200.z += temp_s1->unk34.z;
-                            uvMat4LocalToWorld(&bmData->unk1C0, &bmData->unk218, &bmData->unk200);
-                            return;
-                        }
-                    }
+                if ((FABS(sp24C.x - bmData->unk200.x) < 0.1f) && (FABS(sp24C.y - bmData->unk200.y) < 0.1f) && (FABS(sp24C.y - bmData->unk200.z) < 0.1f)) {
+                    bmData->unk200.x += temp_s1->unk34.x;
+                    bmData->unk200.y += temp_s1->unk34.y;
+                    bmData->unk200.z += temp_s1->unk34.z;
+                    uvMat4LocalToWorld(&bmData->unk1C0, &bmData->unk218, &bmData->unk200);
+                    return;
                 }
+#endif
                 bmData->unk10.m[3][0] += 0.01f * bmData->unk174.x;
                 bmData->unk10.m[3][1] += 0.01f * bmData->unk174.y;
                 bmData->unk10.m[3][2] += 0.01f * bmData->unk174.z;

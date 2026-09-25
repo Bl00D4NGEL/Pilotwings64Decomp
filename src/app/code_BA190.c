@@ -240,7 +240,9 @@ s32 func_803335D0(SkyDivingData* sdData) {
     sp4C.y = sdData->unk10.m[3][1];
     sp4C.z = sdData->unk10.m[3][2];
     sdData->unkBC = 1000000.0f;
+#if !defined(VERSION_JP)
     sp6C = 0.0f;
+#endif
     sp43 = db_getgnd(&sdData->unk230, &sp4C, &sdData->unk23C, &sp58, &sp6C, &sp5C);
 
     temp_fv0 = sp4C.z - sp6C;

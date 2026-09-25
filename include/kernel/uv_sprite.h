@@ -6,6 +6,80 @@
 #include <PR/sp.h>
 
 enum SpriteBlitId {
+#if defined(VERSION_JP)
+    BLIT_ID_04                          = 0x09,
+    BLIT_ID_05                          = 0x0A,
+    BLIT_ID_06                          = 0x0B,
+    BLIT_ID_07                          = 0x0C,
+    BLIT_ID_08                          = 0x0D,
+    BLIT_ID_0B                          = 0x10,
+    BLIT_ID_0C                          = 0x11,
+    BLIT_ID_16                          = 0x1B,
+    BLIT_ID_17                          = 0x1C,
+    BLIT_ID_18                          = 0x1D,
+    BLIT_ID_19                          = 0x1E,
+    BLIT_ID_1A                          = 0x1F,
+    BLIT_ID_1B                          = 0x20,
+    BLIT_ID_1F                          = 0x25,
+    BLIT_ID_20                          = 0x26,
+    BLIT_ID_21                          = 0x27,
+    BLIT_ID_22                          = 0x28,
+    BLIT_ID_23                          = 0x29,
+    BLIT_ID_24                          = 0x2A,
+    BLIT_ID_25                          = 0x2B,
+    BLIT_ID_26                          = 0x2C,
+    BLIT_ID_27                          = 0x2D,
+    BLIT_ID_28                          = 0x2E,
+    BLIT_ID_29                          = 0x2F,
+    BLIT_ID_2A                          = 0x30,
+    BLIT_ID_2B                          = 0x31,
+    BLIT_ID_2C                          = 0x32,
+    BLIT_ID_2D                          = 0x33,
+    BLIT_J_41                           = 0x41,
+    BLIT_J_42                           = 0x42,
+    BLIT_J_43                           = 0x43,
+    BLIT_J_44                           = 0x44,
+    BLIT_J_45                           = 0x45,
+    BLIT_J_46                           = 0x46,
+    BLIT_J_47                           = 0x47,
+    BLIT_J_48                           = 0x48,
+    BLIT_J_49                           = 0x49,
+    BLIT_J_4A                           = 0x4A,
+    BLIT_J_4B                           = 0x4B,
+    BLIT_J_4C                           = 0x4C,
+    BLIT_J_4D                           = 0x4D,
+    BLIT_J_4E                           = 0x4E,
+    BLIT_J_4F                           = 0x4F,
+    BLIT_J_50                           = 0x50,
+    BLIT_J_51                           = 0x51,
+    BLIT_J_52                           = 0x52,
+    BLIT_J_53                           = 0x53,
+    BLIT_J_54                           = 0x54,
+    BLIT_J_55                           = 0x55,
+    BLIT_J_56                           = 0x56,
+    BLIT_J_57                           = 0x57,
+    BLIT_J_58                           = 0x58,
+    BLIT_J_59                           = 0x59,
+    BLIT_J_5A                           = 0x5A,
+    BLIT_J_5B                           = 0x5B,
+    BLIT_J_5C                           = 0x5C,
+    BLIT_N64_CONTROLLER_INFOGRAPHIC     = 0x5D, // N64 controller infographic
+    BLIT_ID_3D                          = 0x5F,
+    BLIT_ID_3E                          = 0x60,
+    BLIT_ID_3F                          = 0x61,
+    BLIT_ID_40                          = 0x62,
+    BLIT_ID_41                          = 0x63,
+    BLIT_ID_42                          = 0x64,
+    BLIT_ID_43                          = 0x65,
+    BLIT_ID_44                          = 0x66,
+    BLIT_ID_45                          = 0x67,
+    BLIT_ID_46                          = 0x68,
+    BLIT_ID_47                          = 0x69,
+    BLIT_ID_48                          = 0x6A,
+    BLIT_ID_49                          = 0x6B,
+    BLIT_ID_4A                          = 0x6C,
+    BLIT_ID_4B                          = 0x6D,
+#else
     BLIT_ID_04                          = 0x04,
     BLIT_ID_05                          = 0x05,
     BLIT_ID_06                          = 0x06,
@@ -65,8 +139,13 @@ enum SpriteBlitId {
     BLIT_ID_3E                          = 0x3E,
     BLIT_ID_3F                          = 0x3F,
     BLIT_ID_40                          = 0x40,
+    BLIT_ID_41                          = 0x41,
     BLIT_ID_42                          = 0x42,
     BLIT_ID_43                          = 0x43,
+    BLIT_ID_44                          = 0x44,
+    BLIT_ID_45                          = 0x45,
+    BLIT_ID_46                          = 0x46,
+    BLIT_ID_47                          = 0x47,
     BLIT_ID_48                          = 0x48,
     BLIT_ID_49                          = 0x49,
     BLIT_ID_4A                          = 0x4A,
@@ -97,6 +176,14 @@ enum SpriteBlitId {
     BLIT_CONT_INFO_ADJUST_JUMP_ANGLES   = 0x63, // "Adjust angles for jumping
     BLIT_CONT_INFO_FLAP_WINGS           = 0x64, // "Flap the wings"
     BLIT_CONT_INFO_BRAKE_HOVER          = 0x65, // "Brake / Hover"
+#endif
+};
+
+enum TextureId {
+    TEXTURE_NO_MEDAL     = 0x148,
+    TEXTURE_BRONZE_MEDAL = 0x149,
+    TEXTURE_SILVER_MEDAL = 0x14A,
+    TEXTURE_GOLD_MEDAL   = 0x14B,
 };
 
 #define SPRT_PROPID_END             0
@@ -156,4 +243,3 @@ void uvSprtUpdateUnk(ParsedUVTX* uvtx);
 void uvSprtResetUnk(void);
 
 #endif // PILOTWINGS64_UV_SPRITE_H
-
