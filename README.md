@@ -1,8 +1,13 @@
 [![Build](https://github.com/gcsmith/Pilotwings64Decomp/actions/workflows/regress-internal.yaml/badge.svg)](https://github.com/gcsmith/Pilotwings64Decomp/actions/workflows/regress-internal.yaml)
-[![Code](https://decomp.dev/gcsmith/Pilotwings64Decomp/us.svg?mode=shield&measure=code&label=Code%20Bytes)](https://decomp.dev/gcsmith/Pilotwings64Decomp)
-[![Data](https://decomp.dev/gcsmith/Pilotwings64Decomp/us.svg?mode=shield&measure=data&label=Data%20Bytes)](https://decomp.dev/gcsmith/Pilotwings64Decomp)
-[![Functions](https://decomp.dev/gcsmith/Pilotwings64Decomp/us.svg?mode=shield&measure=matched_functions&label=Functions)](https://decomp.dev/gcsmith/Pilotwings64Decomp)
 [![Discord](https://img.shields.io/discord/1465499203831730191?color=%237289DA&logo=discord&logoColor=%23FFFFFF)](https://discord.gg/bkrYXSjrKE)
+
+[![Code](https://decomp.dev/gcsmith/Pilotwings64Decomp/us.svg?mode=shield&measure=code&label=US%20Code%20Bytes)](https://decomp.dev/gcsmith/Pilotwings64Decomp)
+[![Data](https://decomp.dev/gcsmith/Pilotwings64Decomp/us.svg?mode=shield&measure=data&label=US%20Data%20Bytes)](https://decomp.dev/gcsmith/Pilotwings64Decomp)
+[![Functions](https://decomp.dev/gcsmith/Pilotwings64Decomp/us.svg?mode=shield&measure=matched_functions&label=US%20Functions)](https://decomp.dev/gcsmith/Pilotwings64Decomp)
+
+[![Code](https://decomp.dev/gcsmith/Pilotwings64Decomp/jp.svg?mode=shield&measure=code&label=JP%20Code%20Bytes)](https://decomp.dev/gcsmith/Pilotwings64Decomp)
+[![Data](https://decomp.dev/gcsmith/Pilotwings64Decomp/jp.svg?mode=shield&measure=data&label=JP%20Data%20Bytes)](https://decomp.dev/gcsmith/Pilotwings64Decomp)
+[![Functions](https://decomp.dev/gcsmith/Pilotwings64Decomp/jp.svg?mode=shield&measure=matched_functions&label=JP%20Functions)](https://decomp.dev/gcsmith/Pilotwings64Decomp)
 
 # Pilotwings64Decomp
 
