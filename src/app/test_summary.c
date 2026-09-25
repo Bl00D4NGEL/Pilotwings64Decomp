@@ -194,10 +194,6 @@ s32 func_8030C61C(void) {
     return ret;
 }
 
-#if defined(VERSION_JP)
-// https://decomp.me/scratch/JzhI1
-#pragma GLOBAL_ASM("asm/nonmatchings/app/test_summary/func_8030C6A0.s")
-#else // VERSION_US
 void func_8030C6A0(void) {
     Unk80362690_Unk0* sp74;
     s16* sp70;
@@ -208,8 +204,10 @@ void func_8030C6A0(void) {
     s32 sp58;
     s32 var_v1;
     s32 sp50;
+#if defined(VERSION_US)
     s32 sp4C;
     s32 pad2[2];
+#endif
 
     sp74 = &D_80362690->unkC[D_80362690->unk9C];
     if (IS_MAIN_VEHICLE(sp74->veh)) {
@@ -220,8 +218,10 @@ void func_8030C6A0(void) {
     var_v1 = levelSetPointsToNextMedal(&sp50, levelGetTotalPoints(&D_80364210[D_80362690->unk9C], sp74->cls, sp74->veh), sp58);
 
     if ((var_v1 == 3) && (sp50 == 0)) {
+#if defined(VERSION_US)
         // FAKE
         if (sp50) { }
+#endif
         var_v1 = 4;
     }
 
@@ -244,26 +244,43 @@ void func_8030C6A0(void) {
     uvFontSet(6);
     uvFontScale(1.0, 1.0);
     uvFontColor(0xFA, 0xFA, 0xFA, 0xFF);
-    uvFontPrintStr16(((160 - (uvFontStr16Width(sp70) / 2)) + 8.0f), 120, sp70, 0x28, 0xFFE);
-    if (sp74->veh != 6) {
+#if defined(VERSION_JP)
+    uvFontPrintStr16(((160 - (uvFontStr16Width(sp70) / 2)) + 8.0f), 120, sp70, 20, 0xFFE);
+#else // VERSION_US
+    uvFontPrintStr16(((160 - (uvFontStr16Width(sp70) / 2)) + 8.0f), 120, sp70, 40, 0xFFE);
+#endif
+    if (sp74->veh != VEHICLE_BIRDMAN) {
         uvFontSet(6);
         uvFontScale(1.0, 1.0);
         uvFontColor(0xC8, 0xC8, 0x00, 0xFF);
-        uvFontPrintStr16(((160 - (uvFontStr16Width(sp68) / 2)) + 8.0f), 75, sp68, 0x28, 0xFFE);
+#if defined(VERSION_JP)
+        uvFontPrintStr16(((160 - (uvFontStr16Width(sp68) / 2)) + 8.0f), 75, sp68, 20, 0xFFE);
+#else // VERSION_US
+        uvFontPrintStr16(((160 - (uvFontStr16Width(sp68) / 2)) + 8.0f), 75, sp68, 40, 0xFFE);
+#endif
         uvFontSet(6);
         uvFontScale(1.0, 1.0);
         uvFontColor(0xB4, 0xB4, 0xFA, 255);
+#if defined(VERSION_JP)
+        uvFontPrintStr16((160 - (uvFontStr16Width(sp6C) / 2)) + 8.0f, 35, sp6C, 20, 0xFFE);
+        if (var_v1 != 4) {
+            uvFontSet(6);
+            uvFontScale(1.0, 1.0);
+            uvFontColor(0xB4U, 0xB4U, 0xFAU, 0xFFU);
+            uvFontPrintStr16(360 - (uvFontStr16Width(sp6C) / 2), 35, sp5C, 20, 0xFFE);
+        }
+#else // VERSION_US
         if (var_v1 != 4) {
             sp4C = 160 - ((uvFontStr16Width(sp6C) + 0x24) / 2);
-            uvFontPrintStr16(sp4C + 36, 35, sp6C, 0x28, 0xFFE);
-            uvFontPrintStr16(sp4C, 35, sp5C, 0x28, 0xFFE);
+            uvFontPrintStr16(sp4C + 36, 35, sp6C, 40, 0xFFE);
+            uvFontPrintStr16(sp4C, 35, sp5C, 40, 0xFFE);
         } else {
-            uvFontPrintStr16(((160 - (uvFontStr16Width(sp6C) / 2)) + 8.0f), 35, sp6C, 0x28, 0xFFE);
+            uvFontPrintStr16(((160 - (uvFontStr16Width(sp6C) / 2)) + 8.0f), 35, sp6C, 40, 0xFFE);
         }
+#endif
     }
     uvFontGenDlist();
 }
-#endif
 
 void func_8030CB10(void) {
     Camera* camera = D_80362690->unkC[D_80362690->unk9C].unk70;

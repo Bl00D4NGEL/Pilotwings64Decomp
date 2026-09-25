@@ -118,10 +118,6 @@ s32 func_80342630(void) {
     return var_s1;
 }
 
-#if defined(VERSION_JP)
-// https://decomp.me/scratch/qvdZR
-#pragma GLOBAL_ASM("asm/nonmatchings/app/title_screen/func_803427FC.s")
-#else // VERSION_US
 STATIC_FUNC void func_803427FC(void) {
     Mtx4F sp58;
     Camera* camera;
@@ -138,6 +134,14 @@ STATIC_FUNC void func_803427FC(void) {
         SPRT_PROP_TRANSPARENT(1),
         SPRT_PROP_END
     );
+#if defined(VERSION_JP)
+    uvSprtProps(2,
+        SPRT_PROP_ENABLED(TRUE),
+        SPRT_PROP_POS(56, 212),
+        SPRT_PROP_BLIT(BLIT_J_21),
+        SPRT_PROP_END
+    );
+#endif
     uvSprtProps(3,
         SPRT_PROP_ENABLED(TRUE),
         SPRT_PROP_POS(283, 213),
@@ -150,6 +154,7 @@ STATIC_FUNC void func_803427FC(void) {
         SPRT_PROP_BLIT(BLIT_ID_1E),
         SPRT_PROP_END
     );
+
     // clang-format on
     camera = D_80362690->unkC[D_80362690->unk9C].unk70;
     uvChan_80204BD4(camera->unk22C, 1, 1.0f);
@@ -188,7 +193,12 @@ STATIC_FUNC void func_803427FC(void) {
     uvDobjModel(D_80378CE0->unk10, MODEL_PILOTWINGS_LOGO_FOUR);
     uvDobjPosm(D_80378CE0->unk10, 0, &D_80378CE0->unkEC);
     uvDobjState(D_80378CE0->unk10, 2);
+
+#if defined(VERSION_JP)
+    menuCreateItems(94, 60, 6, 1.0f, 1.0f, sMainMenuItems, 2);
+#else // VERSION_US
     menuCreateItems(102, 60, 6, 1.0f, 1.0f, sMainMenuItems, 2);
+#endif
     menuUtilSetColors(MENU_COLOR_SELECTED, 0xFF, 0xFF, 0);
     menuUtilSetColors(MENU_COLOR_ITEM, 0xFF, 0xFF, 0xFF);
     menuUtilSetColors(MENU_COLOR_GRAPHICS, 0xFF, 0xFF, 0);
@@ -214,7 +224,6 @@ STATIC_FUNC void func_803427FC(void) {
         func_8033FCD0(0xFFU);
     }
 }
-#endif
 
 STATIC_FUNC void func_80342D2C(void) {
     Unk803136C4_Arg0 sp2FC;
@@ -319,11 +328,7 @@ void func_803434E8(void) {
 }
 #endif
 
-#if defined(VERSION_JP)
-// https://decomp.me/scratch/svW3A
-#pragma GLOBAL_ASM("asm/nonmatchings/app/title_screen/func_80343550.s")
-#else // VERSION_US
-STATIC_FUNC s32 func_80343550(void) {
+s32 func_80343550(void) {
     s32 temp_v0;
     s32 gameState;
 
@@ -390,11 +395,16 @@ STATIC_FUNC s32 func_80343550(void) {
         D_80378CE0->unk28 = 7;
         D_80378CE0->unk230 = D_80378CE0->unk22C;
         break;
+#if defined(VERSION_JP)
+    case 7:
+        break;
+#else // VERSION_US
     case 8:
         if (uvClkGetSec(UV_CLKID_APP) >= 1.0) {
             gameState = GAME_STATE_FILE_MENU;
         }
         break;
+#endif
     }
     if (D_80378CE0->unk28 > 0) {
         func_80343B5C();
@@ -408,7 +418,11 @@ STATIC_FUNC s32 func_80343550(void) {
     if (D_80378CE0->unk28 >= 7) {
         func_8034411C();
     }
+#if defined(VERSION_JP)
+    if (D_80378CE0->unk22C >= 16.65f) {
+#else
     if (D_80378CE0->unk22C >= 16.65f && D_80378CE0->unk28 != 8) {
+#endif
         menuUtilSetSoundFlags(MENU_SOUND_CHANGE | MENU_SOUND_SELECT);
         temp_v0 = menuCheckInputs();
         if (temp_v0 == -3) {
@@ -417,8 +431,12 @@ STATIC_FUNC s32 func_80343550(void) {
         }
         switch (temp_v0) {
         case 0:
+#if defined(VERSION_JP)
+            gameState = GAME_STATE_FILE_MENU;
+#else
             uvClkReset(UV_CLKID_APP);
             D_80378CE0->unk28 = 8;
+#endif
             break;
         case 1:
             gameState = GAME_STATE_OPTIONS;
@@ -430,7 +448,6 @@ STATIC_FUNC s32 func_80343550(void) {
     D_80378CE0->unk22C += D_8034F854;
     return gameState;
 }
-#endif
 
 STATIC_FUNC void introSceneRunner(void) {
     Camera* camera = D_80362690->unkC[D_80362690->unk9C].unk70;

@@ -80,10 +80,6 @@ void map3dMain(Unk80362690* arg0, s32 arg1) {
     map3dDeinit(arg0, arg1);
 }
 
-#if defined(VERSION_JP)
-// https://decomp.me/scratch/0sYkN
-#pragma GLOBAL_ASM("asm/nonmatchings/app/map3d/map3dLoad.s")
-#else // VERSION_US
 void map3dLoad(Unk80362690* arg0, s32 arg1) {
     Mtx4F sp148;
     Camera* camera;
@@ -210,7 +206,7 @@ void map3dLoad(Unk80362690* arg0, s32 arg1) {
         sp148.m[3][2] += temp_fa1;
         uvDobjPosm(objId, 0, &sp148);
         sMapObjectCount++;
-        map3dAddItem(0x2E, spD4, spD0, spCC);
+        map3dAddItem(BLIT_WAYPOINT_CURRENT_POSITION, spD4, spD0, spCC);
     }
 
     if (sp140->veh != VEHICLE_BIRDMAN) {
@@ -228,10 +224,10 @@ void map3dLoad(Unk80362690* arg0, s32 arg1) {
                             uvDobjModel(objId, MODEL_MAP_RING_TARGET_BLUE_CUBE);
                         }
                         if ((gRings[i].unk1B9 != 0) && arg1) {
-                            map3dAddItem(0x4C, gRings[i].curPose.m[3][0] * sMapGlobalScale, gRings[i].curPose.m[3][1] * sMapGlobalScale,
+                            map3dAddItem(BLIT_WAYPOINT_NEXT, gRings[i].curPose.m[3][0] * sMapGlobalScale, gRings[i].curPose.m[3][1] * sMapGlobalScale,
                                          gRings[i].curPose.m[3][2] * sMapGlobalScale);
                         } else if (gRings[i].scoreType == 3) {
-                            map3dAddItem(0x33, gRings[i].curPose.m[3][0] * sMapGlobalScale, gRings[i].curPose.m[3][1] * sMapGlobalScale,
+                            map3dAddItem(BLIT_WAYPOINT_GOAL, gRings[i].curPose.m[3][0] * sMapGlobalScale, gRings[i].curPose.m[3][1] * sMapGlobalScale,
                                          gRings[i].curPose.m[3][2] * sMapGlobalScale);
                         }
                     } else {
@@ -275,7 +271,7 @@ void map3dLoad(Unk80362690* arg0, s32 arg1) {
             uvDobjPosm(objId, 0, &sp148);
             sMapObjectCount++;
             if (arg1) {
-                map3dAddItem(0x2F, spA0, sp9C, sp98);
+                map3dAddItem(BLIT_WAYPOINT_LANDING_POINT, spA0, sp9C, sp98);
             }
             if (sMapObjectCount >= ARRAY_COUNT(sMapObjects)) {
                 _uvDebugPrintf("map3d : too many map objects [%d]\n", sMapObjectCount);
@@ -298,7 +294,7 @@ void map3dLoad(Unk80362690* arg0, s32 arg1) {
                 _uvDebugPrintf("map3d : too many map objects [%d]\n", sMapObjectCount);
             }
             if (arg1) {
-                map3dAddItem(0x30, sp148.m[3][0], sp148.m[3][1], sp148.m[3][2]);
+                map3dAddItem(BLIT_WAYPOINT_RUNWAY, sp148.m[3][0], sp148.m[3][1], sp148.m[3][2]);
             }
         }
 
@@ -353,7 +349,7 @@ void map3dLoad(Unk80362690* arg0, s32 arg1) {
                     uvDobjModel(objId, MODEL_MAP_RING_TARGET_BLUE_CUBE);
                 }
                 if ((gHoverPads[i].unk6C == 1) && (arg1)) {
-                    map3dAddItem(0x4C, gHoverPads[i].pose.m[3][0] * sMapGlobalScale, gHoverPads[i].pose.m[3][1] * sMapGlobalScale,
+                    map3dAddItem(BLIT_WAYPOINT_NEXT, gHoverPads[i].pose.m[3][0] * sMapGlobalScale, gHoverPads[i].pose.m[3][1] * sMapGlobalScale,
                                  gHoverPads[i].pose.m[3][2] * sMapGlobalScale);
                 }
             } else {
@@ -372,9 +368,11 @@ void map3dLoad(Unk80362690* arg0, s32 arg1) {
 
         if (!D_803507A0) {
             for (i = 0; i < targCount; i++) {
+#if !defined(VERSION_JP)
                 if ((arg1) && (sMissileTargets[i].unk46 != 0)) {
                     continue;
                 }
+#endif
                 objId = sMapObjects[sMapObjectCount] = uvDobjAllocIdx();
                 uvDobjModel(objId, MODEL_MAP_RING_TARGET_YELLOW_CUBE);
                 uvMat4SetIdentity(&sp148);
@@ -392,27 +390,27 @@ void map3dLoad(Unk80362690* arg0, s32 arg1) {
         for (i = 0; i < phtsCount; i++) {
             switch (phtsRef[i].unk0) {
             case 4:
-                sp88 = 0x34;
+                sp88 = BLIT_WAYPOINT_WHALE;
                 whaleGetPos(&photoPos);
                 break;
             case 1:
-                sp88 = 0x35;
+                sp88 = BLIT_WAYPOINT_SPACE_SHUTTLE;
                 shuttle_80335F24(&photoPos);
                 break;
             case 2:
-                sp88 = 0x36;
+                sp88 = BLIT_WAYPOINT_PASSENGER_BOAT;
                 ferryGetPos(&photoPos);
                 break;
             case 6:
-                sp88 = 0x38;
+                sp88 = BLIT_WAYPOINT_FLAME;
                 oilPlantGetPos(&photoPos);
                 break;
             case 3:
-                sp88 = 0x39;
+                sp88 = BLIT_WAYPOINT_MISSI_THE_MONSTER;
                 missiGetPos(&photoPos);
                 break;
             case 5:
-                sp88 = 0x37;
+                sp88 = BLIT_WAYPOINT_FOUNTAIN;
                 fountainGetPos(&photoPos);
                 break;
             }
@@ -435,7 +433,7 @@ void map3dLoad(Unk80362690* arg0, s32 arg1) {
             sp148.m[3][2] = hopdRef[i].pos.z * sMapGlobalScale;
             uvDobjPosm(objId, 0, &sp148);
             if (arg1) {
-                map3dAddItem(0x33, hopdRef[i].pos.x * sMapGlobalScale, hopdRef[i].pos.y * sMapGlobalScale,
+                map3dAddItem(BLIT_WAYPOINT_GOAL, hopdRef[i].pos.x * sMapGlobalScale, hopdRef[i].pos.y * sMapGlobalScale,
                              (hopdRef[i].pos.z + hopdRef[i].height) * sMapGlobalScale);
             }
             sMapObjectCount++;
@@ -455,7 +453,7 @@ void map3dLoad(Unk80362690* arg0, s32 arg1) {
                 sp148.m[3][0] *= sMapGlobalScale;
                 sp148.m[3][1] *= sMapGlobalScale;
                 sp148.m[3][2] *= sMapGlobalScale;
-                map3dAddItem(0x32, sp148.m[3][0], sp148.m[3][1], sp148.m[3][2] + (27.63f * sMapGlobalScale));
+                map3dAddItem(BLIT_WAYPOINT_MECHA_HAWK, sp148.m[3][0], sp148.m[3][1], sp148.m[3][2] + (27.63f * sMapGlobalScale));
                 uvMat4Scale(&sp148, sMapGlobalScale, sMapGlobalScale, sMapGlobalScale);
             } else {
                 uvMat4SetIdentity(&sp148);
@@ -484,7 +482,7 @@ void map3dLoad(Unk80362690* arg0, s32 arg1) {
             sp148.m[3][2] = btgtRef[i].pos.z * sMapGlobalScale;
             uvDobjPosm(objId, 0, &sp148);
             if (arg1) {
-                map3dAddItem(0x33, btgtRef[i].pos.x * sMapGlobalScale, btgtRef[i].pos.y * sMapGlobalScale,
+                map3dAddItem(BLIT_WAYPOINT_GOAL, btgtRef[i].pos.x * sMapGlobalScale, btgtRef[i].pos.y * sMapGlobalScale,
                              (btgtRef[i].pos.z + btgtRef[i].unk14) * sMapGlobalScale);
             }
             sMapObjectCount++;
@@ -521,7 +519,7 @@ void map3dLoad(Unk80362690* arg0, s32 arg1) {
             uvDobjPosm(objId, 0, &sp148);
             sMapObjectCount += 1;
             if (arg1) {
-                map3dAddItem(0x31, sp148.m[3][0], sp148.m[3][1], sp148.m[3][2]);
+                map3dAddItem(BLIT_WAYPOINT_TARGET, sp148.m[3][0], sp148.m[3][1], sp148.m[3][2]);
             }
             if (sMapObjectCount >= ARRAY_COUNT(sMapObjects)) {
                 _uvDebugPrintf("map3d : too many map objects [%d]\n", sMapObjectCount);
@@ -558,7 +556,11 @@ void map3dLoad(Unk80362690* arg0, s32 arg1) {
             D_8034F818 = temp_fv0_3 * 0.0174533f;
         }
         if (!(D_8034F7FC >= 1.0f)) {
+#if defined(VERSION_JP)
+            _uvAssertMsg("camr >= 1.0f", "map3d.c", 870);
+#else // VERSION_US
             _uvAssertMsg("camr >= 1.0f", "map3d.c", 874);
+#endif
         }
     }
     D_8034F82C = D_8034F828;
@@ -566,7 +568,6 @@ void map3dLoad(Unk80362690* arg0, s32 arg1) {
     sMapEmitterDev0 = sndMakeDev(SFX_UI_MAP_MOVE);
     sMapEmitterDev1 = sndMakeDev(0x03);
 }
-#endif
 
 s32 map3dHandler(u8 arg0, s32 arg1) {
     f32 sp3C;

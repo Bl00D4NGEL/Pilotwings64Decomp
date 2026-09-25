@@ -16,36 +16,48 @@ STATIC_DATA s16* sTextData[439];
 STATIC_DATA s32 sTextDataCount;
 STATIC_DATA s32 sTextNameCount;
 
-#if defined(VERSION_JP)
-// https://decomp.me/scratch/BWIqE
-#pragma GLOBAL_ASM("asm/nonmatchings/app/text_data/textLoadBlock.s")
-#else // VERSION_US
 void textLoadBlock(s32 userFileIdx) {
-    s32 block;
     u32 tag;
+    s32 block;
     s32 i;
     u32 size;
-    s32 pad;
+    s32 var_v1;
     void* data;
     s32 ch;
+#if !defined(VERSION_JP)
     s32 newCh;
+#endif
 
-    block = uvFileReadHeader((s32)uvUserFileRead(userFileIdx, MEM_ROM_OFFSET));
+    block = uvFileReadHeader(uvUserFileRead(userFileIdx, MEM_ROM_OFFSET));
     sTextNameCount = 0;
     sTextDataCount = 0;
-
     while ((tag = uvFileReadBlock(block, &size, &data, 1)) != 0) {
         switch (tag) {
         case 'SIZE': // 0x53495A45
             break;
         case 'NAME': // 0x4E414D45
-            sTextName[sTextNameCount] = (char*)_uvMemAllocAlign8(size);
+            sTextName[sTextNameCount] = _uvMemAllocAlign8(size);
             _uvMediaCopy(sTextName[sTextNameCount], data, size);
             sTextNameCount++;
             break;
         case 'DATA': // 0x44415441
-            sTextData[sTextDataCount] = (s16*)_uvMemAllocAlign8(size + 2);
+            sTextData[sTextDataCount] = _uvMemAllocAlign8(size + 2);
             _uvMediaCopy(sTextData[sTextDataCount], data, size);
+
+#if defined(VERSION_JP)
+            var_v1 = (size / 2) - 5;
+            if (var_v1 < 0) {
+                var_v1 = 0;
+            }
+
+            ch = var_v1;
+            for (; ch < (size / 2); ch++) {
+                if (sTextData[sTextDataCount][ch] == 0xFFF) {
+                    sTextData[sTextDataCount][ch] = -1;
+                    break;
+                }
+            }
+#else // VERSION_US
             for (i = 0; (u32)i < size; i++) {
                 ch = sTextData[sTextDataCount][i];
                 if (ch == 0xFE) {
@@ -55,13 +67,14 @@ void textLoadBlock(s32 userFileIdx) {
                     sTextData[sTextDataCount][i] = newCh;
                 }
             }
+#endif
+
             sTextDataCount++;
             break;
         }
     }
     uvFile_80223F30(block);
 }
-#endif
 
 s16* textGetDataByName(const char* needle) {
     s16* dataStr;
@@ -84,10 +97,6 @@ s16* textGetDataByIdx(s32 idx) {
     return NULL;
 }
 
-#if defined(VERSION_JP)
-// https://decomp.me/scratch/AhsTF
-#pragma GLOBAL_ASM("asm/nonmatchings/app/text_data/textFmtInt.s")
-#else // VERSION_US
 s32 textFmtInt(s16* dst, s32 val, s32 length) {
     s32 digits;
     s32 fill;
@@ -109,18 +118,17 @@ s32 textFmtInt(s16* dst, s32 val, s32 length) {
     dst[length + 1] = 0xFFFF;
 
     for (i = 0; i < digits; i++) {
+#if defined(VERSION_JP)
+        dst[2 - i] = (val % 10);
+#else // VERSION_US
         dst[2 - i] = (val % 10) + 0x60; // 0x60 offset for bolded font
+#endif
         val /= 10;
     }
 
     return digits * 0x10;
 }
-#endif
 
-#if defined(VERSION_JP)
-// https://decomp.me/scratch/XVRFS
-#pragma GLOBAL_ASM("asm/nonmatchings/app/text_data/textFmtIntAt.s")
-#else // VERSION_US
 s32 textFmtIntAt(s16* dst, s32 val, s32 length, s32 dstOffset) {
     s32 digits;
     s32 fill;
@@ -141,10 +149,13 @@ s32 textFmtIntAt(s16* dst, s32 val, s32 length, s32 dstOffset) {
 
     dst += length - digits;
     for (i = 0; i < digits; i++) {
+#if defined(VERSION_JP)
+        dst[digits - 1 - i] = (val % 10);
+#else // VERSION_US
         dst[digits - 1 - i] = (val % 10) + 0x60; // 0x60 offset for bolded font
+#endif
         val /= 10;
     }
 
     return digits * 0x10;
 }
-#endif
