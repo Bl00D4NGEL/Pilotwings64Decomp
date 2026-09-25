@@ -38,7 +38,7 @@ jobs:
     - name: Build Dependencies
       run: make dependencies
     - name: Build
-      run: make extract; make
+      run: make init VERSION=${{ matrix.version }}
     - name: Generate Progress Report
       run: python3 -m mapfile_parser objdiff_report --version ${{ matrix.version }}
     - name: Upload Progress Report
