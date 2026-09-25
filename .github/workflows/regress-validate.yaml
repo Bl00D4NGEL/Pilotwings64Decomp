@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [ us ]
+        version: [ us, jp ]
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -32,7 +32,7 @@ jobs:
       env:
           SECRET_PASSPHRASE: ${{ secrets.SECRET_PASSPHRASE }}
           SECRET_BASENAME: pilotwings
-          SECRET_VERSION: us
+          SECRET_VERSION: ${{ matrix.version }}
     - name: Install Packages
       run: sudo apt-get install -y git make git build-essential binutils-mips-linux-gnu python3 python3-pip
     - name: Build Dependencies
@@ -50,5 +50,5 @@ jobs:
       if: ${{ github.event_name == 'push' }}
       run: python3 tools/discord_progress.py --discord_url ${{ secrets.SECRET_DISCORD_WEBHOOK_URL }} --version ${{ matrix.version }}
     - name: Cleanup
-      run: rm -f baserom.us.z64
+      run: rm -f *.z64
 
